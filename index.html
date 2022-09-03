@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/20f0ec48fd.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="assets/logo_toque.png">
@@ -18,27 +19,60 @@
     
 </head>
 <body>
-<header>
-    <img src="./assets/logo_toque.png" alt="logo toque de cuisinier">
-    <h1><img src="./assets/Les petits plats.png" alt="Les petits plats"></h1>
+<div class="container_page">
+<header class="header_page container">
+    <img src="./assets/logo_toque.png" alt="logo toque de cuisinier" class="d-block mx-auto logo_toque">
+    <h1 class=""><img class= "d-block mx-auto" src="./assets/Les petits plats.png" alt="Les petits plats"></h1>
 </header>
 <main>
-    <header>
-        <form action="index.html">
-            <fieldset>
+   
+    <header class="section-header">
 
+        <form action="">
+            <fieldset>
+                <div class="input_search_bar input-group mb-4 border p-1">
+                <input type="search" placeholder="Rechercher une recette" aria-describedby="button-addon3" class="input_search_bar form-control  border-0">
+                <div class="input-group-append border-0">
+                    <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
+                </div>
+                </div>
             </fieldset>
-            <fieldset>
+            <fieldset class="container row">
+                <div class="col-4 search_ingredients input-group border p-1 row align-items-center">
+                    <input type="search" placeholder="Ingrédients" aria-describedby="button-addon3" class="input_search_bar form-control  border-0">
+                    <div class="input-group-append border-0">
+                        <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-chevron-down"></i></button>
+                    </div>
+                </div>  
+                <div class="col-4 search_appareils input-group border p-1 row align-items-center">
+                    <input type="search" placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0">
+                    <div class="input-group-append border-0">
+                        <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-chevron-down"></i></button>
+                    </div>
+                </div>  
+                <div class="col-4 search_ustensils input-group border p-1 row align-items-center">
+                    <input type="search" placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0">
+                    <div class="input-group-append border-0">
+                        <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-chevron-down"></i></button>
+                    </div>
+                </div>  
 
+
+                <!-- example -->
+                
             </fieldset>
         </form>
+
+
+
+      
     </header>
     <div>
         
     </div>
 </main>
     
-
+</div>
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

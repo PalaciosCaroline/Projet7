@@ -9,5 +9,66 @@
 
 body {
     font-family: 'Lato', sans-serif;
+    font-weight: 400;
 }
 
+.container_page{
+    margin: 30px 7% 30px 7%;
+}
+
+.header_page {
+    height: 120px;
+    padding-bottom: 30px;
+}    
+
+.header_page h1 {
+    padding-top: 15px;
+}
+
+.input_search_bar {
+    background-color: #E7E7E7;
+}
+
+.form-control::placeholder {
+    font-size: 0.95rem;
+    color: #000;
+}
+
+.input_search_bar i{
+    color: #000;
+}
+
+fieldset:nth-child(2){
+    margin-left: 0;
+}
+
+fieldset:nth-child(2) .col-4{
+    /* background-color: #3282F7; */
+    max-width: 170px;
+    height: 70px;
+    margin-right: 40px;
+}
+
+fieldset:nth-child(2) .col-4 input,
+fieldset:nth-child(2) .col-4 i{ 
+    color: #000;
+}
+
+.search_ingredients input:focus-visible,
+.search_ingredients input,
+.search_ingredients{
+    background-color: #3282F7;
+}
+
+.search_appareils input:focus-visible,
+.search_appareils input,
+.search_appareils{
+    background-color: #68D9A4;
+}
+
+.search_ustensils input:focus-visible,
+.search_ustensils input,
+.search_ustensils{
+    background-color: #ED6454;
+    border: #ED6454;
+}
