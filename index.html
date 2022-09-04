@@ -36,27 +36,35 @@
                     </div>
                 </fieldset>
                 <fieldset class="container row">
-                    <div class="col-4 search_ingredients input-group border p-1 row align-items-center">
-                        <input type="search" list="dataIngredients" placeholder="Ingrédients" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="ingredients">
-                        <datalist id="dataIngredients"></datalist>
-                        <div class="input-group-append border-0">
-                            <button id="button-addon3" type="button" class="btn_ingredients btn btn-link text-success"><i class="fa fa-chevron-down"></i></button>
+                    <div class="boxresultIngredients">
+                        <div class="col-4 search_ingredients input-group border p-1 row align-items-center">
+                            <input type="search" list="dataIngredients" placeholder="Ingrédients" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="ingredients">
+                            <div class="input-group-append border-0">
+                                <button id="button-addon3" type="button" class="btn_ingredients btn btn-link text-success"><i class="fa fa-chevron-down"></i></button>
+                            </div>
+                        </div>  
+                        <ul class="ingredientsUl"></ul>
+                    </div>
+
+                    <div class="boxresultAppliance">
+                        <div class="col-4 search_appareils input-group border p-1 row align-items-center">
+                            <input type="search" list="dataAppliance" placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="appliance">
+                            <div class="input-group-append border-0">
+                                <button id="button-addon3" type="button" class="btn btn_appliance btn-link text-success"><i class="fa fa-chevron-down"></i></button>
+                            </div>
                         </div>
+                        <ul class="applianceUl"></ul>
                     </div>  
-                    <div class="col-4 search_appareils input-group border p-1 row align-items-center">
-                        <input type="search" list="dataAppliance" placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="appliance">
-                        <datalist id="dataAppliance"></datalist>
-                        <div class="input-group-append border-0">
-                            <button id="button-addon3" type="button" class="btn btn_appliance btn-link text-success"><i class="fa fa-chevron-down"></i></button>
-                        </div>
-                    </div>  
-                    <div class="col-4 search_ustensils input-group border p-1 row align-items-center">
-                        <input type="search" list="dataUstensils" placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="ustensils">
-                        <datalist id="dataUstensils"></datalist>
-                        <div class="input-group-append border-0">
-                            <button id="button-addon3" type="button" class="btn btn_ustensils btn-link text-success"><i class="fa fa-chevron-down"></i></button>
-                        </div>
-                    </div>                  
+
+                    <div class="boxresultUstensils">
+                        <div class="col-4 search_ustensils input-group border p-1 row align-items-center">
+                            <input type="search" list="dataUstensils" placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="ustensils">
+                            <div class="input-group-append border-0">
+                                <button id="button-addon3" type="button" class="btn btn_ustensils btn-link text-success"><i class="fa fa-chevron-down"></i></button>
+                            </div>
+                        </div>  
+                        <ul class="ustensilsUl"></ul>
+                    </div>                
                 </fieldset>
             </form>
         </header>
@@ -77,5 +85,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <script type="module" src="scripts/pages/index.js"></script>
+<script type="module" src="scripts/utils/tags.js"></script>
 </body>
 </html>
