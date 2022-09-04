@@ -10,7 +10,7 @@ export function getCardRecipe(recipe) {
             }  
         }
 
-        function getIngredients() {
+        function getLiIngredients() {
             let ul = '<ul>'
                    recipe.ingredients.forEach(item => {
                        const unit = (item.unit)? item.unit : "";
@@ -35,7 +35,7 @@ export function getCardRecipe(recipe) {
                 </div>
             </header>
             <div class="card_textContent d-flex justify-content-between">
-                <ul id="cardUlIngredients" class="">${getIngredients()}
+                <ul id="cardUlIngredients" class="">${getLiIngredients()}
                 </ul>
                 <div id="card_description" class="">
                     <p>${recipe.description}</p>

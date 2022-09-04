@@ -87,6 +87,7 @@ article.card{
     margin-bottom : 40px;
     padding: 0;
     border: 1px solid #000;
+    border-radius: 10px 10px;
 }
 
 .card .card-img-top{
@@ -94,6 +95,7 @@ article.card{
     height: 178px;
     width: 100%;
     display: block;
+    border-radius: 10px 10px 0 0;
 }
 
 .card header{
@@ -109,7 +111,7 @@ article.card{
 }
 
 .cardTime{
-    min-width: 50px;
+    min-width: 55px;
 }
 
 .cardTime img{
@@ -120,6 +122,7 @@ article.card{
     font-size: 0.75rem;
     padding: 0 20px 10px 20px;
     background: #fff;
+    border-radius: 0 0 10px 10px;
 }
 
 .card ul{

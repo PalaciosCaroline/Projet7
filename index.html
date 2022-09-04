@@ -37,27 +37,31 @@
                 </fieldset>
                 <fieldset class="container row">
                     <div class="col-4 search_ingredients input-group border p-1 row align-items-center">
-                        <input type="search" placeholder="Ingrédients" aria-describedby="button-addon3" class="input_search_bar form-control  border-0">
+                        <input type="search" list="dataIngredients" placeholder="Ingrédients" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="ingredients">
+                        <datalist id="dataIngredients"></datalist>
                         <div class="input-group-append border-0">
-                            <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-chevron-down"></i></button>
+                            <button id="button-addon3" type="button" class="btn_ingredients btn btn-link text-success"><i class="fa fa-chevron-down"></i></button>
                         </div>
                     </div>  
                     <div class="col-4 search_appareils input-group border p-1 row align-items-center">
-                        <input type="search" placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0">
+                        <input type="search" list="dataAppliance" placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="appliance">
+                        <datalist id="dataAppliance"></datalist>
                         <div class="input-group-append border-0">
-                            <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-chevron-down"></i></button>
+                            <button id="button-addon3" type="button" class="btn btn_appliance btn-link text-success"><i class="fa fa-chevron-down"></i></button>
                         </div>
                     </div>  
                     <div class="col-4 search_ustensils input-group border p-1 row align-items-center">
-                        <input type="search" placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0">
+                        <input type="search" list="dataUstensils" placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="ustensils">
+                        <datalist id="dataUstensils"></datalist>
                         <div class="input-group-append border-0">
-                            <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-chevron-down"></i></button>
+                            <button id="button-addon3" type="button" class="btn btn_ustensils btn-link text-success"><i class="fa fa-chevron-down"></i></button>
                         </div>
                     </div>                  
                 </fieldset>
             </form>
         </header>
 
+        <div class="word_search"></div>
         <div id="box_recipes" class="d-flex flex-wrap justify-content-between">
             
         </div>
