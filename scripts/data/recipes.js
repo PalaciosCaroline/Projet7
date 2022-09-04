@@ -1,3 +1,5 @@
+export { recipes }
+
 const recipes = [
     {
         "id": 1,

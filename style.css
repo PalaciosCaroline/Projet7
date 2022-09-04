@@ -72,3 +72,54 @@ fieldset:nth-child(2) .col-4 i{
     background-color: #ED6454;
     border: #ED6454;
 }
+
+#box_recipes{
+    margin-top: 30px;
+    padding: 0;
+}
+
+article.card{
+    box-sizing: border-box;
+    /* min-height: 364px; */
+    height: auto;
+    min-width: 380px;
+    width: 30%;
+    margin-bottom : 40px;
+    padding: 0;
+    border: 1px solid #000;
+}
+
+.card .card-img-top{
+    background-color: #68D9A4;
+    height: 178px;
+    width: 100%;
+    display: block;
+}
+
+.card header{
+    border : none;
+    background: #fff;
+} 
+
+.card h3{
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.card_textContent {
+    font-size: 0.75rem;
+    padding: 10px 10px 10px 10px;
+    background: #fff;
+}
+
+.card ul{
+    padding: 0;
+    width: 50%;
+}
+.card li{
+    list-style: none;
+}
+
+#card_description{
+    width: 50%;
+}
