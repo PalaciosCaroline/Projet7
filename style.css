@@ -90,7 +90,7 @@ article.card{
 }
 
 .card .card-img-top{
-    background-color: #68D9A4;
+    background-color: #C7BEBE;
     height: 178px;
     width: 100%;
     display: block;
@@ -104,17 +104,26 @@ article.card{
 .card h3{
     font-size: 1.1rem;
     margin: 0;
+    display: block;
+    width: calc(100% - 50);
+}
+
+.cardTime{
+    min-width: 50px;
+}
+
+.cardTime img{
+    padding-bottom: 3px;
 }
 
 .card_textContent {
     font-size: 0.75rem;
-    padding: 10px 10px 10px 10px;
+    padding: 0 20px 10px 20px;
     background: #fff;
 }
 
 .card ul{
     padding: 0;
-    width: 50%;
 }
 .card li{
     list-style: none;
