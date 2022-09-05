@@ -82,20 +82,33 @@ fieldset:nth-child(2) .col-4 i{
     border: #ED6454;
 }
 
-#box_recipes{
-    margin-top: 30px;
+.div_box_recipes{
     padding: 0;
+    /* margin: 0 -15px 0 -15px; */
+}
+
+#box_recipes{
+    margin: 30px 0 0 0;
+    padding: 0;
+}
+
+.divCard{
+    height: auto;
+    width: 95%;
+    margin-bottom: 30px;
 }
 
 article.card{
     box-sizing: border-box;
     /* min-height: 364px; */
-    height: auto;
-    min-width: 380px;
-    width: 30%;
-    margin-bottom : 40px;
+    height: 100%;
+    /* min-width: 380px;  */
+    width: 100%; 
+    /* width: 30%; */
+    /* margin-bottom : 40px; */
     padding: 0;
-    border: 1px solid #000;
+    /* margin:-15px; */
+    /* border: 1px solid #000; */
     border-radius: 10px 10px;
 }
 
@@ -128,19 +141,22 @@ article.card{
 }
 
 .card_textContent {
+    width: 100%;
     font-size: 0.75rem;
-    padding: 0 20px 10px 20px;
+    /* padding: 0 20px 10px 20px; */
     background: #fff;
     border-radius: 0 0 10px 10px;
+    margin : 0;
 }
 
 .card ul{
     padding: 0;
+    padding: 0 10px 0 10px;
 }
 .card li{
     list-style: none;
 }
 
 #card_description{
-    width: 50%;
-}
+    padding-left: 0;
+} 
