@@ -19,3 +19,32 @@ const applianceUlUl = document.getElementById('applianceUlUl');
 const ustensilsUl = document.getElementById('ustensilsUl');
 
 
+function getValue() {
+    let inputIngredients = document.getElementById("ingredients").value;
+    let inputAppliance = document.getElementById("appliance").value;
+    let inputUstensils = document.getElementById("ustensils").value;
+}
+
+document.querySelector('.btn_ingredients').addEventListener('click', getValue);
+
+function getCardRecipeByIngredients() {
+    let inputIngredients = document.getElementById("ingredients").value;
+    if(inputIngredients.lenght >= 3) {
+    const Listingredients = ingredientsArray.filter(item => item == inputIngredients.value);
+    ingredientsUl.innerHTML = '';
+    return buildUlListfilter(Listingredients, ingredientsUl )
+    }  
+}
+
+
+function buildUlListfilter(ArrayList, containerList) {
+    ArrayList.forEach((item => {
+        const liSortingItem = document.createElement('li');
+        liSortingItem.innerHTML = item;
+        liSortingItem.classList.add('liSorting-item');
+        liSortingItem.classList.add('p-2');
+        containerList.appendChild(liSortingItem);
+    })) 
+}
+
+// document.getElementById("ingredients").addEventListener('keyup',getCardRecipeByIngredients())

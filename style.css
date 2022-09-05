@@ -12,6 +12,9 @@ body {
     font-weight: 400;
 }
 
+li{
+list-style: none;
+}
 .container_page{
     margin: 30px 7% 30px 7%;
 }
@@ -45,21 +48,21 @@ fieldset:nth-child(2) .form-control::placeholder {
 
 fieldset:nth-child(2) {
     margin-left: 0;
+    padding: 0;
 }
 
 fieldset:nth-child(2) .form-control::placeholder{
     color: #fff;
 }
 
-fieldset:nth-child(2) .col-4{
-    /* background-color: #3282F7; */
-    max-width: 170px;
+.boxresults{
+    width: 170px;
     height: 70px;
     margin-right: 40px;
 }
 
-fieldset:nth-child(2) .col-4 input,
-fieldset:nth-child(2) .col-4 i{ 
+fieldset:nth-child(2) input,
+fieldset:nth-child(2) i{ 
     color: #fff;
 }
 
@@ -67,6 +70,13 @@ fieldset:nth-child(2) .col-4 i{
 .search_ingredients input,
 .search_ingredients{
     background-color: #3282F7;
+}
+
+.boxresultIngredients{
+    background-color: #3282F7;
+    /* color: #fff; */
+    height: 0;
+    width: 0;
 }
 
 .search_appareils input:focus-visible,
@@ -80,6 +90,17 @@ fieldset:nth-child(2) .col-4 i{
 .search_ustensils{
     background-color: #ED6454;
     border: #ED6454;
+}
+
+ul{
+    padding:0;
+    height: auto;
+    width: 60%;
+}
+
+.boxresults{
+    margin-left:0;
+    margin-right: 20px;
 }
 
 .div_box_recipes{

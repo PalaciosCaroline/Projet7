@@ -35,20 +35,21 @@
                     </div>
                     </div>
                 </fieldset>
-                <fieldset class="container row">
-                    <div class="boxresultIngredients">
-                        <div class="col-4 search_ingredients input-group border p-1 row align-items-center">
-                            <input type="search" list="dataIngredients" placeholder="Ingrédients" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="ingredients">
+
+                <fieldset class="row">
+                    <div class="boxresultIngredients boxresults col-2">
+                        <div class="search_ingredients input-group border p-1 row align-items-center">
+                            <input type="search"  placeholder="Ingrédients" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="ingredients">
                             <div class="input-group-append border-0">
                                 <button id="button-addon3" type="button" class="btn_ingredients btn btn-link text-success"><i class="fa fa-chevron-down"></i></button>
                             </div>
                         </div>  
-                        <ul class="ingredientsUl"></ul>
+                        <ul id="ingredientsUl" class=""></ul>
                     </div>
 
-                    <div class="boxresultAppliance">
-                        <div class="col-4 search_appareils input-group border p-1 row align-items-center">
-                            <input type="search" list="dataAppliance" placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="appliance">
+                    <div class="boxresultAppliance boxresults col-2">
+                        <div class="search_appareils input-group border p-1 row align-items-center">
+                            <input type="search"  placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="appliance">
                             <div class="input-group-append border-0">
                                 <button id="button-addon3" type="button" class="btn btn_appliance btn-link text-success"><i class="fa fa-chevron-down"></i></button>
                             </div>
@@ -56,14 +57,14 @@
                         <ul id="applianceUl"></ul>
                     </div>  
 
-                    <div class="boxresultUstensils">
-                        <div class="col-4 search_ustensils input-group border p-1 row align-items-center">
-                            <input type="search" list="dataUstensils" placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="ustensils">
+                    <div class="boxresultUstensils boxresults col-2">
+                        <div class="search_ustensils input-group border p-1 row align-items-center">
+                            <input type="search"  placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="ustensils">
                             <div class="input-group-append border-0">
                                 <button id="button-addon3" type="button" class="btn btn_ustensils btn-link text-success"><i class="fa fa-chevron-down"></i></button>
                             </div>
                         </div>  
-                        <ul class="ustensilsUl"></ul>
+                        <ul id="ustensilsUl" class=""></ul>
                     </div>                
                 </fieldset>
             </form>
