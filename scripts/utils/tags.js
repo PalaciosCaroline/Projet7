@@ -19,13 +19,12 @@ const applianceUlUl = document.getElementById('applianceUlUl');
 const ustensilsUl = document.getElementById('ustensilsUl');
 
 
-function getValue() {
-    let inputIngredients = document.getElementById("ingredients").value;
-    let inputAppliance = document.getElementById("appliance").value;
-    let inputUstensils = document.getElementById("ustensils").value;
-}
+let inputIngredients = document.getElementById("ingredients").value;
+let inputAppliance = document.getElementById("appliance").value;
+let inputUstensils = document.getElementById("ustensils").value;
 
-document.querySelector('.btn_ingredients').addEventListener('click', getValue);
+
+// document.querySelector('.btn_ingredients').addEventListener('change', );
 
 function getCardRecipeByIngredients() {
     let inputIngredients = document.getElementById("ingredients").value;
@@ -35,7 +34,6 @@ function getCardRecipeByIngredients() {
     return buildUlListfilter(Listingredients, ingredientsUl )
     }  
 }
-
 
 function buildUlListfilter(ArrayList, containerList) {
     ArrayList.forEach((item => {
@@ -47,4 +45,11 @@ function buildUlListfilter(ArrayList, containerList) {
     })) 
 }
 
-// document.getElementById("ingredients").addEventListener('keyup',getCardRecipeByIngredients())
+
+document.getElementById("ingredients").addEventListener('change',getCardRecipeByIngredients());
+
+const handler = {
+    set(target, prop, value){
+    
+    }
+}

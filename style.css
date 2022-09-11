@@ -56,8 +56,8 @@ fieldset:nth-child(2) .form-control::placeholder{
 }
 
 .boxresults{
-    width: 170px;
-    height: 70px;
+    min-width: 170px;
+    min-height: 70px;
     margin-right: 40px;
 }
 
@@ -92,6 +92,14 @@ fieldset:nth-child(2) i{
     border: #ED6454;
 }
 
+.search_ingredients,
+.search_ustensils,
+.search_appareils{
+    min-width: 170px;
+    min-height: 70px;
+    margin-right: 40px;
+} 
+
 ul{
     padding:0;
     height: auto;
@@ -109,28 +117,20 @@ ul{
 }
 
 #box_recipes{
-    margin: 30px 0 0 0;
+ margin-top:30px;
     padding: 0;
 }
 
-.divCard{
-    height: auto;
-    width: 95%;
-    margin-bottom: 30px;
-}
-
-article.card{
-    box-sizing: border-box;
-    /* min-height: 364px; */
-    height: 100%;
-    /* min-width: 380px;  */
-    width: 100%; 
-    /* width: 30%; */
-    /* margin-bottom : 40px; */
+.card-deck .card{
+    height: 364px; 
+    min-width: 380px; 
     padding: 0;
     /* margin:-15px; */
     /* border: 1px solid #000; */
     border-radius: 10px 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .card .card-img-top{
@@ -168,16 +168,31 @@ article.card{
     background: #fff;
     border-radius: 0 0 10px 10px;
     margin : 0;
+    text-overflow: ellipsis;
 }
 
 .card ul{
     padding: 0;
     padding: 0 10px 0 10px;
+    width: 100%;
 }
 .card li{
     list-style: none;
+    width: 100%;
 }
 
 #card_description{
     padding-left: 0;
+   
 } 
+
+.card a{
+    width:100%;
+    height: 100%;
+}
+
+#card_description p {
+display: inline-block;
+text-overflow: ellipsis;
+
+}
