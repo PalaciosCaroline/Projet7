@@ -24,14 +24,15 @@ let inputAppliance = document.getElementById("appliance").value;
 let inputUstensils = document.getElementById("ustensils").value;
 
 
+
 // document.querySelector('.btn_ingredients').addEventListener('change', );
 
 function getCardRecipeByIngredients() {
     let inputIngredients = document.getElementById("ingredients").value;
-    if(inputIngredients.lenght >= 3) {
+    if(inputIngredients.lenght > 2) {
     const Listingredients = ingredientsArray.filter(item => item == inputIngredients.value);
     ingredientsUl.innerHTML = '';
-    return buildUlListfilter(Listingredients, ingredientsUl )
+    return buildUlListfilter(Listingredients, ingredientsUl)
     }  
 }
 
@@ -53,3 +54,19 @@ const handler = {
     
     }
 }
+
+// document.getElementById("ingredients").addEventListener('keyup', (e) => getCardRecipeByIngredients());
+
+// function getIngredientsByTag(recipes, e) {
+//     EventTarget.value = input.value;
+//         if (input.value == null || input.value < 2) {
+//             return ingredientsArray;
+//         }
+//         if (input.value.length > 2) {
+//             ingredientsArray.filter(elt => elt == input.value)
+//         }
+// }
+
+// getCardRecipeByIngredients();
+
+    buildUlListfilter(ingredientsArray, ingredientsUl);

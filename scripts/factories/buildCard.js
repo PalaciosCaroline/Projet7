@@ -27,7 +27,7 @@ export function getCardRecipe(recipe) {
         card.className = 'card border-secondary'
         card.innerHTML = `
             <a href="">
-                <img class="card-img-top" src="" alt="" />
+                <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
                 <div className="cardText card-body">
                     <header id="cardHeader" class="card-header d-flex justify-content-between">
                         <h3 class="card-title">${recipe.name}</h3>
