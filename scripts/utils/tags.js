@@ -24,17 +24,16 @@ let inputAppliance = document.getElementById("appliance").value;
 let inputUstensils = document.getElementById("ustensils").value;
 
 
-
 // document.querySelector('.btn_ingredients').addEventListener('change', );
 
-function getCardRecipeByIngredients() {
-    let inputIngredients = document.getElementById("ingredients").value;
-    if(inputIngredients.lenght > 2) {
-    const Listingredients = ingredientsArray.filter(item => item == inputIngredients.value);
-    ingredientsUl.innerHTML = '';
-    return buildUlListfilter(Listingredients, ingredientsUl)
-    }  
-}
+// function getCardRecipeByIngredients(value) {
+//     if(inputIngredients.lenght > 2) {
+//     const Listingredients = ingredientsArray.filter(item => item.trim().includes(value));
+//     console.log(Listingredients);
+//     ingredientsUl.innerHTML = '';
+//     buildUlListfilter(Listingredients, ingredientsUl);
+//     }  
+// }
 
 function buildUlListfilter(ArrayList, containerList) {
     ArrayList.forEach((item => {
@@ -42,20 +41,30 @@ function buildUlListfilter(ArrayList, containerList) {
         liSortingItem.innerHTML = item;
         liSortingItem.classList.add('liSorting-item');
         liSortingItem.classList.add('p-2');
+        liSortingItem.classList.add('text-white');
         containerList.appendChild(liSortingItem);
     })) 
 }
 
+// document.getElementById("ingredients").addEventListener('change', (e) => {getCardRecipeByIngredients(e.target.value.toLowerCase().trim())});
 
-document.getElementById("ingredients").addEventListener('change',getCardRecipeByIngredients());
 
+let newingredientsArray = [...ingredientsArray];
 const handler = {
-    set(target, prop, value){
-    
+    set(newingredientsArray, value){
+      newingredientsArray = ingredientsArray.filter(item => item.trim().includes(value));
+      ingredientsUl.innerHTML = '';
+    buildUlListfilter(newingredientsArray, ingredientsUl);
+    return true;
     }
 }
 
-// document.getElementById("ingredients").addEventListener('keyup', (e) => getCardRecipeByIngredients());
+const ingredientsproxy = new Proxy(newingredientsArray,handler);
+
+document.getElementById("ingredients").addEventListener('change', (e) => ingredientsproxy);
+
+buildUlListfilter(ingredientsArray, ingredientsUl);
+
 
 // function getIngredientsByTag(recipes, e) {
 //     EventTarget.value = input.value;
@@ -69,4 +78,3 @@ const handler = {
 
 // getCardRecipeByIngredients();
 
-    buildUlListfilter(ingredientsArray, ingredientsUl);

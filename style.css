@@ -67,17 +67,17 @@ margin-left:0;
     position: relative; 
     z-index:99;
 }
-
+/* 
 fieldset:nth-child(2) input,
 fieldset:nth-child(2) i{ 
-    color: #fff;
-}
+   
+} */
 
 .search_ingredients input:focus-visible,
 .search_ingredients input,
 .search_ingredients{
     background-color: #3282F7;
-    color:#fff;
+    
 }
 
 .boxresultIngredients{
@@ -88,7 +88,7 @@ fieldset:nth-child(2) i{
 .search_appareils input,
 .search_appareils{
     background-color: #68D9A4;
-    color:#fff;
+    
 }
 
 .search_ustensils input:focus-visible,
@@ -96,7 +96,7 @@ fieldset:nth-child(2) i{
 .search_ustensils{
     background-color: #ED6454;
     border: #ED6454;
-    color:#fff;
+    
 }
 
 .search_ingredients,
@@ -114,7 +114,7 @@ fieldset:nth-child(2) i{
    display: flex;
    flex-wrap: wrap;
     width: 700px;
-    color: #fff;
+  
 }
 
 .boxresults li{
