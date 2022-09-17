@@ -14,7 +14,9 @@ body {
 
 li{
 list-style: none;
+cursor:pointer;
 }
+
 .container_page{
     margin: 30px 7% 30px 7%;
 }
@@ -67,6 +69,7 @@ margin-left:0;
     position: relative; 
     z-index:99;
 }
+
 /* 
 fieldset:nth-child(2) input,
 fieldset:nth-child(2) i{ 
@@ -82,6 +85,14 @@ fieldset:nth-child(2) i{
 
 .boxresultIngredients{
     background-color: #3282F7;
+}
+.boxresultAppliance ul{
+    background-color: #68D9A4;
+    padding:0;
+}
+.boxresultUstensils ul{
+    background-color:#ED6454;
+    padding:0;
 }
 
 .search_appareils input:focus-visible,
@@ -102,23 +113,29 @@ fieldset:nth-child(2) i{
 .search_ingredients,
 .search_ustensils,
 .search_appareils{
-    width: 100%;
+    /* width: 100%; */
     min-width: 170px;
     min-height: 70px;
     margin-right: 40px;
 } 
 
-.boxresults ul{
+.boxresultIngredients ul{
     padding:0;
     height: auto;
    display: flex;
    flex-wrap: wrap;
     width: 700px;
-  
 }
 
-.boxresults li{
+.boxresultIngredients li{
     width: 30%;
+
+}
+.boxresultsUstensils li{
+    width: 100%;
+}
+.boxresultsAppliance li{
+    width: 100%;
 }
 
 .boxresults{
@@ -212,3 +229,4 @@ fieldset:nth-child(2) i{
 display: inline-block;
 text-overflow: ellipsis;
 }
+

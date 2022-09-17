@@ -1,32 +1,44 @@
 import {recipes} from '../data/recipes.js';
-
-    let ingredientsArray = [];
-    let applianceArray = [];
-    let ustensilsArray = [];
-
-    recipes.forEach((recipe) => {
-        recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
-        applianceArray.push(recipe.appliance.toLowerCase());
-        recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
-    })
-
-    ingredientsArray = [...new Set(ingredientsArray)].sort();
-    applianceArray = [...new Set(applianceArray)].sort();
-    ustensilsArray = [...new Set(ustensilsArray)].sort();
+import {getCardRecipe} from '../factories/buildCard.js'
 
 const ingredientsUl = document.getElementById('ingredientsUl');
-const applianceUlUl = document.getElementById('applianceUlUl');
+const applianceUl = document.getElementById('applianceUl');
 const ustensilsUl = document.getElementById('ustensilsUl');
 
+function getIngredientsList(recipes){
+    let ingredientsArray = [];
+    recipes.forEach((recipe) => {
+        recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
+    ingredientsArray = [...new Set(ingredientsArray)].sort();
+    buildUlListfilter(ingredientsArray, ingredientsUl);
+    })
+}
+function getApplianceList(recipes){
+    let applianceArray = [];
+    recipes.forEach((recipe) => {
+        applianceArray.push(recipe.appliance.toLowerCase());
+    applianceArray = [...new Set(applianceArray)].sort();
+    buildUlListfilter(applianceArray, applianceUl);
+    })
+}
+function getUstensilsList(recipes){
+    let ustensilsArray = [];
+    recipes.forEach((recipe) => {
+    recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
+    ustensilsArray = [...new Set(ustensilsArray)].sort();
+    buildUlListfilter(ustensilsArray, ustensilsUl);
+    })
+}
 
-let inputIngredients = document.getElementById("ingredients").value;
-let inputAppliance = document.getElementById("appliance").value;
-let inputUstensils = document.getElementById("ustensils").value;
+
+// let inputIngredients = document.getElementById("ingredients").value;
+// let inputAppliance = document.getElementById("appliance").value;
+// let inputUstensils = document.getElementById("ustensils").value;
 
 
 // document.querySelector('.btn_ingredients').addEventListener('change', );
 
-// function getCardRecipeByIngredients(value) {
+// function getIngredientsList(value) {
 //     if(inputIngredients.lenght > 2) {
 //     const Listingredients = ingredientsArray.filter(item => item.trim().includes(value));
 //     console.log(Listingredients);
@@ -36,6 +48,7 @@ let inputUstensils = document.getElementById("ustensils").value;
 // }
 
 function buildUlListfilter(ArrayList, containerList) {
+    containerList.innerHTML = '';
     ArrayList.forEach((item => {
         const liSortingItem = document.createElement('li');
         liSortingItem.innerHTML = item;
@@ -46,35 +59,75 @@ function buildUlListfilter(ArrayList, containerList) {
     })) 
 }
 
-// document.getElementById("ingredients").addEventListener('change', (e) => {getCardRecipeByIngredients(e.target.value.toLowerCase().trim())});
+
+let datas = {}
+datas.recipes = [...recipes];
+
+let datasProxy = new Proxy(datas, {
+    set: function(target, key, value) {
+        console.log(target, key, value)
+        target[key] = value;
+        switch(key) {
+            case 'filtredRecipes': 
+            // afficher les recettes
+            displayRecipes(value);
+            //mettre a jour la liste des ingredients
+            getIngredientsList(value);
+            getApplianceList(value);
+            getUstensilsList(value);
+            break;
+            case 'searchString':
+            //filtrer les recettes en fonction de la recherche
+            const result = recipeSearch(target, value)
+            //actualiser la liste des recherches filtrées
+            datasProxy.filtredRecipes = [...result];
+            break;
+            case 'searchStringTag':
+            //filtrer les recettes en fonction de la recherche
+            const resultTag = recipeSearch(target, value)
+            //actualiser la liste des recherches filtrées
+            datasProxy.filtredRecipes = [...resultTag];
+        }
+        return true;
+    }
+});
 
 
-let newingredientsArray = [...ingredientsArray];
-const handler = {
-    set(newingredientsArray, value){
-      newingredientsArray = ingredientsArray.filter(item => item.trim().includes(value));
-      ingredientsUl.innerHTML = '';
-    buildUlListfilter(newingredientsArray, ingredientsUl);
-    return true;
+datasProxy.filtredRecipes = [...recipes];
+
+document.querySelector('#search_bar').addEventListener('input', (e) => {
+    datasProxy.searchString = e.target.value;
+    datasProxy.searchLength = e.target.value.length;
+})
+
+document.querySelector('#ingredients').addEventListener('input', (e) => {
+    datasProxy.searchStringTag = e.target.value;
+    datasProxy.searchLength = e.target.value.length;
+})
+document.querySelector('#appliance').addEventListener('input', (e) => {
+    datasProxy.searchStringTag = e.target.value;
+    datasProxy.searchLength = e.target.value.length;
+})
+document.querySelector('#ustensils').addEventListener('input', (e) => {
+    datasProxy.searchStringTag = e.target.value;
+    datasProxy.searchLength = e.target.value.length;
+})
+
+function recipeSearch(data, research){
+    if(research.length > data.searchLength && research.length !== 0 && research.length > 2) {
+        const result = data.filtredRecipes.filter(recipe => {return (recipe.name.toLowerCase().includes(research.toLowerCase())) + (recipe.description.toLowerCase().includes(research.toLowerCase()))});
+        return result
+    } else if (research.length <= 2 ){
+        const result = [...recipes];
+        return result;
+    }else if (research.length < data.searchLength && research.length !== 0 && research.length > 2) {
+        const result = data.filtredRecipes.filter(recipe => {return (recipe.name.toLowerCase().includes(research.toLowerCase())) + (recipe.description.toLowerCase().includes(research.toLowerCase()))});
+        return result
     }
 }
 
-const ingredientsproxy = new Proxy(newingredientsArray,handler);
-
-document.getElementById("ingredients").addEventListener('change', (e) => ingredientsproxy);
-
-buildUlListfilter(ingredientsArray, ingredientsUl);
-
-
-// function getIngredientsByTag(recipes, e) {
-//     EventTarget.value = input.value;
-//         if (input.value == null || input.value < 2) {
-//             return ingredientsArray;
-//         }
-//         if (input.value.length > 2) {
-//             ingredientsArray.filter(elt => elt == input.value)
-//         }
-// }
-
-// getCardRecipeByIngredients();
-
+function displayRecipes(value){
+    const boxRecipes = document.getElementById('box_recipes');
+    boxRecipes.innerHTML = '';
+    value.forEach(recipe => boxRecipes.appendChild(getCardRecipe(recipe)));
+}

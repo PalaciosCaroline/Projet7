@@ -29,7 +29,7 @@
             <form action="">
                 <fieldset>
                     <div class="input_search_bar input-group mb-4 border p-1">
-                    <input type="search" placeholder="Rechercher une recette" aria-describedby="button-addon3" class="input_search_bar form-control  border-0">
+                    <input type="search" placeholder="Rechercher une recette" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="search_bar">
                     <div class="input-group-append border-0">
                         <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
                     </div>
@@ -72,10 +72,11 @@
 
         <div class="word_search"></div>
         <div class="div_box_recipes container-fluid">
-            <div id="box_recipes" class="card-deck flex-wrap justify-content-between">
-                
+            <div id="box_recipes" class="card-deck flex-wrap justify-content-between">   
             </div>
         </div>
+
+        <div id="modal"><button id="btn_closeModal"><i class="fa-regular fa-xmark"></i></button></div>
     </main>
 </div>
 

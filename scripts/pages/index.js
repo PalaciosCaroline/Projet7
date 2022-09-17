@@ -4,6 +4,6 @@ import {getCardRecipe} from '../factories/buildCard.js'
 
 
 
-recipes.forEach(recipe => document.getElementById('box_recipes').appendChild(getCardRecipe(recipe))
-)
+// recipes.forEach(recipe => document.getElementById('box_recipes').appendChild(getCardRecipe(recipe))
+// )
 

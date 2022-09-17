@@ -25,8 +25,8 @@ export function getCardRecipe(recipe) {
       
         const card = document.createElement('article');
         card.className = 'card border-secondary'
+        card.dataTarget="#modal";
         card.innerHTML = `
-            <a href="">
                 <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
                 <div className="cardText card-body">
                     <header id="cardHeader" class="card-header d-flex justify-content-between">
@@ -43,9 +43,11 @@ export function getCardRecipe(recipe) {
                             <p class="">${recipe.description}</p>
                         </div>
                     </div>
-                </div>
-                </a> `
+                </div> `
+               
     return card;
 }
+
+
 
 
