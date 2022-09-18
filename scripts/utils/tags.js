@@ -168,40 +168,39 @@ function tagIngredientsSearch(data, research) {
 }
 
 //création de tag raté
-function displayTags() {
-    let liSortingItem = document.querySelectorAll(".liSorting-item");
-    liSortingItem.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        const selectItem = e.target.innerHTML;
-        selectItem.style.backgroundColor = e.target.style.backgroundColor;
-        if (!tagsArray.includes(selectItem)) {
-          tagsArray.push(selectItem);
-        }
-        getTags();
-      });
-    });
-  };
+// function displayTags() {
+//     let liSortingItem = document.querySelectorAll(".liSorting-item");
+//     liSortingItem.forEach((item) => {
+//       item.addEventListener("click", (e) => {
+//         const selectItem = e.target.innerHTML;
+//         if (!tagsArray.includes(selectItem)) {
+//           tagsArray.push(selectItem);
+//         }
+//         getTags();
+//       });
+//     });
+//   };
 
-displayTags();
+// displayTags();
 
-function getTags() {
-    tagsArray.forEach((item) => {
-      const tagChoice = buildTagChoice(item);
-      tagChoiceBox.appendChild(tagChoice);
-    });
-  }
+// function getTags() {
+//     tagsArray.forEach((item) => {
+//       const tagChoice = buildTagChoice(item);
+//       tagChoiceBox.appendChild(tagChoice);
+//     });
+//   }
 
-function buildTagChoice(element){
-    const tagelement = document.createElement('div');
-    tagelement.className = 'tagChoice';
-    const textTag = document.createElement('span');
-    textTag.className = 'textTag';
-    textTag.innerHTML = element;
-    const btnClose = document.createElement('img');
-    btnClose.className = 'btnClose';
-    btnClose.src = './assets/close.svg'
-    btnClose.setAttribute('data-element', element);
-    tagelement.appendChild(textTag);
-    tagelement.appendChild(btnClose);
-    return tagelement;
-}
+// function buildTagChoice(element){
+//     const tagelement = document.createElement('div');
+//     tagelement.className = 'tagChoice';
+//     const textTag = document.createElement('span');
+//     textTag.className = 'textTag';
+//     textTag.innerHTML = element;
+//     const btnClose = document.createElement('img');
+//     btnClose.className = 'btnClose';
+//     btnClose.src = './assets/close.svg'
+//     btnClose.setAttribute('data-element', element);
+//     tagelement.appendChild(textTag);
+//     tagelement.appendChild(btnClose);
+//     return tagelement;
+// }
