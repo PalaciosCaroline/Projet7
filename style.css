@@ -39,14 +39,42 @@ fieldset:nth-child(1) .form-control::placeholder {
     color: #000;
 }
 
-fieldset:nth-child(2) .form-control::placeholder {
+.fieldsetTag{
+    margin: 0;
+}
+
+.boxresults .form-control::placeholder {
     font-size: 0.95rem;
-    color: #000;
+    color: #fff;
+}
+
+.boxresults input{
+    color: #fff;
 }
 
 .input_search_bar i{
     color: #000;
 }
+.tagChoice_box{
+    height: 30px;
+}
+
+.tagChoice{
+    border-radius: 5px;
+    color: #fff;
+    margin-right: 15px;
+    justify-content: space-around;
+    align-items: center;
+    display: inline-flex;
+    cursor: pointer;
+}
+.research-tag .tag-item .text {
+    padding: 10px;
+}
+.tagChoice img {
+    padding: 10px 10px 10px 10px;
+}
+
 
 fieldset:nth-child(2) {
     margin-left: 0;
