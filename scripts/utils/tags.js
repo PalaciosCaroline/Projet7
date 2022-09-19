@@ -1,5 +1,6 @@
 import {recipes} from '../data/recipes.js';
 import {getCardRecipe} from '../factories/buildCard.js'
+import {buildTagChoice} from '../factories/buildtag.js'
 
 const ingredientsUl = document.getElementById('ingredientsUl');
 const applianceUl = document.getElementById('applianceUl');
@@ -71,37 +72,40 @@ let datasProxy = new Proxy(datas, {
             break;
             case 'searchString':
             //filtrer les recettes en fonction de la recherche
-            const result = recipeSearch(target, value)
+            const result = recipeSearch(target, value);
             //actualiser la liste des recherches filtrées
             datasProxy.filtredRecipes = [...result];
             break;
             case 'searchTag' : 
                 //creation tag
-                // datasProxy.searchTag.forEach((item) => {
-                   let tagChoiceclass = datasProxy.searchTag.type;
-                    const tagChoice = buildTagChoice(value);
-                    tagChoiceBox.appendChild(tagChoice);
-                // });
+                tagChoiceBox.innerHTML = '';
+                datasProxy.searchTag.forEach((tag) => {
+                    const tagElement = buildTagChoice(tag.value, tag.type);
+                    tagChoiceBox.appendChild(tagElement);
+                });
                 //filtrage en fonction des tag
+
+                //vérifier si result de search bar
+               // finir par datasProxy.filtredRecipes = le tableau trié 
             break;
-            case 'searchIngredientsTag':
-            //filtrer les recettes en fonction de la recherche
-            const resultIngredientsTag = recipeSearch(target, value);
-            //actualiser la liste des recherches filtrées
-            //datasProxy.filtredRecipes = [...resultIngredientsTag];
-            break;
-            case 'searchApplianceTag':
-            //filtrer les recettes en fonction de la recherche
-            const resultApplianceTag = recipeSearch(target, value);
-            //actualiser la liste des recherches filtrées
-            datasProxy.filtredRecipes = [...resultApplianceTag];
-            break;
-            case 'searchUstensilsTag':
-            //filtrer les recettes en fonction de la recherche
-            const resultUstensilsTag = recipeSearch(target, value);
-            //actualiser la liste des recherches filtrées
-            //datasProxy.filtredRecipes = [...resultUstensilsTag];
-            break;
+            // case 'searchIngredientsTag':
+            // //filtrer les recettes en fonction de la recherche
+            // const resultIngredientsTag = recipeSearch(target, value);
+            // //actualiser la liste des recherches filtrées
+            // //datasProxy.filtredRecipes = [...resultIngredientsTag];
+            // break;
+            // case 'searchApplianceTag':
+            // //filtrer les recettes en fonction de la recherche
+            // const resultApplianceTag = recipeSearch(target, value);
+            // //actualiser la liste des recherches filtrées
+            // datasProxy.filtredRecipes = [...resultApplianceTag];
+            // break;
+            // case 'searchUstensilsTag':
+            // //filtrer les recettes en fonction de la recherche
+            // const resultUstensilsTag = recipeSearch(target, value);
+            // //actualiser la liste des recherches filtrées
+            // //datasProxy.filtredRecipes = [...resultUstensilsTag];
+            // break;
         }
         return true;
     }
@@ -154,11 +158,13 @@ function searchByTag() {
     const liSortingItem = document.querySelectorAll('.liSorting-item')
     liSortingItem.forEach(item => item.addEventListener('click', (e) => {
         let tag = {};
-        const value = e.target.textContent;
-        const type = e.target.parentNode.id;
-        console.log(value, type);
-        datasProxy.searchTag = datasProxy.searchTag?.length > 0 ? [...datasProxy.searchTag.tag] : [tag] ;
-        console.log(datasProxy.searchTag)
+        tag.value = e.target.textContent;
+        tag.type = e.target.parentNode.id;
+        datasProxy.searchTag = datasProxy.searchTag?.length > 0 ? [...datasProxy.searchTag,tag] : [tag] ;
+        const btnClose = document.querySelector('.btnClose');
+        btnClose.addEventListener('click', function() {
+            datasProxy.searchTag = datasProxy.searchTag?.length > 1 ? [...datasProxy.searchTag].indexOf('tag'): [];
+        })
     }));
 }
 //
@@ -211,12 +217,12 @@ function tagIngredientsSearch(data, research) {
     }
 }
 
-function getTags() {
-    tagsArray.forEach((item) => {
-      const tagChoice = buildTagChoice(item);
-      tagChoiceBox.appendChild(tagChoice);
-    });
-}
+// function getTags() {
+//     tagsArray.forEach((item) => {
+//       const tagChoice = buildTagChoice(item);
+//       tagChoiceBox.appendChild(tagChoice);
+//     });
+// }
 
 
 
@@ -237,18 +243,3 @@ function getTags() {
 // displayTags();
 
 
-
-function buildTagChoice(element){
-    const tagelement = document.createElement('div');
-    tagelement.className = 'tagChoice';
-    const textTag = document.createElement('span');
-    textTag.className = 'textTag';
-    textTag.innerHTML = element;
-    const btnClose = document.createElement('img');
-    btnClose.className = 'btnClose';
-    btnClose.src = './assets/close.svg'
-    btnClose.setAttribute('data-element', element);
-    tagelement.appendChild(textTag);
-    tagelement.appendChild(btnClose);
-    return tagelement;
-}

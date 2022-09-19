@@ -154,16 +154,15 @@ fieldset:nth-child(2) i{
    flex-wrap: wrap;
     width: 700px;
 }
-.tagChoice{
+
+.ingredientsUl{
     background-color: #3282F7;
 }
-#tagChoice_box .ingredientsUl{
-    background-color: #3282F7;
-    color: #000;
-}
+
 .applianceUl{
     background-color: #68D9A4;
 }
+
 .ustensilsUl{
     background-color: #ED6454;
 }
