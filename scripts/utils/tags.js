@@ -5,7 +5,7 @@ const ingredientsUl = document.getElementById('ingredientsUl');
 const applianceUl = document.getElementById('applianceUl');
 const ustensilsUl = document.getElementById('ustensilsUl');
 let tagsArray = [];
-const tagChoiceBox = document.querySelector(".tagChoice_box");
+const tagChoiceBox = document.querySelector("#tagChoice_box");
 
 function getIngredientsList(recipes){
     let ingredientsArray = [];
@@ -60,19 +60,29 @@ let datasProxy = new Proxy(datas, {
             if ( datasProxy.filtredRecipes == null){
                 document.getElementById('box_recipes').innerHTML =
                 '<div class="norecipe">Aucune recette ne correspond à votre critère… <br />Vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>';
-            } else{
+            } else {
             // afficher les recettes
             displayRecipes(value);
             //mettre a jour la liste des ingredients
             getIngredientsList(value);
             getApplianceList(value);
-            getUstensilsList(value);}
+            getUstensilsList(value);
+            searchByTag();}
             break;
             case 'searchString':
             //filtrer les recettes en fonction de la recherche
             const result = recipeSearch(target, value)
             //actualiser la liste des recherches filtrées
             datasProxy.filtredRecipes = [...result];
+            break;
+            case 'searchTag' : 
+                //creation tag
+                // datasProxy.searchTag.forEach((item) => {
+                   let tagChoiceclass = datasProxy.searchTag.type;
+                    const tagChoice = buildTagChoice(value);
+                    tagChoiceBox.appendChild(tagChoice);
+                // });
+                //filtrage en fonction des tag
             break;
             case 'searchIngredientsTag':
             //filtrer les recettes en fonction de la recherche
@@ -84,7 +94,7 @@ let datasProxy = new Proxy(datas, {
             //filtrer les recettes en fonction de la recherche
             const resultApplianceTag = recipeSearch(target, value);
             //actualiser la liste des recherches filtrées
-            //datasProxy.filtredRecipes = [...resultApplianceTag];
+            datasProxy.filtredRecipes = [...resultApplianceTag];
             break;
             case 'searchUstensilsTag':
             //filtrer les recettes en fonction de la recherche
@@ -101,7 +111,7 @@ datasProxy.filtredRecipes = [...recipes];
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchString = e.target.value;
-    datasProxy.searchLength = e.target.value.length;
+    datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
 document.querySelector('#ingredients').addEventListener('input', (e) => {
@@ -111,8 +121,8 @@ document.querySelector('#ingredients').addEventListener('input', (e) => {
         recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
     ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});;
     buildUlListfilter(ingredientsArray, ingredientsUl);
-    datasProxy.searchIngredientsTag = e.target.value;
-    datasProxy.searchLength = e.target.value.length;
+    // datasProxy.searchIngredientsTag = e.target.value;
+    // datasProxy.searchLength = e.target.value.length;
 })
 
 const inputAppliance = document.querySelector('#appliance');
@@ -123,8 +133,8 @@ inputAppliance.addEventListener('input', (e) => {
         applianceArray.push(recipe.appliance.toLowerCase());
     applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(applianceArray, applianceUl);
-    datasProxy.searchApplianceTag = e.target.value;
-    datasProxy.searchLength = e.target.value.length;
+    // datasProxy.searchApplianceTag = e.target.value;
+    // datasProxy.searchLength = e.target.value.length;
 })
 
 document.querySelector('#ustensils').addEventListener('input', (e) => {
@@ -134,31 +144,35 @@ document.querySelector('#ustensils').addEventListener('input', (e) => {
     recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
     ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(ustensilsArray, ustensilsUl);
-    datasProxy.searchUstensilsTag = e.target.value;
-    datasProxy.searchLength = e.target.value.length;
+    // datasProxy.searchUstensilsTag = e.target.value;
+    // datasProxy.searchLength = e.target.value.length;
 })
 
 
 //essai à revoir 
-const liSortingItem = document.querySelectorAll('.liSorting-item')
-console.log(liSortingItem.innerHTML)
-liSortingItem.forEach(item => item.addEventListener('click', (e) => {
-    datasProxy.searchApplianceTag = e.target.innerHTML;
-    console.log(value)
-    datasProxy.searchLength = e.target.value.length;
-}));
+function searchByTag() {
+    const liSortingItem = document.querySelectorAll('.liSorting-item')
+    liSortingItem.forEach(item => item.addEventListener('click', (e) => {
+        let tag = {};
+        const value = e.target.textContent;
+        const type = e.target.parentNode.id;
+        console.log(value, type);
+        datasProxy.searchTag = datasProxy.searchTag?.length > 0 ? [...datasProxy.searchTag.tag] : [tag] ;
+        console.log(datasProxy.searchTag)
+    }));
+}
 //
 
 function recipeSearch(data, research){
-    if(research.length > data.searchLength && research.length !== 0) {
+    if(research.length > data.searchLength && research.length > 2) {
         const result = data.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || (recipe.description.toLowerCase().includes(research.toLowerCase())));
         return result
-    } else if (research.length <= 2 && research.length > 0){
+    }else if (research.length < data.searchLength && research.length > 2) {
+        const result = data.recipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || (recipe.description.toLowerCase().includes(research.toLowerCase())));
+        return result
+    } else {
         const result = [...recipes];
         return result;
-    }else if (research.length < data.searchLength && research.length !== 0) {
-        const result = data.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || (recipe.description.toLowerCase().includes(research.toLowerCase())));
-        return result
     }
 }
 
@@ -197,6 +211,15 @@ function tagIngredientsSearch(data, research) {
     }
 }
 
+function getTags() {
+    tagsArray.forEach((item) => {
+      const tagChoice = buildTagChoice(item);
+      tagChoiceBox.appendChild(tagChoice);
+    });
+}
+
+
+
 //création de tag raté
 // function displayTags() {
 //     let liSortingItem = document.querySelectorAll(".liSorting-item");
@@ -213,24 +236,19 @@ function tagIngredientsSearch(data, research) {
 
 // displayTags();
 
-// function getTags() {
-//     tagsArray.forEach((item) => {
-//       const tagChoice = buildTagChoice(item);
-//       tagChoiceBox.appendChild(tagChoice);
-//     });
-//   }
 
-// function buildTagChoice(element){
-//     const tagelement = document.createElement('div');
-//     tagelement.className = 'tagChoice';
-//     const textTag = document.createElement('span');
-//     textTag.className = 'textTag';
-//     textTag.innerHTML = element;
-//     const btnClose = document.createElement('img');
-//     btnClose.className = 'btnClose';
-//     btnClose.src = './assets/close.svg'
-//     btnClose.setAttribute('data-element', element);
-//     tagelement.appendChild(textTag);
-//     tagelement.appendChild(btnClose);
-//     return tagelement;
-// }
+
+function buildTagChoice(element){
+    const tagelement = document.createElement('div');
+    tagelement.className = 'tagChoice';
+    const textTag = document.createElement('span');
+    textTag.className = 'textTag';
+    textTag.innerHTML = element;
+    const btnClose = document.createElement('img');
+    btnClose.className = 'btnClose';
+    btnClose.src = './assets/close.svg'
+    btnClose.setAttribute('data-element', element);
+    tagelement.appendChild(textTag);
+    tagelement.appendChild(btnClose);
+    return tagelement;
+}
