@@ -13,3 +13,4 @@ export function buildTagChoice(element, typeclass){
     tagelement.appendChild(btnClose);
     return tagelement;
 }
+

@@ -58,7 +58,7 @@ let datasProxy = new Proxy(datas, {
         target[key] = value;
         switch(key) {
             case 'filtredRecipes': 
-            if ( datasProxy.filtredRecipes == null){
+            if ( datasProxy.filtredRecipes.length == 0){
                 document.getElementById('box_recipes').innerHTML =
                 '<div class="norecipe">Aucune recette ne correspond à votre critère… <br />Vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>';
             } else {
@@ -68,7 +68,8 @@ let datasProxy = new Proxy(datas, {
             getIngredientsList(value);
             getApplianceList(value);
             getUstensilsList(value);
-            searchByTag();}
+            searchByTag();
+            }
             break;
             case 'searchString':
             //filtrer les recettes en fonction de la recherche
@@ -78,13 +79,23 @@ let datasProxy = new Proxy(datas, {
             break;
             case 'searchTag' : 
                 //creation tag
+                if (datasProxy.searchTag.length >= 0){
                 tagChoiceBox.innerHTML = '';
                 datasProxy.searchTag.forEach((tag) => {
                     const tagElement = buildTagChoice(tag.value, tag.type);
                     tagChoiceBox.appendChild(tagElement);
+                    
                 });
+                } else if (datasProxy.searchTag.length < 0){
+                    return true;
+                }
+                removeTag();
                 //filtrage en fonction des tag
-
+                // for (let i= 0 ; i <datasProxy.searchTag.length ; i++){
+                //     // datasProxy.searchTag[i]
+                //     [recipes].filter(recipe => recipe.every(research(target,tag.value)));
+                // }
+               
                 //vérifier si result de search bar
                // finir par datasProxy.filtredRecipes = le tableau trié 
             break;
@@ -152,8 +163,6 @@ document.querySelector('#ustensils').addEventListener('input', (e) => {
     // datasProxy.searchLength = e.target.value.length;
 })
 
-
-//essai à revoir 
 function searchByTag() {
     const liSortingItem = document.querySelectorAll('.liSorting-item')
     liSortingItem.forEach(item => item.addEventListener('click', (e) => {
@@ -161,13 +170,20 @@ function searchByTag() {
         tag.value = e.target.textContent;
         tag.type = e.target.parentNode.id;
         datasProxy.searchTag = datasProxy.searchTag?.length > 0 ? [...datasProxy.searchTag,tag] : [tag] ;
-        const btnClose = document.querySelector('.btnClose');
-        btnClose.addEventListener('click', function() {
-            datasProxy.searchTag = datasProxy.searchTag?.length > 1 ? [...datasProxy.searchTag].indexOf('tag'): [];
-        })
-    }));
+    }))   
 }
-//
+
+function removeTag(){
+    const btnCloses = document.querySelectorAll('.btnClose');
+    for(let i = 0; i < datasProxy.searchTag.length; i++){
+        btnCloses[i].addEventListener('click', function() {
+            console.log(datasProxy.searchTag[i]);
+            // const myindex = [datasProxy.searchTag].indexOf('tagRemove');
+            datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
+        })
+    }
+}
+
 
 function recipeSearch(data, research){
     if(research.length > data.searchLength && research.length > 2) {
@@ -217,29 +233,6 @@ function tagIngredientsSearch(data, research) {
     }
 }
 
-// function getTags() {
-//     tagsArray.forEach((item) => {
-//       const tagChoice = buildTagChoice(item);
-//       tagChoiceBox.appendChild(tagChoice);
-//     });
-// }
 
-
-
-//création de tag raté
-// function displayTags() {
-//     let liSortingItem = document.querySelectorAll(".liSorting-item");
-//     liSortingItem.forEach((item) => {
-//       item.addEventListener("click", (e) => {
-//         const selectItem = e.target.innerHTML;
-//         if (!tagsArray.includes(selectItem)) {
-//           tagsArray.push(selectItem);
-//         }
-//         getTags();
-//       });
-//     });
-//   };
-
-// displayTags();
 
 
