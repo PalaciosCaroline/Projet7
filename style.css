@@ -50,6 +50,7 @@ fieldset:nth-child(1) .form-control::placeholder {
 
 .boxresults input{
     color: #fff;
+    width: 100%;
 }
 
 .input_search_bar i{
@@ -75,28 +76,34 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding: 10px 10px 10px 10px;
 }
 
-
-fieldset:nth-child(2) {
-    margin-left: 0;
-    padding: 0;
-    position:absolute;
-}
-
-fieldset:nth-child(2) .form-control::placeholder{
-    color: #fff;
-}
-
 .input-group{
 margin-left:0;
 }
+.fieldsetTag{
+    position:relative;
+}
 
 .boxresults{
-    /* min-width: 170px;
-    min-height: 70px; */
+    min-width: 170px;
+    min-height: 70px;  
     margin-right: 40px;
-    position: relative; 
+    /* position: relative; 
+    z-index:99; */
+}
+
+/* .boxresultIngredients{
+    position: absolute; 
     z-index:99;
 }
+.boxresultAppliance{
+    position: absolute; 
+    z-index:99;
+}
+.boxresultsUstensils{
+    position: absolute; 
+    z-index:99;
+} */
+
 
 /* 
 fieldset:nth-child(2) input,
@@ -111,16 +118,25 @@ fieldset:nth-child(2) i{
     
 }
 
-.boxresultIngredients{
+.boxresultIngredients ul{
     background-color: #3282F7;
+    position: absolute;  
+    z-index:99; 
 }
 .boxresultAppliance ul{
     background-color: #68D9A4;
     padding:0;
+    width: 170px;
+    position: absolute;  
+    z-index:99;
+
 }
 .boxresultUstensils ul{
     background-color:#ED6454;
     padding:0;
+    position: absolute;  
+    z-index:99;   
+    width: 170px;
 }
 
 .search_appareils input:focus-visible,
@@ -141,20 +157,25 @@ fieldset:nth-child(2) i{
 .search_ingredients,
 .search_ustensils,
 .search_appareils{
-    /* width: 100%; */
-    min-width: 170px;
-    min-height: 70px;
+    /* width: 100%;  */
+    height: 70px;
+    /* min-width: 170px;
+    min-height: 70px; */
     margin-right: 40px;
 } 
-
+.search_ingredients{
+    width: 700px;
+}
 .boxresultIngredients ul{
     padding:0;
     height: auto;
    display: flex;
    flex-wrap: wrap;
     width: 700px;
+    /* position: absolute;
+    z-index: 99; */
 }
-
+/* tag */
 .ingredientsUl{
     background-color: #3282F7;
 }
@@ -166,6 +187,8 @@ fieldset:nth-child(2) i{
 .ustensilsUl{
     background-color: #ED6454;
 }
+/**/
+
 .tagChoice{
     margin-bottom: 15px;
 }
@@ -209,7 +232,8 @@ fieldset:nth-child(2) i{
 }
 
 .card-deck .card{
-    height: 364px; 
+    /* height: 364px;  */
+    height: 380px; 
     min-width: 380px; 
     padding: 0;
     /* margin:-15px; */
@@ -248,14 +272,19 @@ fieldset:nth-child(2) i{
 .cardTime img{
     padding-bottom: 3px;
 }
-
+.card .cardText{
+    height: calc(364px - 178px);
+}
 .card_textContent {
     width: 100%;
     font-size: 0.75rem;
     /* padding: 0 20px 10px 20px; */
     background: #fff;
     border-radius: 0 0 10px 10px;
-    margin : 0;
+    margin : 0; 
+}
+#box_recipes .cardText {
+    height: 10px;
     text-overflow: ellipsis;
 }
 
@@ -271,37 +300,77 @@ fieldset:nth-child(2) i{
 
 #card_description{
     padding-left: 0;
-   
 } 
-
-.card a{
-    width:100%;
-    height: 100%;
-    color: #000;
-}
 
 #card_description p {
 display: inline-block;
-text-overflow: ellipsis;
 }
 
 #modal{
-    display:none;  
+    display:none;   
     position :fixed;
     background-color: #ea6f61;
+    background-color: #fff;
     z-index :130;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     box-sizing: border-box;
-    display:flex;
     flex-direction: column;
 } 
+#modal header {
+    margin-top: 20px;
+}
+#modal .card header {
+    margin-bottom: 15px;
+    height: 70px;
+}
+#modal .card .card_textContent{
+    font-size: 1.2rem;
+}
+#modal .card .cardTime{
+    min-width: 200px;
+    font-size: 1.5rem;
+}
+
+#modal .card .cardTime i{
+    margin-right: 10px;
+}
+
+#modal button{
+    color: #ea6f61;
+    background-color: #fff;
+    position:absolute;
+    right: 5.4%;
+    height: 100px;
+    top: 20px; 
+    width: 8vw;
+    border : none;
+    font-size: 3.3rem;
+    z-index: 150;
+}
+
+#modal .btn_closeModal i{
+    font-size: 40px;
+    padding:10px;
+}
 
 #modal .card{
     width: 100%;
-    height: 100%;
+    height:  95%;
+    border-radius: 15px 15px 0 0;
+}
+#modal .card-body{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#modal .card img{
+    width: 100%;
+    height: 25%;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
 }
 
 a{

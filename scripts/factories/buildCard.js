@@ -1,3 +1,4 @@
+
 export function getCardRecipe(recipe) {
 
         function getUnit(elt) { 
@@ -22,17 +23,15 @@ export function getCardRecipe(recipe) {
            return ul;
            }
 
-      
         const card = document.createElement('article');
         card.className = 'card border-secondary'
-        // card.dataTarget="#modal";
         card.innerHTML = `
                 <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
                 <div className="cardText card-body">
                     <header id="cardHeader" class="card-header d-flex justify-content-between">
                         <h3 class="card-title">${recipe.name}</h3>
                         <div class="cardTime">
-                        <img src="./assets/clock_icon.png" alt="" aria-hidden='true'/>
+                        <i class="fa-regular fa-clock" aria-hidden='true'></i>
                         <span class="font-weight-bold">${recipe.time}</span>
                         </div>
                     </header>
@@ -44,7 +43,7 @@ export function getCardRecipe(recipe) {
                         </div>
                     </div>
                 </div> `
-    
+
         card.addEventListener('click', (event) => {
         event.preventDefault();
         const modalBoxRecipe = document.getElementById('modalBoxRecipe');
@@ -55,11 +54,11 @@ export function getCardRecipe(recipe) {
         cardModal.className = 'card border-secondary'
         cardModal.innerHTML = `
                 <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
-                <div className="cardText card-body">
+                <div class="cardText card-body">
                     <header id="cardHeader" class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">${recipe.name}</h3>
+                        <h1 class="card-title">${recipe.name}</h1>
                         <div class="cardTime">
-                        <img src="./assets/clock_icon.png" alt="" aria-hidden='true'/>
+                        <i class="fa-regular fa-clock" aria-hidden='true'></i>
                         <span class="font-weight-bold">${recipe.time}</span>
                         </div>
                     </header>
@@ -78,10 +77,23 @@ export function getCardRecipe(recipe) {
         btnCloseModal.addEventListener('click', (event) => {
             event.preventDefault();
             modal.style.display = 'none';
-            modalBoxRecipe.remove(cardModal);
+            modalBoxRecipe.innerHTML = '';
             })
 
+        document.addEventListener('keyup',  (e) => {
+            if (e.key === 'Escape') {
+            e.preventDefault();
+            modal.style.display = 'none';
+            modalBoxRecipe.innerHTML = '';
+            }})       
+
     return card;
+}
+
+export function displayRecipes(value){
+    const boxRecipes = document.getElementById('box_recipes');
+    boxRecipes.innerHTML = '';
+    value.forEach(recipe => boxRecipes.appendChild(getCardRecipe(recipe)));
 }
 
 

@@ -20,12 +20,19 @@
 </head>
 <body>
 <div class="container_page">
-    <header class="header_page container">
+    <header class="header_page container header_modal">
         <img src="./assets/logo_toque.png" alt="logo toque de cuisinier" class="d-block mx-auto logo_toque">
         <h1 class=""><img class= "d-block mx-auto" src="./assets/Les petits plats.png" alt="Les petits plats"></h1>
     </header>
 
-    <div id="modal" class=""><button id="btn_closeModal"><i class="fa-regular fa-xmark"></i></button><div id="modalBoxRecipe"></div></div>
+    <div id="modal">
+        <header class="header_page container">
+        <img src="./assets/logo_toque.png" alt="logo toque de cuisinier" class="d-block mx-auto logo_toque">
+        <h1 class=""><img class= "d-block mx-auto" src="./assets/Les petits plats.png" alt="Les petits plats"></h1>
+        </header>
+        <button id="btn_closeModal"><i class="fa-solid fa-circle-xmark"></i></button><div id="modalBoxRecipe"></div>
+    </div>
+
     <main>
         <header class="section-header">
             <form action="">
@@ -91,6 +98,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <script type="module" src="scripts/pages/index.js"></script>
-<script type="module" src="scripts/utils/tags.js"></script>
+<script type="module" src="scripts/utils/filter.js"></script>
 </body>
 </html>
