@@ -25,7 +25,7 @@ export function getCardRecipe(recipe) {
       
         const card = document.createElement('article');
         card.className = 'card border-secondary'
-        card.dataTarget="#modal";
+        // card.dataTarget="#modal";
         card.innerHTML = `
                 <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
                 <div className="cardText card-body">
@@ -44,9 +44,46 @@ export function getCardRecipe(recipe) {
                         </div>
                     </div>
                 </div> `
-               
+    
+        card.addEventListener('click', (event) => {
+        event.preventDefault();
+        const modalBoxRecipe = document.getElementById('modalBoxRecipe');
+        const modal = document.getElementById('modal');
+        modal.style.display = 'flex';
+        modalBoxRecipe.innerHTML = '';
+        const cardModal = document.createElement('article');
+        cardModal.className = 'card border-secondary'
+        cardModal.innerHTML = `
+                <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
+                <div className="cardText card-body">
+                    <header id="cardHeader" class="card-header d-flex justify-content-between">
+                        <h3 class="card-title">${recipe.name}</h3>
+                        <div class="cardTime">
+                        <img src="./assets/clock_icon.png" alt="" aria-hidden='true'/>
+                        <span class="font-weight-bold">${recipe.time}</span>
+                        </div>
+                    </header>
+                    <div class="row card_textContent d-flex justify-content-between">
+                        <ul id="cardUlIngredients" class="col-6">${getLiIngredients()}
+                        </ul>
+                        <div id="card_description" class="col-6">
+                            <p class="">${recipe.description}</p>
+                        </div>
+                    </div>
+                </div> `
+        modalBoxRecipe.append(cardModal);
+        })
+
+        const btnCloseModal = document.getElementById('btn_closeModal');
+        btnCloseModal.addEventListener('click', (event) => {
+            event.preventDefault();
+            modal.style.display = 'none';
+            modalBoxRecipe.remove(cardModal);
+            })
+
     return card;
 }
+
 
 
 

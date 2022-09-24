@@ -1,6 +1,7 @@
 import {recipes} from '../data/recipes.js';
-import {getCardRecipe} from '../factories/buildCard.js'
-import {buildTagChoice} from '../factories/buildtag.js'
+import {getCardRecipe} from '../factories/buildCard.js';
+import {buildTagChoice} from '../factories/buildtag.js';
+import {showModal} from '../utils/modal.js';
 
 const ingredientsUl = document.getElementById('ingredientsUl');
 const applianceUl = document.getElementById('applianceUl');
@@ -69,6 +70,7 @@ let datasProxy = new Proxy(datas, {
             getApplianceList(value);
             getUstensilsList(value);
             searchByTag();
+            // showModal();
             }
             break;
             case 'searchString':
@@ -91,13 +93,8 @@ let datasProxy = new Proxy(datas, {
                 }
                 removeTag();
                 //filtrage en fonction des tag
-                // for (let i= 0 ; i <datasProxy.searchTag.length ; i++){
-                //     // datasProxy.searchTag[i]
-                //     [recipes].filter(recipe => recipe.every(research(target,tag.value)));
-                // }
-               
-                //vérifier si result de search bar
-               // finir par datasProxy.filtredRecipes = le tableau trié 
+                // const resultByTag = researchByTag(target, [...datasProxy.searchTag])
+                // datasProxy.filtredRecipes = [...resultByTag];
             break;
             // case 'searchIngredientsTag':
             // //filtrer les recettes en fonction de la recherche
@@ -178,7 +175,6 @@ function removeTag(){
     for(let i = 0; i < datasProxy.searchTag.length; i++){
         btnCloses[i].addEventListener('click', function() {
             console.log(datasProxy.searchTag[i]);
-            // const myindex = [datasProxy.searchTag].indexOf('tagRemove');
             datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
         })
     }
@@ -187,10 +183,11 @@ function removeTag(){
 
 function recipeSearch(data, research){
     if(research.length > data.searchLength && research.length > 2) {
-        const result = data.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || (recipe.description.toLowerCase().includes(research.toLowerCase())));
+        const result = data.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
+			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
         return result
     }else if (research.length < data.searchLength && research.length > 2) {
-        const result = data.recipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || (recipe.description.toLowerCase().includes(research.toLowerCase())));
+        const result = data.recipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item => item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
         return result
     } else {
         const result = [...recipes];
@@ -233,6 +230,14 @@ function tagIngredientsSearch(data, research) {
     }
 }
 
-
-
+// function researchByTag(data, research){
+//    return data.filtredRecipes.filter((recipe) => {
+//        research.every((item) => {(
+//         recipe.ingredients.some((element) => 
+//              element.ingredient.includes(item.value)) ||
+//             recipe.appliance.includes(item.value) ||
+//             recipe.ustensils.includes(item.value));
+//             })
+//         });
+// };
 
