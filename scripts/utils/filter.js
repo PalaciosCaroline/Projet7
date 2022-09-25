@@ -49,8 +49,17 @@ let datasProxy = new Proxy(datas, {
                 } else if (datasProxy.searchTag.length < 0){
                     return true;
                 }
+                console.log(datasProxy.searchTag);
                 removeTag();
                 //filtrage en fonction des tag
+                //essai raté
+                // datasProxy.filtredRecipes = datasProxy.filtredRecipes.filter(recipe => {
+                // datasProxy.searchTag.every((tag) => { recipe.ingredients.some((element) => 
+                //                  element.ingredient.includes(tag.value)) ||
+                //                 recipe.appliance.includes(tag.value) ||
+                //                 recipe.ustensils.includes(tag.value);
+                // })})
+                //autre essai raté
                 // const resultByTag = researchByTag(target, [...datasProxy.searchTag])
                 // datasProxy.filtredRecipes = [...resultByTag];
             break;
