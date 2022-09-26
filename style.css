@@ -87,7 +87,7 @@ margin-left:0;
 .boxresults{
     min-width: 200px;
     min-height: 70px;  
-    margin-right: 40px;
+    margin-right: 60px;
     padding: 0;
     margin-left:0;
 }
@@ -161,7 +161,6 @@ fieldset:nth-child(2) i{
 .search_ustensils,
 .search_appareils{
     height: 70px;
-    margin-right: 40px;
 } 
 .search_ustensils,
 .search_appareils{

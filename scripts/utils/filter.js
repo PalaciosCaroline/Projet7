@@ -29,10 +29,10 @@ let datasProxy = new Proxy(datas, {
             getApplianceList(value);
             getUstensilsList(value);
             searchByTag();
-            // showModal();
             }
             break;
             case 'searchString':
+            // problème (manq si déjà recherche par tag effectuée)
             //filtrer les recettes en fonction de la recherche
             const result = recipeSearch(target, value);
             //actualiser la liste des recherches filtrées
@@ -52,13 +52,14 @@ let datasProxy = new Proxy(datas, {
                 console.log(datasProxy.searchTag);
                 removeTag();
                 //filtrage en fonction des tag
-                //essai raté
-                datasProxy.searchTag.forEach(tag => {
-                    const resultTag = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(tag.value)) || recipe.ingredients.filter(item =>
-                        item.ingredient.toLowerCase().includes(tag.value)).length > 0 || (recipe.description.toLowerCase().includes(tag.value)));
-                    datasProxy.filtredRecipes = [...resultTag];
-                })
-
+                //autre tentative
+                // datasProxy.searchTag.forEach(tag => {
+                //     const resultTag = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(tag.value)) || recipe.ingredients.filter(item =>
+                //         item.ingredient.toLowerCase().includes(tag.value)).length > 0 || (recipe.description.toLowerCase().includes(tag.value)));
+                //     datasProxy.filtredRecipes = [...resultTag];
+                // })
+                sortByTag();
+                
             break;
             // case 'searchIngredientsTag':
             // //filtrer les recettes en fonction de la recherche
@@ -143,8 +144,29 @@ function removeTag(){
         btnCloses[i].addEventListener('click', function() {
             console.log(datasProxy.searchTag[i]);
             datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
+            return sortByTag();
         })
+    } 
+}
+
+function sortByTag() {
+    if (datasProxy.searchTag <= 0) {
+        datasProxy.filtredRecipes = [...recipes];
     }
+    datasProxy.searchTag.forEach(tag => {
+        if(tag.type == 'ingredientsUl'){
+        const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ingredients.filter(item =>
+            item.ingredient.toLowerCase().includes(tag.value)).length > 0)
+            datasProxy.filtredRecipes = [...resultTag];
+         } else if(tag.type == 'applianceUl'){
+            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
+            datasProxy.filtredRecipes = [...resultTag];
+         } else if (tag.type == 'ustensilsUl'){
+         const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
+            item.toLowerCase().includes(tag.value)).length > 0)
+        datasProxy.filtredRecipes = [...resultTag];
+         }
+    })
 }
 
 function recipeSearch(data, research){
