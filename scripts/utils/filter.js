@@ -51,6 +51,7 @@ let datasProxy = new Proxy(datas, {
                 }
                 console.log(datasProxy.searchTag);
                 removeTag();
+                sortByTag();
                 //filtrage en fonction des tag
                 //autre tentative
                 // datasProxy.searchTag.forEach(tag => {
@@ -58,7 +59,7 @@ let datasProxy = new Proxy(datas, {
                 //         item.ingredient.toLowerCase().includes(tag.value)).length > 0 || (recipe.description.toLowerCase().includes(tag.value)));
                 //     datasProxy.filtredRecipes = [...resultTag];
                 // })
-                sortByTag();
+                
                 
             break;
             // case 'searchIngredientsTag':
@@ -150,9 +151,16 @@ function removeTag(){
 }
 
 function sortByTag() {
-    if (datasProxy.searchTag <= 0) {
-        datasProxy.filtredRecipes = [...recipes];
-    }
+   // essai raté de relance de la searchbar si remplie mais plus de tag 
+    // if (!datasProxy.searchString){
+    //     if (datasProxy.searchTag <= 0 && datasProxy.searchString <= 0) {
+    //         datasProxy.filtredRecipes = [...recipes];
+    //     }
+    //     if (datasProxy.searchString > 0){
+    //         datasProxy.searchString = [...result];
+          
+    //     }
+    // }
     datasProxy.searchTag.forEach(tag => {
         if(tag.type == 'ingredientsUl'){
         const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ingredients.filter(item =>

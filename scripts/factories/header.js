@@ -1,5 +1,4 @@
 // export function buildHeader(){
-
 // header.className = 'header_page container'
 // header.innerHTML = `
 // <img src="./assets/logo_toque.png" alt="logo toque de cuisinier" class="d-block mx-auto logo_toque">
