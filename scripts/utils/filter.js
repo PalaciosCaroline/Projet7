@@ -165,17 +165,17 @@ function sortByTag() {
     // }
     datasProxy.searchTag.forEach(tag => {
         if(tag.type == 'ingredientsUl'){
-        const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ingredients.filter(item =>
+            const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
             item.ingredient.toLowerCase().includes(tag.value)).length > 0)
             datasProxy.filtredRecipes = [...resultTag];
-         } else if(tag.type == 'applianceUl'){
+        } else if(tag.type == 'applianceUl'){
             const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
             datasProxy.filtredRecipes = [...resultTag];
-         } else if (tag.type == 'ustensilsUl'){
-         const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
+        } else if (tag.type == 'ustensilsUl'){
+            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
             item.toLowerCase().includes(tag.value)).length > 0)
-        datasProxy.filtredRecipes = [...resultTag];
-         }
+            datasProxy.filtredRecipes = [...resultTag];
+        }
     })
 }
 
