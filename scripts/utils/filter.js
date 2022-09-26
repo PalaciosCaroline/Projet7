@@ -53,15 +53,12 @@ let datasProxy = new Proxy(datas, {
                 removeTag();
                 //filtrage en fonction des tag
                 //essai raté
-                // datasProxy.filtredRecipes = datasProxy.filtredRecipes.filter(recipe => {
-                // datasProxy.searchTag.every((tag) => { recipe.ingredients.some((element) => 
-                //                  element.ingredient.includes(tag.value)) ||
-                //                 recipe.appliance.includes(tag.value) ||
-                //                 recipe.ustensils.includes(tag.value);
-                // })})
-                //autre essai raté
-                // const resultByTag = researchByTag(target, [...datasProxy.searchTag])
-                // datasProxy.filtredRecipes = [...resultByTag];
+                datasProxy.searchTag.forEach(tag => {
+                    const resultTag = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(tag.value)) || recipe.ingredients.filter(item =>
+                        item.ingredient.toLowerCase().includes(tag.value)).length > 0 || (recipe.description.toLowerCase().includes(tag.value)));
+                    datasProxy.filtredRecipes = [...resultTag];
+                })
+
             break;
             // case 'searchIngredientsTag':
             // //filtrer les recettes en fonction de la recherche
@@ -151,6 +148,15 @@ function removeTag(){
 }
 
 function recipeSearch(data, research){
+    //a revoir tri après tag (enlever le break?)
+    // if(datasProxy.searchTag.lenght > 0) {
+    //     if(research.length > data.searchLength && research.length > 2) {
+    //         const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
+    //             item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
+    //         return result
+    //     }
+    //     return result
+    // }
     if(research.length > data.searchLength && research.length > 2) {
         const result = data.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
 			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
@@ -160,6 +166,24 @@ function recipeSearch(data, research){
         return result
     } else {
         const result = [...recipes];
+        return result;
+    }
+}
+
+//tentative tri avec for
+function recipeSearchByFor(data, research){
+    if(research.length > data.searchLength && research.length > 2) {const result = [];
+        for (let i; i < (data.filtredRecipes).length; i++) {
+            if((data.filtredRecipes)[i].name.toLowerCase() = research.toLowerCase() || ((data.recipes)[i].ingredients.ingredient.toLowerCase() = research.toLowerCase()) || ((data.filtredRecipes)[i].description.toLowerCase() = research.toLowerCase()))
+        return result += (data.filtredRecipes)[i];
+        }
+    } else if (research.length < data.searchLength && research.length > 2) {const result = [];
+        for (let i; i < data.filtredRecipes.length; i++) {
+        if (((data.recipes)[i].name.toLowerCase() = research.toLowerCase()) || ((data.recipes)[i].ingredients.ingredient.toLowerCase() = research.toLowerCase()) || ((data.recipes)[i].description.toLowerCase() = research.toLowerCase()));
+        return result += (data.filtredRecipes)[i];
+        }
+    } else {
+      const result = [...recipes];
         return result;
     }
 }
