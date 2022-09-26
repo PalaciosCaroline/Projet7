@@ -25,24 +25,25 @@ export function getCardRecipe(recipe) {
 
         const card = document.createElement('article');
         card.className = 'card border-secondary'
-        card.innerHTML = `
-                <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
-                <div className="cardText card-body">
-                    <header id="cardHeader" class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">${recipe.name}</h3>
-                        <div class="cardTime">
-                        <i class="fa-regular fa-clock" aria-hidden='true'></i>
-                        <span class="font-weight-bold">${recipe.time}</span>
-                        </div>
-                    </header>
-                    <div class="row card_textContent d-flex justify-content-between">
-                        <ul id="cardUlIngredients" class="col-6">${getLiIngredients()}
-                        </ul>
-                        <div id="card_description" class="col-6">
-                            <p class="">${recipe.description}</p>
-                        </div>
-                    </div>
-                </div> `
+        const cardContent = `
+        <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
+        <div class="cardText card-body">
+            <header id="cardHeader" class="card-header d-flex justify-content-between">
+                <h2 class="card-title">${recipe.name}</h2>
+                <div class="cardTime">
+                <i class="fa-regular fa-clock" aria-hidden='true'></i>
+                <span class="font-weight-bold">${recipe.time}</span>
+                </div>
+            </header>
+            <div class="row card_textContent d-flex justify-content-between">
+                <ul id="cardUlIngredients" class="col-6">${getLiIngredients()}
+                </ul>
+                <div id="card_description" class="col-6">
+                    <p class="">${recipe.description}</p>
+                </div>
+            </div>
+        </div> `
+        card.innerHTML = cardContent;
 
         card.addEventListener('click', (event) => {
         event.preventDefault();
@@ -52,24 +53,7 @@ export function getCardRecipe(recipe) {
         modalBoxRecipe.innerHTML = '';
         const cardModal = document.createElement('article');
         cardModal.className = 'card border-secondary'
-        cardModal.innerHTML = `
-                <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
-                <div class="cardText card-body">
-                    <header id="cardHeader" class="card-header d-flex justify-content-between">
-                        <h1 class="card-title">${recipe.name}</h1>
-                        <div class="cardTime">
-                        <i class="fa-regular fa-clock" aria-hidden='true'></i>
-                        <span class="font-weight-bold">${recipe.time}</span>
-                        </div>
-                    </header>
-                    <div class="row card_textContent d-flex justify-content-between">
-                        <ul id="cardUlIngredients" class="col-6">${getLiIngredients()}
-                        </ul>
-                        <div id="card_description" class="col-6">
-                            <p class="">${recipe.description}</p>
-                        </div>
-                    </div>
-                </div> `
+        cardModal.innerHTML = cardContent;
         modalBoxRecipe.append(cardModal);
         })
 
@@ -78,14 +62,15 @@ export function getCardRecipe(recipe) {
             event.preventDefault();
             modal.style.display = 'none';
             modalBoxRecipe.innerHTML = '';
-            })
+        })
 
         document.addEventListener('keyup',  (e) => {
             if (e.key === 'Escape') {
             e.preventDefault();
             modal.style.display = 'none';
             modalBoxRecipe.innerHTML = '';
-            }})       
+            }
+        })       
 
     return card;
 }
