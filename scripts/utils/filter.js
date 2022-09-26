@@ -147,7 +147,33 @@ function removeTag(){
             console.log(datasProxy.searchTag[i]);
             datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
         })
-    }
+    } 
+}
+
+function sortByTag() {
+   // essai raté de relance de la searchbar si remplie mais plus de tag 
+    // if (!datasProxy.searchString){
+    //     if (datasProxy.searchTag <= 0 && datasProxy.searchString <= 0) {
+    //         datasProxy.filtredRecipes = [...recipes];
+    //     }
+    //     if (datasProxy.searchString > 0){
+    //         datasProxy.searchString = [...result];   
+    //     }
+    // }
+    datasProxy.searchTag.forEach(tag => {
+        if(tag.type == 'ingredientsUl'){
+            const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
+            item.ingredient.toLowerCase().includes(tag.value)).length > 0)
+            datasProxy.filtredRecipes = [...resultTag];
+        } else if(tag.type == 'applianceUl'){
+            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
+            datasProxy.filtredRecipes = [...resultTag];
+        } else if (tag.type == 'ustensilsUl'){
+            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
+            item.toLowerCase().includes(tag.value)).length > 0)
+            datasProxy.filtredRecipes = [...resultTag];
+        }
+    })
 }
 
 function recipeSearch(data, research){
