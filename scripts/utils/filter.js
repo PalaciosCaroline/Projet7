@@ -37,6 +37,7 @@ let datasProxy = new Proxy(datas, {
             const result = recipeSearch(target, value);
             //actualiser la liste des recherches filtrées
             datasProxy.filtredRecipes = [...result];
+            //suppression du break;
             // break;
             case 'searchTag' : 
                 //creation tag
@@ -61,9 +62,7 @@ let datasProxy = new Proxy(datas, {
                 //     const resultTag = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(tag.value)) || recipe.ingredients.filter(item =>
                 //         item.ingredient.toLowerCase().includes(tag.value)).length > 0 || (recipe.description.toLowerCase().includes(tag.value)));
                 //     datasProxy.filtredRecipes = [...resultTag];
-                // })
-                
-                
+                // })   
             break;
             // case 'searchIngredientsTag':
             // //filtrer les recettes en fonction de la recherche
