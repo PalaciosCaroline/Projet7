@@ -37,9 +37,12 @@ let datasProxy = new Proxy(datas, {
             const result = recipeSearch(target, value);
             //actualiser la liste des recherches filtrées
             datasProxy.filtredRecipes = [...result];
-            break;
+            // break;
             case 'searchTag' : 
                 //creation tag
+                if (!datasProxy.searchTag){
+                return true;
+                }
                 if (datasProxy.searchTag.length >= 0){
                 tagChoiceBox.innerHTML = '';
                 datasProxy.searchTag.forEach((tag) => {
