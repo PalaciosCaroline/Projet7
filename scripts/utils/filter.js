@@ -51,6 +51,7 @@ let datasProxy = new Proxy(datas, {
                 }
                 console.log(datasProxy.searchTag);
                 removeTag();
+                sortByTag();
                 //filtrage en fonction des tag
                 //essai raté
                 // datasProxy.filtredRecipes = datasProxy.filtredRecipes.filter(recipe => {
