@@ -57,6 +57,7 @@ let datasProxy = new Proxy(datas, {
                 //filtrage en fonction des tag
                 sortByTag();
                 removeTag();
+                console.log(document.querySelector('#search_bar').value);
             break;
         }
         return true;
@@ -116,6 +117,7 @@ function removeTag(){
     for(let i = 0; i < datasProxy.searchTag?.length; i++){
         btnCloses[i].addEventListener('click', function() {
             datasProxy.filtredRecipes = [...recipes];
+            
             console.log(datasProxy.searchTag[i]);
             datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
         })
