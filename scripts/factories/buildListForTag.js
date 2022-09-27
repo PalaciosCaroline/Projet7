@@ -19,6 +19,18 @@ export function getIngredientsList(recipes){
     })
 }
 
+// export function getIngredientsListByFor(recipes){
+//     let ingredientsArray = [];
+//     for(let i; i < recipes.lenght; i++){
+//         for(let j; j < recipes[i].ingredients.lenght; j++){
+//        if(recipes[i].ingredients[j] == ingredient){
+//        ingredientsArray += recipes[i].ingredients[j];
+//        }
+//     }}
+//     ingredientsArray = [...new Set(ingredientsArray)].sort();
+//     buildUlListfilter(ingredientsArray, ingredientsUl);
+// }
+
 export function getApplianceList(recipes){
     let applianceArray = [];
     recipes.forEach((recipe) => {
