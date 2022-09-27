@@ -195,10 +195,11 @@ fieldset:nth-child(2) i{
     margin-bottom: 15px;
 }
 .tagChoice .textTag{
-    padding: 10px 5px;
+    padding: 15px 20px;
 }
 .tagChoice img{
-    width: 35px; 
+    width: 40px;
+    padding-right: 15px; 
 }
 .boxresultIngredients li{
     width: 30%;
