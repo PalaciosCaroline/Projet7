@@ -737,11 +737,7 @@ const recipes = [
                 "unit": "cl"
             },
             {
-<<<<<<< HEAD:scripts/data/recipes.js
-                "ingredient": "Crème Fraîche",
-=======
                 "ingredient": "Crème fraîche",
->>>>>>> 8600542d0b6e444cdc57e7deab306c2d45dfee7a:recipes.js
                 "quantity" : 1,
                 "unit": "cuillères à soupe"
             }

@@ -34,7 +34,7 @@ let datasProxy = new Proxy(datas, {
                 // problème (manq si suppression d'un tag réintégration de la searchbar)
                 //filtrer les recettes en fonction de la recherche
                 // const result = recipeSearch(value);
-                const result = searchRecipeByFilter(value);
+                const result = searchRecipeByFor(value);
                 //actualiser la liste des recherches filtrées
                 datasProxy.filtredRecipes = [...result];
                 searchByTag();
@@ -131,7 +131,7 @@ function searchByTag() {
     })
 }
 
-function recipeSearchByFilter(research){
+function searchRecipeByFilter(research){
     if(research.length > datasProxy.searchLength && research.length > 2) {
         const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
 			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
@@ -187,29 +187,6 @@ function ingredientIsHere(recipe, value){
         item.ingredient.toLowerCase().includes(value)).length > 0){
         return true;}
 }
-
-
-// function recipeSearchByFor(research){
-//     if(research.length > datasProxy.searchLength && research.length > 2) {
-//         const result = [];
-//         for (let i; i < datasProxy.filtredRecipes.length; i++) {
-//             if((datasProxy.filtredRecipes[i].name.toLowerCase().includes(research.toLowerCase())) || datasProxy.filtredRecipes[i].ingredients.filter(item =>
-// 			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (datasProxy.filtredRecipes[i].description.toLowerCase().includes(research.toLowerCase())));
-//             result = [...datasProxy.filtredRecipes[i]]}
-//             return result
-//     }else if (research.length < datasProxy.searchLength && research.length > 2) {
-//         for (let i; i < datasProxy.filtredRecipes.length; i++) {
-//         const result = [];
-//         if((datasProxy.filtredRecipes[i].name.toLowerCase().includes(research.toLowerCase())) || datasProxy.filtredRecipes[i].ingredients.filter(item =>
-// 			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (datasProxy.filtredRecipes[i].description.toLowerCase().includes(research.toLowerCase())));
-//             result = [...datasProxy.filtredRecipes[i]]
-//             console.log(result);}
-//             return result 
-//     } else {
-//         const result = [...recipes];
-//         return result;
-//     }
-// }
 
 
 // function tagApplianceSearch(data, research){
