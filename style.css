@@ -87,7 +87,7 @@ margin-left:0;
 .boxresults{
     min-width: 200px;
     min-height: 70px;  
-    margin-right: 40px;
+    margin-right: 60px;
     padding: 0;
     margin-left:0;
 }
@@ -161,7 +161,6 @@ fieldset:nth-child(2) i{
 .search_ustensils,
 .search_appareils{
     height: 70px;
-    margin-right: 40px;
 } 
 .search_ustensils,
 .search_appareils{
@@ -196,10 +195,11 @@ fieldset:nth-child(2) i{
     margin-bottom: 15px;
 }
 .tagChoice .textTag{
-    padding: 10px 5px;
+    padding: 15px 20px;
 }
 .tagChoice img{
-    width: 35px; 
+    width: 40px;
+    padding-right: 15px; 
 }
 .boxresultIngredients li{
     width: 30%;
@@ -257,7 +257,7 @@ fieldset:nth-child(2) i{
     background: #fff;
 } 
 
-.card h3{
+.card h2{
     font-size: 1.1rem;
     margin: 0;
     display: block;
@@ -271,9 +271,7 @@ fieldset:nth-child(2) i{
 .cardTime img{
     padding-bottom: 3px;
 }
-.card .cardText{
-    height: calc(364px - 178px);
-}
+
 .card_textContent {
     width: 100%;
     font-size: 0.75rem;
@@ -282,10 +280,10 @@ fieldset:nth-child(2) i{
     border-radius: 0 0 10px 10px;
     margin : 0; 
 }
-#box_recipes .cardText {
+/* #box_recipes .cardText {
     height: 10px;
     text-overflow: ellipsis;
-}
+} */
 
 .card ul{
     padding: 0;
@@ -321,12 +319,18 @@ display: inline-block;
 #modal header {
     margin-top: 20px;
 }
+
+#modal header h2 {
+    font-size: 2.4rem;
+} 
+
 #modal .card header {
     margin-bottom: 15px;
     height: 70px;
 }
 #modal .card .card_textContent{
     font-size: 1.2rem;
+    /* padding-left: 60px; */
 }
 #modal .card .cardTime{
     min-width: 200px;
@@ -360,7 +364,7 @@ display: inline-block;
     height:  95%;
     border-radius: 15px 15px 0 0;
 }
-#modal .card-body{
+#modal .card .cardText{
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -370,9 +374,4 @@ display: inline-block;
     height: 25%;
     object-fit: cover;
     border-radius: 15px 15px 0 0;
-}
-
-a{
-    width: auto;
-    height: auto;
 }
