@@ -131,7 +131,7 @@ function searchByTag() {
     })
 }
 
-function recipeSearchByFilter(research){
+function searchRecipeByFilter(research){
     if(research.length > datasProxy.searchLength && research.length > 2) {
         const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
 			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
