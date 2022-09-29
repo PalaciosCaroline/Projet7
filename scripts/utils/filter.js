@@ -57,7 +57,6 @@ let datasProxy = new Proxy(datas, {
 
 datasProxy.filtredRecipes = [...recipes];
 
-
 document.querySelector('#search_bar').addEventListener('input', (e) => {
         if(e.target.value.length < 3){
             let tag = {};
