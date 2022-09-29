@@ -31,7 +31,7 @@ let datasProxy = new Proxy(datas, {
                 }
             break;
             case 'searchString':
-                // problème (manq si suppression d'un tag réintégration de la searchbar)
+                // problème (manq si suppression d'un tag réintégration de la recherche de la searchbar)
                 //filtrer les recettes en fonction de la recherche
                 // const result = recipeSearch(value);
                 const result = searchRecipeByFor(value);
@@ -129,20 +129,6 @@ function searchByTag() {
             datasProxy.filtredRecipes = [...resultTag];
         }
     })
-}
-
-function searchRecipeByFilter(research){
-    if(research.length > datasProxy.searchLength && research.length > 2) {
-        const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
-			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
-        return result
-    }else if (research.length < datasProxy.searchLength && research.length > 2) {
-        const result = datasProxy.recipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item => item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
-        return result
-    } else {
-        const result = [...recipes];
-        return result;
-    }
 }
 
 function searchRecipeByFor(research) {
