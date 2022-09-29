@@ -66,7 +66,7 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
             tag.type = e.target.id;
             // datasProxy.searchTag[0] = tag;
             datasProxy.searchTag = datasProxy.searchTag?.length > 1 ? datasProxy.searchTag.splice(0,1,tag) : [tag] ;
-            [...datasProxy.searchTag.slice(0, i + 1), ...datasProxy.searchTag.slice(i + 2)];
+            // [...datasProxy.searchTag.slice(0, i + 1), ...datasProxy.searchTag.slice(i + 2)];
         } else if (e.target.value.length > 2){
             let tag = {};
             datasProxy.searchLength = e.target.value.length ?? 0;
@@ -128,9 +128,11 @@ function getChosenTag() {
 
 function removeTag(){
     const btnCloses = document.querySelectorAll('.btnClose');
-    if(btnCloses?.length > 0){
-        for(let i = 0; i < datasProxy.searchTag?.length; i++){
-            btnCloses[i].addEventListener('click', function() {
+    if(btnCloses && btnCloses.length >= 1){
+        console.log(btnCloses)
+        let btnClosesArray = Array.from(btnCloses);
+        for(let i = 0; i < btnClosesArray.length; i++){
+            btnClosesArray[i].addEventListener('click', function() {
                 datasProxy.filtredRecipes = [...recipes];
                 console.log(datasProxy.searchTag[i + 1]);
                 datasProxy.searchTag = [...datasProxy.searchTag.slice(0, i + 1), ...datasProxy.searchTag.slice(i + 2)];
