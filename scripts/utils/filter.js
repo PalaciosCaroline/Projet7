@@ -30,15 +30,15 @@ let datasProxy = new Proxy(datas, {
                     getChosenTag();
                 }
             break;
-            case 'searchString':
-                // problème (manq si suppression d'un tag réintégration de la searchbar)
-                //filtrer les recettes en fonction de la recherche
-                // const result = recipeSearch(value);
-                const result = searchRecipeByFilter(value);
-                //actualiser la liste des recherches filtrées
-                datasProxy.filtredRecipes = [...result];
-                searchByTag();
-            break;
+            // case 'searchString':
+            //     // problème (manq si suppression d'un tag réintégration de la searchbar)
+            //     //filtrer les recettes en fonction de la recherche
+            //     // const result = recipeSearch(value);
+            //     const result = searchRecipeByFilter(value);
+            //     //actualiser la liste des recherches filtrées
+            //     datasProxy.filtredRecipes = [...result];
+            //     searchByTag();
+            // break;
             case 'searchTag' : 
                 //creation tag
                 displayTag(datasProxy.searchTag);
@@ -57,9 +57,24 @@ let datasProxy = new Proxy(datas, {
 
 datasProxy.filtredRecipes = [...recipes];
 
+
 document.querySelector('#search_bar').addEventListener('input', (e) => {
-    datasProxy.searchString = e.target.value;
+    if(datasProxy.searchTag){
+        if (datasProxy.searchTag.includes(tag => tag.type == 'search_bar')){
+            datasProxy.searchTag = datasProxy.searchTag.filter(tag => tag.type != 'search_bar');
+        }
+    let tag = {};
     datasProxy.searchLength = e.target.value.length ?? 0;
+    tag.value = e.target.value;
+    tag.type = e.target.id;
+    datasProxy.searchTag = datasProxy.searchTag?.length > 0 ? [...datasProxy.searchTag,tag] : [tag] ;
+    }else {
+        let tag = {};
+        datasProxy.searchLength = e.target.value.length ?? 0;
+        tag.value = e.target.value;
+        tag.type = e.target.id;
+        datasProxy.searchTag = datasProxy.searchTag?.length > 0 ? [...datasProxy.searchTag,tag] : [tag] ;
+    }
 })
 
 document.querySelector('#ingredients').addEventListener('input', (e) => {
@@ -116,7 +131,10 @@ function removeTag(){
 
 function searchByTag() {
     datasProxy.searchTag?.forEach(tag => {
-        if(tag.type == 'ingredientsUl'){
+        if(tag.type == 'search_bar'){
+            const resultTag = searchRecipeByFilter(tag.value);
+            datasProxy.filtredRecipes = [...resultTag];
+        } else if(tag.type == 'ingredientsUl'){
             const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
             item.ingredient.toLowerCase().includes(tag.value)).length > 0)
             datasProxy.filtredRecipes = [...resultTag];
