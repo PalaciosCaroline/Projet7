@@ -59,29 +59,27 @@ datasProxy.filtredRecipes = [...recipes];
 
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
-    // if(datasProxy.searchTag){ 
         if(e.target.value.length < 3){
             let tag = {};
             tag.value = '';
             tag.type = e.target.id;
-            // datasProxy.searchTag[0] = tag;
-            datasProxy.searchTag = datasProxy.searchTag?.length > 1 ? datasProxy.searchTag.splice(0,1,tag) : [tag] ;
-            // [...datasProxy.searchTag.slice(0, i + 1), ...datasProxy.searchTag.slice(i + 2)];
+            if (!datasProxy.searchTag){
+                datasProxy.searchTag = [tag];
+            } else if (datasProxy.searchTag && datasProxy.searchTag.length == 1){
+                datasProxy.searchTag = [tag];
+            } else if (datasProxy.searchTag && datasProxy.searchTag.length > 1)
+             { datasProxy.searchTag[0] = tag;
+            datasProxy.searchTag = [...datasProxy.searchTag];
+            console.log(datasProxy.searchTag);
+            }
         } else if (e.target.value.length > 2){
             let tag = {};
             datasProxy.searchLength = e.target.value.length ?? 0;
             tag.value = e.target.value;
             tag.type = e.target.id;
-            // datasProxy.searchTag[0] = [tag] ;
-            datasProxy.searchTag = datasProxy.searchTag?.length > 1 ? datasProxy.searchTag.splice(0,1,tag) : [tag] ;
-        
-    // }else {
-    //     let tag = {};
-    //     datasProxy.searchLength = e.target.value.length ?? 0;
-    //     tag.value = e.target.value;
-    //     tag.type = e.target.id;
-    //     datasProxy.searchTag = [tag] ;
-    // }
+            datasProxy.searchTag[0] = tag;
+            datasProxy.searchTag = [...datasProxy.searchTag];
+            console.log(datasProxy.searchTag);
     }
 })
 
