@@ -7,7 +7,7 @@ import {displayTag} from '../factories/buildtag.js';
 const ingredientsUl = document.getElementById('ingredientsUl');
 const applianceUl = document.getElementById('applianceUl');
 const ustensilsUl = document.getElementById('ustensilsUl');
-
+let searchBar;
 let datas = {}
 datas.recipes = [...recipes];
 
@@ -43,11 +43,7 @@ let datasProxy = new Proxy(datas, {
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
-                // const searchBar = document.querySelector('#search_bar').value;
-                // if(searchBar.length > 2){
-                //     datasProxy.searchString = searchBar;
-                //     datasProxy.searchLength = searchBar.length ?? 0;
-                // }
+                searchRec(searchBar);
             break;
         }
         return true;
@@ -58,6 +54,7 @@ datasProxy.filtredRecipes = [...recipes];
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchString = e.target.value;
+    searchBar = e.target.value;
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
@@ -148,6 +145,14 @@ function searchRecipeByFilter(research){
         const result = [...recipes];
         return result;
     }
+}
+
+function searchRec(research){
+    if(research.length > 2) {
+        const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
+			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
+        return datasProxy.filtredRecipes = [...result];
+        }
 }
 
 function searchRecipeByFor(research) {
