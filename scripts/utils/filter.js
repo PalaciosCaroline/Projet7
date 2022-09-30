@@ -7,7 +7,7 @@ import {displayTag} from '../factories/buildtag.js';
 const ingredientsUl = document.getElementById('ingredientsUl');
 const applianceUl = document.getElementById('applianceUl');
 const ustensilsUl = document.getElementById('ustensilsUl');
-
+let searchBar;
 let datas = {}
 datas.recipes = [...recipes];
 
@@ -30,9 +30,7 @@ let datasProxy = new Proxy(datas, {
                 }
             break;
             case 'searchString':
-                // problème (manq si suppression d'un tag réintégration de la recherche de la searchbar)
                 //filtrer les recettes en fonction de la recherche
-                // const result = recipeSearch(value);
                 const result = searchRecipeByFor(value);
                 //actualiser la liste des recherches filtrées
                 datasProxy.filtredRecipes = [...result];
@@ -44,8 +42,7 @@ let datasProxy = new Proxy(datas, {
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
-                // if(document.querySelector('#search_bar').value){datasProxy.searchString = document.querySelector('#search_bar').value;
-                //     datasProxy.searchLength = document.querySelector('#search_bar').value.length ?? 0};
+                searchRecup(searchBar);
             break;
         }
         return true;
@@ -56,6 +53,7 @@ datasProxy.filtredRecipes = [...recipes];
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchString = e.target.value;
+    searchBar = e.target.value;
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
@@ -168,6 +166,28 @@ function ingredientIsHere(recipe, value){
     if(recipe.ingredients.filter(item =>
         item.ingredient.toLowerCase().includes(value)).length > 0){
         return true;}
+}
+
+function searchRecup(research){
+    if(research){
+        let valueSought = research.toLowerCase();
+        let result = [];
+        if(valueSought.length > 2) {
+            for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
+                let recipe = datasProxy.filtredRecipes[i];
+                let name = recipe.name.toLowerCase();
+                let description = recipe.description.toLowerCase();
+                if ( ingredientIsHere(recipe, valueSought)){
+                    result.push(recipe); 
+                } else if (description.includes(valueSought)) {
+                result.push(recipe);
+                } else if (name.includes(valueSought)) {
+                    result.push(recipe);   
+                }
+            }
+            return  datasProxy.filtredRecipes = [...result];
+        }
+    }
 }
 
 
