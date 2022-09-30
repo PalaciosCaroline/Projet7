@@ -56,10 +56,8 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
             let choiceFilter = {};
             choiceFilter.value = '';
             choiceFilter.type = e.target.id;
-            if (datasProxy.searchfilter.length == 1){
-                datasProxy.searchfilter = [choiceFilter];
-            } else if (datasProxy.searchfilter.length > 1) { 
-            datasProxy.searchfilter = [...datasProxy.searchfilter, choiceFilter];
+            if (datasProxy.searchfilter.length >= 1){
+                datasProxy.searchfilter = [...datasProxy.searchfilter, choiceFilter];
             }
         } else if (e.target.value.length > 2){
             let choiceFilter = {};
@@ -129,9 +127,11 @@ function searchRecipes() {
     datasProxy.filtredRecipes = [...recipes];
     datasProxy.searchfilter?.forEach(choiceFilter => {
         if(choiceFilter.type == 'search_bar'){
+            if (choiceFilter.value != ''){
             const resultfilter = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(choiceFilter.value.toLowerCase())) || recipe.ingredients.filter(item =>
                 item.ingredient.toLowerCase().includes(choiceFilter.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(choiceFilter.value.toLowerCase())));
             datasProxy.filtredRecipes = [...resultfilter];
+            }
         } else if(choiceFilter.type == 'ingredientsUl'){
             const resultfilter = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
             item.ingredient.toLowerCase().includes(choiceFilter.value)).length > 0)
