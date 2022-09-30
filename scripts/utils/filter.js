@@ -29,10 +29,10 @@ let datasProxy = new Proxy(datas, {
                     getChosenTag();
                 }
             break;
-            case 'searchTag' : 
+            case 'searchfilter' : 
                 //creation tag
-                displayTag(datasProxy.searchTag);
-                //filtrage en fonction des tag
+                displayTag(datasProxy.searchfilter);
+                //filtrage en fonction des filterChoice
                 searchByFilter();
                 removeTag();
             break;
@@ -45,21 +45,21 @@ datasProxy.filtredRecipes = [...recipes];
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
     if(e.target.value.length < 3){
-        let tag = {};
-        tag.value = '';
-        tag.type = e.target.id;
-        if (!datasProxy.searchTag || datasProxy.searchTag.length == 1){
-            datasProxy.searchTag = [tag];
-        } else if (datasProxy.searchTag && datasProxy.searchTag.length > 1) { 
-            datasProxy.searchTag[0] = tag;
-            datasProxy.searchTag = [...datasProxy.searchTag];
+        let filterChoice = {};
+        filterChoice.value = '';
+        filterChoice.type = e.target.id;
+        if (!datasProxy.searchfilter || datasProxy.searchfilter.length == 1){
+            datasProxy.searchfilter = [filterChoice];
+        } else if (datasProxy.searchfilter && datasProxy.searchfilter.length > 1) { 
+            datasProxy.searchfilter[0] = filterChoice;
+            datasProxy.searchfilter = [...datasProxy.searchfilter];
         }
     } else if (e.target.value.length > 2){
-        let tag = {};
-        tag.value = e.target.value;
-        tag.type = e.target.id;
-        datasProxy.searchTag[0] = tag;
-        datasProxy.searchTag = [...datasProxy.searchTag];
+        let filterChoice = {};
+        filterChoice.value = e.target.value;
+        filterChoice.type = e.target.id;
+        datasProxy.searchfilter[0] = filterChoice;
+        datasProxy.searchfilter = [...datasProxy.searchfilter];
     }
 })
 
@@ -97,10 +97,10 @@ document.querySelector('#ustensils').addEventListener('input', (e) => {
 function getChosenTag() {
     const liSortingItem = document.querySelectorAll('.liSorting-item')
     liSortingItem.forEach(item => item.addEventListener('click', (e) => {
-        let tag = {};
-        tag.value = e.target.textContent;
-        tag.type = e.target.parentNode.id;
-        datasProxy.searchTag = datasProxy.searchTag? [...datasProxy.searchTag,tag] : ['',tag] ;
+        let filterChoice = {};
+        filterChoice.value = e.target.textContent;
+        filterChoice.type = e.target.parentNode.id;
+        datasProxy.searchfilter = datasProxy.searchfilter? [...datasProxy.searchfilter,filterChoice] : ['',filterChoice] ;
     }))   
 }
 
@@ -110,7 +110,7 @@ function removeTag(){
         let btnClosesArray = Array.from(btnCloses);
         for(let i = 0; i < btnClosesArray.length; i++){
             btnClosesArray[i].addEventListener('click', function() {
-                datasProxy.searchTag = [...datasProxy.searchTag.slice(0, i + 1), ...datasProxy.searchTag.slice(i + 2)];
+                datasProxy.searchfilter = [...datasProxy.searchfilter.slice(0, i + 1), ...datasProxy.searchfilter.slice(i + 2)];
             })
         } 
     }
@@ -118,24 +118,24 @@ function removeTag(){
 
 function searchByFilter() {
     datasProxy.filtredRecipes = [...recipes];
-    datasProxy.searchTag?.forEach(tag => {
-        if(tag.type == 'search_bar'){
-            if (tag.value != ''){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(tag.value.toLowerCase())) || recipe.ingredients.filter(item =>
-                item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(tag.value.toLowerCase())));
-            datasProxy.filtredRecipes = [...resultTag];
+    datasProxy.searchfilter?.forEach(filterChoice => {
+        if(filterChoice.type == 'search_bar'){
+            if (filterChoice.value != ''){
+            const resultFilter = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(filterChoice.value.toLowerCase())) || recipe.ingredients.filter(item =>
+                item.ingredient.toLowerCase().includes(filterChoice.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(filterChoice.value.toLowerCase())));
+            datasProxy.filtredRecipes = [...resultFilter];
             }
-        } else if(tag.type == 'ingredientsUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
-            item.ingredient.toLowerCase().includes(tag.value)).length > 0)
-            datasProxy.filtredRecipes = [...resultTag];
-        } else if(tag.type == 'applianceUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
-            datasProxy.filtredRecipes = [...resultTag];
-        } else if (tag.type == 'ustensilsUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
-            item.toLowerCase().includes(tag.value)).length > 0)
-            datasProxy.filtredRecipes = [...resultTag];
+        } else if(filterChoice.type == 'ingredientsUl'){
+            const resultFilter = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
+            item.ingredient.toLowerCase().includes(filterChoice.value)).length > 0)
+            datasProxy.filtredRecipes = [...resultFilter];
+        } else if(filterChoice.type == 'applianceUl'){
+            const resultFilter = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(filterChoice.value.toLowerCase()));
+            datasProxy.filtredRecipes = [...resultFilter];
+        } else if (filterChoice.type == 'ustensilsUl'){
+            const resultFilter = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
+            item.toLowerCase().includes(filterChoice.value)).length > 0)
+            datasProxy.filtredRecipes = [...resultFilter];
         }
     })
 }
