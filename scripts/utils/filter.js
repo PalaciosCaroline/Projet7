@@ -152,7 +152,7 @@ function searchRecup(research){
         const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
 			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
         return datasProxy.filtredRecipes = [...result];
-        }
+    }
 }
 
 function searchRecipeByFor(research) {
