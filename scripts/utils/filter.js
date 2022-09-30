@@ -13,7 +13,6 @@ datas.recipes = [...recipes];
 
 let datasProxy = new Proxy(datas, {
     set: function(target, key, value) {
-        console.log(target, key, value)
         target[key] = value;
         switch(key) {
             case 'filtredRecipes': 
@@ -42,13 +41,9 @@ let datasProxy = new Proxy(datas, {
             case 'searchTag' : 
                 //creation tag
                 displayTag(datasProxy.searchTag);
-                console.log(datasProxy.searchTag);
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
-                console.log(document.querySelector('#search_bar').value);
-                // if(document.querySelector('#search_bar').value){datasProxy.searchString = document.querySelector('#search_bar').value;
-                //     datasProxy.searchLength = document.querySelector('#search_bar').value.length ?? 0};
             break;
         }
         return true;
@@ -107,9 +102,15 @@ function removeTag(){
     const btnCloses = document.querySelectorAll('.btnClose');
     for(let i = 0; i < datasProxy.searchTag?.length; i++){
         btnCloses[i].addEventListener('click', function() {
-            datasProxy.filtredRecipes = [...recipes];
-            console.log(datasProxy.searchTag[i]);
-            datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
+            if(document.querySelector('#search_bar').value.length > 2){
+                const result = searchRecipeByFilter(document.querySelector('#search_bar').value);
+                //actualiser la liste des recherches filtrées
+                datasProxy.filtredRecipes = [...result];
+                datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
+            } else {
+                datasProxy.filtredRecipes = [...recipes];
+                datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
+            }
         })
     } 
 }
