@@ -13,7 +13,6 @@ datas.recipes = [...recipes];
 
 let datasProxy = new Proxy(datas, {
     set: function(target, key, value) {
-        console.log(target, key, value)
         target[key] = value;
         switch(key) {
             case 'filtredRecipes': 
@@ -42,11 +41,9 @@ let datasProxy = new Proxy(datas, {
             case 'searchTag' : 
                 //creation tag
                 displayTag(datasProxy.searchTag);
-                console.log(datasProxy.searchTag);
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
-                console.log(document.querySelector('#search_bar').value);
                 // if(document.querySelector('#search_bar').value){datasProxy.searchString = document.querySelector('#search_bar').value;
                 //     datasProxy.searchLength = document.querySelector('#search_bar').value.length ?? 0};
             break;
@@ -69,7 +66,7 @@ document.querySelector('#ingredients').addEventListener('input', (e) => {
         recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
     ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});;
     buildUlListfilter(ingredientsArray, ingredientsUl);
-    getChosenTag();
+    // getChosenTag();
 })
 
 const inputAppliance = document.querySelector('#appliance');
@@ -80,7 +77,7 @@ inputAppliance.addEventListener('input', (e) => {
         applianceArray.push(recipe.appliance.toLowerCase());
     applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(applianceArray, applianceUl);
-    getChosenTag();
+    // getChosenTag();
 })
 
 document.querySelector('#ustensils').addEventListener('input', (e) => {
@@ -90,7 +87,7 @@ document.querySelector('#ustensils').addEventListener('input', (e) => {
     recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
     ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(ustensilsArray, ustensilsUl);
-    getChosenTag();
+    // getChosenTag();
 })
 
 function getChosenTag() {
@@ -108,7 +105,6 @@ function removeTag(){
     for(let i = 0; i < datasProxy.searchTag?.length; i++){
         btnCloses[i].addEventListener('click', function() {
             datasProxy.filtredRecipes = [...recipes];
-            console.log(datasProxy.searchTag[i]);
             datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
         })
     } 
