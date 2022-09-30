@@ -30,7 +30,6 @@ let datasProxy = new Proxy(datas, {
                 }
             break;
             case 'searchString':
-                // problème (manq si suppression d'un tag réintégration de la searchbar)
                 //filtrer les recettes en fonction de la recherche
                 // const result = recipeSearch(value);
                 const result = searchRecipeByFilter(value);
@@ -44,6 +43,11 @@ let datasProxy = new Proxy(datas, {
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
+                // const searchBar = document.querySelector('#search_bar').value;
+                // if(searchBar.length > 2){
+                //     datasProxy.searchString = searchBar;
+                //     datasProxy.searchLength = searchBar.length ?? 0;
+                // }
             break;
         }
         return true;
@@ -104,8 +108,8 @@ function removeTag(){
         btnCloses[i].addEventListener('click', function() {
             if(document.querySelector('#search_bar').value.length > 2){
                 const result = searchRecipeByFilter(document.querySelector('#search_bar').value);
-                //actualiser la liste des recherches filtrées
                 datasProxy.filtredRecipes = [...result];
+
                 datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
             } else {
                 datasProxy.filtredRecipes = [...recipes];
