@@ -148,10 +148,12 @@ function searchRecipeByFilter(research){
 }
 
 function searchRecup(research){
-    if(research.length > 2) {
-        const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
-			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
-        return datasProxy.filtredRecipes = [...result];
+    if(research){
+        if(research.length > 2) {
+            const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
+                item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
+            return datasProxy.filtredRecipes = [...result];
+        }
     }
 }
 
