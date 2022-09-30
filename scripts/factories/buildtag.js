@@ -16,18 +16,18 @@ export function buildTagChoice(element, typeclass){
 }
 
 export function displayTag(tags) {
-    if (!tags){
+    if (!tags || tags.length <= 0){
         return true;
-    } else if (tags.length >= 0){
+    } else (tags.length > 0)
         const tagChoiceBox = document.querySelector("#tagChoice_box");
         tagChoiceBox.innerHTML = '';
-        tags.forEach((tag) => {
-            const tagElement = buildTagChoice(tag.value, tag.type);
+        for (var i = 1; i < tags.length; i++) {
+            if(tags[i].type != 'search_bar'){
+            const tagElement = buildTagChoice(tags[i].value, tags[i].type);
             tagChoiceBox.appendChild(tagElement);
-        });
-    } else if (tags.length <= 0){
-        return true;
-    }
-
+            }
+        }
 }
+
+
 
