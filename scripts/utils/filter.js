@@ -43,7 +43,7 @@ let datasProxy = new Proxy(datas, {
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
-                searchRec(searchBar);
+                searchRecup(searchBar);
             break;
         }
         return true;
@@ -147,7 +147,7 @@ function searchRecipeByFilter(research){
     }
 }
 
-function searchRec(research){
+function searchRecup(research){
     if(research.length > 2) {
         const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
 			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
