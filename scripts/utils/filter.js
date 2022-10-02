@@ -33,7 +33,7 @@ let datasProxy = new Proxy(datas, {
             case 'searchfilter' : 
                 //creation filter
                 displayTag(datasProxy.searchfilter);
-                //filtrage en fonction des filter
+                //filtrage en fonction des filters
                 searchRecipes();
                 removeTag();
             break;
