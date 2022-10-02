@@ -43,7 +43,7 @@ let datasProxy = new Proxy(datas, {
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
-                searchRecup(searchBar);
+                searchBarRecup(searchBar);
             break;
         }
         return true;
@@ -103,15 +103,8 @@ function removeTag(){
     const btnCloses = document.querySelectorAll('.btnClose');
     for(let i = 0; i < datasProxy.searchTag?.length; i++){
         btnCloses[i].addEventListener('click', function() {
-            if(document.querySelector('#search_bar').value.length > 2){
-                const result = searchRecipeByFilter(document.querySelector('#search_bar').value);
-                datasProxy.filtredRecipes = [...result];
-
-                datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
-            } else {
                 datasProxy.filtredRecipes = [...recipes];
                 datasProxy.searchTag = datasProxy.searchTag.length > 1 ? [...datasProxy.searchTag.slice(0, i), ...datasProxy.searchTag.slice(i + 1)] : [];
-            }
         })
     } 
 }
@@ -147,7 +140,7 @@ function searchRecipeByFilter(research){
     }
 }
 
-function searchRecup(research){
+function searchBarRecup(research){
     if(research){
         if(research.length > 2) {
             const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
