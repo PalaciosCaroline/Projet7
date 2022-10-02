@@ -44,22 +44,14 @@ let datasProxy = new Proxy(datas, {
 datasProxy.filtredRecipes = [...recipes];
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
-    if(e.target.value.length < 3){
-        let filterChoice = {};
-        filterChoice.value = '';
-        filterChoice.type = e.target.id;
-        if (!datasProxy.searchfilter || datasProxy.searchfilter.length == 1){
-            datasProxy.searchfilter = [filterChoice];
-        } else if (datasProxy.searchfilter && datasProxy.searchfilter.length > 1) { 
-            datasProxy.searchfilter[0] = filterChoice;
-            datasProxy.searchfilter = [...datasProxy.searchfilter];
-        }
-    } else if (e.target.value.length > 2){
-        let filterChoice = {};
-        filterChoice.value = e.target.value;
-        filterChoice.type = e.target.id;
-        datasProxy.searchfilter[0] = filterChoice;
-        datasProxy.searchfilter = [...datasProxy.searchfilter];
+    let filterChoice = {};
+    filterChoice.value = e.target.value;
+    filterChoice.type = e.target.id;
+    if (!datasProxy.searchfilter){
+        datasProxy.searchfilter = [filterChoice];
+    }else if (datasProxy.searchfilter) {
+    datasProxy.searchfilter[0] = filterChoice;
+    datasProxy.searchfilter = [...datasProxy.searchfilter];
     }
 })
 
@@ -70,7 +62,6 @@ document.querySelector('#ingredients').addEventListener('input', (e) => {
         recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
     ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});;
     buildUlListfilter(ingredientsArray, ingredientsUl);
-    // getChosenTag();
 })
 
 const inputAppliance = document.querySelector('#appliance');
@@ -81,7 +72,6 @@ inputAppliance.addEventListener('input', (e) => {
         applianceArray.push(recipe.appliance.toLowerCase());
     applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(applianceArray, applianceUl);
-    // getChosenTag();
 })
 
 document.querySelector('#ustensils').addEventListener('input', (e) => {
@@ -91,7 +81,6 @@ document.querySelector('#ustensils').addEventListener('input', (e) => {
     recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
     ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(ustensilsArray, ustensilsUl);
-    // getChosenTag();
 })
 
 function getChosenTag() {
@@ -120,7 +109,7 @@ function searchByFilter() {
     datasProxy.filtredRecipes = [...recipes];
     datasProxy.searchfilter?.forEach(filterChoice => {
         if(filterChoice.type == 'search_bar'){
-            if (filterChoice.value != ''){
+            if (filterChoice.value.length > 2){
             const resultFilter = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(filterChoice.value.toLowerCase())) || recipe.ingredients.filter(item =>
                 item.ingredient.toLowerCase().includes(filterChoice.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(filterChoice.value.toLowerCase())));
             datasProxy.filtredRecipes = [...resultFilter];
