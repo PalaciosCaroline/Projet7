@@ -77,8 +77,9 @@ fieldset:nth-child(1) .form-control::placeholder {
 }
 
 .input-group{
-margin-left:0;
+    margin-left:0;
 }
+
 .fieldsetTag{
     position:relative;
     display: flex;
@@ -92,9 +93,20 @@ margin-left:0;
     margin-left:0;
 }
 
-.boxresultIngredients{
-    width: 600px;
+.boxresults label{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+   
 }
+
+.boxresults input{
+    height: 100%;
+}
+
+.boxresultIngredients.open{
+    width: 600px;
+} 
  
 .boxresultAppliance{
   width: 200px;
@@ -166,15 +178,15 @@ fieldset:nth-child(2) i{
 .search_appareils{
     width: 200px;
 }
-/* .search_ingredients{
+.label_ingredients.open{
     width: 600px;
-} */
+} 
 .boxresultIngredients ul{
     padding:0;
     height: auto;
     display: flex;
     flex-wrap: wrap;
-    width: 600px; 
+    width: 600px;  
 }
 
 /* tag */
@@ -365,8 +377,8 @@ display: inline-block;
     border-radius: 15px 15px 0 0;
 }
 #modal .card .cardText{
-    padding-left: 70px;
-    padding-right: 70px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 #modal .card img{
