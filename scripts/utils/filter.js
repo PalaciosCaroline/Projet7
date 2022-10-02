@@ -45,26 +45,18 @@ let datasProxy = new Proxy(datas, {
 datasProxy.filtredRecipes = [...recipes];
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
+    let choiceFilter = {};
+    choiceFilter.value = e.target.value;
+    choiceFilter.type = e.target.id;
     if (!datasProxy.searchfilter){
-            let choiceFilter = {};
-            choiceFilter.value = '';
-            choiceFilter.type = e.target.id;
             datasProxy.searchfilter = [choiceFilter];
     } else { 
         datasProxy.searchfilter = datasProxy.searchfilter.filter(item => item.type != 'search_bar');
-        if(e.target.value.length < 3){
-            let choiceFilter = {};
-            choiceFilter.value = '';
-            choiceFilter.type = e.target.id;
-            if (datasProxy.searchfilter.length >= 1){
-                datasProxy.searchfilter = [...datasProxy.searchfilter, choiceFilter];
-            }
-        } else if (e.target.value.length > 2){
-            let choiceFilter = {};
-            choiceFilter.value = e.target.value;
-            choiceFilter.type = e.target.id;
+        if(datasProxy.searchfilter.length <= 0) {
+            datasProxy.searchfilter = [choiceFilter];
+        } else if (datasProxy.searchfilter.length > 0){
             datasProxy.searchfilter = [...datasProxy.searchfilter, choiceFilter];
-        }
+        }        
     }
 })
 
@@ -75,7 +67,6 @@ document.querySelector('#ingredients').addEventListener('input', (e) => {
         recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
     ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});;
     buildUlListfilter(ingredientsArray, ingredientsUl);
-    // getChosenTag();
 })
 
 const inputAppliance = document.querySelector('#appliance');
@@ -86,7 +77,6 @@ inputAppliance.addEventListener('input', (e) => {
         applianceArray.push(recipe.appliance.toLowerCase());
     applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(applianceArray, applianceUl);
-    // getChosenTag();
 })
 
 document.querySelector('#ustensils').addEventListener('input', (e) => {
@@ -96,7 +86,6 @@ document.querySelector('#ustensils').addEventListener('input', (e) => {
     recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
     ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(ustensilsArray, ustensilsUl);
-    // getChosenTag();
 })
 
 function getChosenTag() {
@@ -105,7 +94,7 @@ function getChosenTag() {
         let choiceFilter = {};
         choiceFilter.value = e.target.textContent;
         choiceFilter.type = e.target.parentNode.id;
-        datasProxy.searchfilter = datasProxy.searchfilter? [...datasProxy.searchfilter,choiceFilter] : ['',choiceFilter] ;
+        datasProxy.searchfilter = datasProxy.searchfilter? [...datasProxy.searchfilter,choiceFilter] : [choiceFilter] ;
     }))   
 }
 
@@ -126,7 +115,7 @@ function searchRecipes() {
     datasProxy.filtredRecipes = [...recipes];
     datasProxy.searchfilter?.forEach(choiceFilter => {
         if(choiceFilter.type == 'search_bar'){
-            if (choiceFilter.value != ''){
+            if (choiceFilter.value.length > 2){
             const resultfilter = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(choiceFilter.value.toLowerCase())) || recipe.ingredients.filter(item =>
                 item.ingredient.toLowerCase().includes(choiceFilter.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(choiceFilter.value.toLowerCase())));
             datasProxy.filtredRecipes = [...resultfilter];
