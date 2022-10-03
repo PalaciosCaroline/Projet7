@@ -55,13 +55,45 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
-document.querySelector('#ingredients').addEventListener('input', (e) => {
+// document.querySelectorAll('.btn_list').forEach(item => item.addEventListener('click', (e) => {
+//        if(e.target.parentNode.id == 'btn_ingredients'){
+//         if(!item.classList.contains('isOpen')){
+//             item.classList.add('isOpen');
+//             openListIngredients(item);
+//         } else if(item.classList.contains('isOpen')){
+//             item.classList.remove('isOpen');
+//             closeListIngredients(item);
+//         }
+//     }
+// }));
+
+// function openListIngredients(item){
+//     item.querySelector('i').classList.remove('fa-chevron-down');
+//     item.querySelector('i').classList.add('fa-chevron-up');
+//     document.querySelector('.label_ingredients').classList.add('open');
+//     document.querySelector('#ingredientsUl').style.display = 'flex';
+// }
+
+// function closeListIngredients(item){
+//     item.querySelector('i').classList.remove('fa-chevron-up');
+//     item.querySelector('i').classList.add('fa-chevron-down');
+//     document.querySelector('.label_ingredients').classList.remove('open');
+//     document.querySelector('#ingredientsUl').style.display = 'none';
+// }
+
+
+// document.querySelector('#ingredients').addEventListener('focusin', () => {  
+// openListIngredients(document.querySelector('.btn_ingredients'));
+// })
+
+document.querySelector('#ingredients').addEventListener('input', (e) => {  
     let research = e.target.value;
     let ingredientsArray = [];
     recipes.forEach((recipe) => {
         recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
     ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(ingredientsArray, ingredientsUl);
+    getChosenTag();
 })
 
 const inputAppliance = document.querySelector('#appliance');
@@ -72,6 +104,7 @@ inputAppliance.addEventListener('input', (e) => {
         applianceArray.push(recipe.appliance.toLowerCase());
     applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(applianceArray, applianceUl);
+    getChosenTag();
 })
 
 document.querySelector('#ustensils').addEventListener('input', (e) => {
@@ -81,6 +114,7 @@ document.querySelector('#ustensils').addEventListener('input', (e) => {
     recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
     ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(ustensilsArray, ustensilsUl);
+    getChosenTag();
 })
 
 function getChosenTag() {
@@ -89,6 +123,9 @@ function getChosenTag() {
         let tag = {};
         tag.value = e.target.textContent;
         tag.type = e.target.parentNode.id;
+        document.querySelector('#ingredients').value = '';
+        document.querySelector('#appliance').value = '';
+        document.querySelector('#ustensils').value = '';
         datasProxy.searchTag = datasProxy.searchTag?.length > 0 ? [...datasProxy.searchTag,tag] : [tag] ;
     }))   
 }

@@ -178,16 +178,38 @@ fieldset:nth-child(2) i{
 .search_appareils{
     width: 200px;
 }
+
+.boxresultIngredients li{
+    width: 30%;
+}
+.boxresultsUstensils li{
+    width: 100%;
+}
+.boxresultsAppliance li{
+    width: 100%;
+}
+
 .label_ingredients.open{
+    width: 600px;
+} 
+.label_ingredients{
     width: 600px;
 } 
 .boxresultIngredients ul{
     padding:0;
-    height: auto;
-    display: flex;
     flex-wrap: wrap;
-    width: 600px;  
+    width: 600px; 
+    height: auto;  
 }
+
+#ingredientsUl{
+    /* display: none; */
+    display: flex;
+}
+/* 
+#ingredientsUl.visible{
+    height: auto;
+} */
 
 /* tag */
 .ingredientsUl{
@@ -213,16 +235,6 @@ fieldset:nth-child(2) i{
     width: 40px;
     padding-right: 15px; 
 }
-.boxresultIngredients li{
-    width: 30%;
-}
-.boxresultsUstensils li{
-    width: 100%;
-}
-.boxresultsAppliance li{
-    width: 100%;
-}
-
 
 .div_box_recipes{
     padding: 0;
@@ -230,7 +242,7 @@ fieldset:nth-child(2) i{
 }
 
 #box_recipes{
- margin-top:130px;
+ margin-top:90px;
     padding: 0;
 }
 
