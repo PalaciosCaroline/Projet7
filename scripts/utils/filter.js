@@ -58,6 +58,7 @@ document.querySelector('#ingredients').addEventListener('input', (e) => {
         recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
     ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(ingredientsArray, ingredientsUl);
+    getChosenTag();
 })
 
 const inputAppliance = document.querySelector('#appliance');
@@ -68,6 +69,7 @@ inputAppliance.addEventListener('input', (e) => {
         applianceArray.push(recipe.appliance.toLowerCase());
     applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(applianceArray, applianceUl);
+    getChosenTag();
 })
 
 document.querySelector('#ustensils').addEventListener('input', (e) => {
@@ -77,6 +79,7 @@ document.querySelector('#ustensils').addEventListener('input', (e) => {
     recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
     ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(ustensilsArray, ustensilsUl);
+    getChosenTag();
 })
 
 function getChosenTag() {
@@ -85,6 +88,9 @@ function getChosenTag() {
         let filterChoice = {};
         filterChoice.value = e.target.textContent;
         filterChoice.type = e.target.parentNode.id;
+        document.querySelector('#ingredients').value = '';
+        document.querySelector('#appliance').value = '';
+        document.querySelector('#ustensils').value = '';
         datasProxy.searchfilter = datasProxy.searchfilter? [...datasProxy.searchfilter,filterChoice] : ['',filterChoice] ;
     }))   
 }
