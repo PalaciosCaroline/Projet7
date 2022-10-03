@@ -105,24 +105,40 @@ function searchByFilter() {
     datasProxy.filtredRecipes = [...recipes];
     datasProxy.searchfilter?.forEach(filterChoice => {
         if(filterChoice.type == 'search_bar'){
-            if (filterChoice.value.length > 2){
-            const resultFilter = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(filterChoice.value.toLowerCase())) || recipe.ingredients.filter(item =>
-                item.ingredient.toLowerCase().includes(filterChoice.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(filterChoice.value.toLowerCase())));
-            datasProxy.filtredRecipes = [...resultFilter];
-            }
+            filterBySearchBar(filterChoice);
         } else if(filterChoice.type == 'ingredientsUl'){
-            const resultFilter = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
-            item.ingredient.toLowerCase().includes(filterChoice.value)).length > 0)
-            datasProxy.filtredRecipes = [...resultFilter];
+            filterByIngredient(filterChoice);
         } else if(filterChoice.type == 'applianceUl'){
-            const resultFilter = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(filterChoice.value.toLowerCase()));
-            datasProxy.filtredRecipes = [...resultFilter];
+            filterByAppliance(filterChoice);
         } else if (filterChoice.type == 'ustensilsUl'){
-            const resultFilter = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
-            item.toLowerCase().includes(filterChoice.value)).length > 0)
-            datasProxy.filtredRecipes = [...resultFilter];
+            filterByUstensils(filterChoice);
         }
     })
 }
 
+function filterBySearchBar(filterChoice) {
+    if (filterChoice.value.length > 2){
+        const resultFilter = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(filterChoice.value.toLowerCase())) || recipe.ingredients.filter(item =>
+            item.ingredient.toLowerCase().includes(filterChoice.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(filterChoice.value.toLowerCase())));
+        datasProxy.filtredRecipes = [...resultFilter];
+        } else {
+            return;
+        }
+}
 
+function filterByIngredient(filterChoice){
+const resultFilter = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
+    item.ingredient.toLowerCase().includes(filterChoice.value)).length > 0)
+    datasProxy.filtredRecipes = [...resultFilter];
+}
+
+function filterByAppliance(filterChoice){
+    const resultFilter = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(filterChoice.value.toLowerCase()));
+    datasProxy.filtredRecipes = [...resultFilter];
+}
+
+function filterByUstensils(filterChoice){
+    const resultFilter = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
+        item.toLowerCase().includes(filterChoice.value)).length > 0)
+        datasProxy.filtredRecipes = [...resultFilter];
+}
