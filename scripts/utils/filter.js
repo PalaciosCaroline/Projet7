@@ -1,12 +1,8 @@
 import {recipes} from '../data/recipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
+import {ingredientsUl, applianceUl, ustensilsUl} from '../factories/buildListForTag.js';
 import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
-// import {showModal} from './modal.js';
-
-const ingredientsUl = document.getElementById('ingredientsUl');
-const applianceUl = document.getElementById('applianceUl');
-const ustensilsUl = document.getElementById('ustensilsUl');
 
 let datas = {}
 datas.recipes = [...recipes];
@@ -60,7 +56,7 @@ document.querySelector('#ingredients').addEventListener('input', (e) => {
     let ingredientsArray = [];
     recipes.forEach((recipe) => {
         recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
-    ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});;
+    ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(ingredientsArray, ingredientsUl);
 })
 
@@ -128,101 +124,5 @@ function searchByFilter() {
         }
     })
 }
-
-function searchRecipeByFilter(research){
-    // if(research.length > datasProxy.searchLength && research.length > 2) {
-        const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
-			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
-        return result
-    // }else if (research.length < datasProxy.searchLength && research.length > 2) {
-    //     const result = datasProxy.recipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item => item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
-    //     return result
-    // } else {
-    //     const result = [...recipes];
-    //     return result;
-    // }
-}
-
-function searchRecipeByFor(research) {
-    let valueSought = research.toLowerCase();
-    let result = [];
-    if(valueSought.length > datasProxy.searchLength && valueSought.length > 2) {
-        for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
-            let recipe = datasProxy.filtredRecipes[i];
-            let name = recipe.name.toLowerCase();
-            let description = recipe.description.toLowerCase();
-            if ( ingredientIsHere(recipe, valueSought)){
-                result.push(recipe); 
-            } else if (description.includes(valueSought)) {
-            result.push(recipe);
-            } else if (name.includes(valueSought)) {
-                result.push(recipe);   
-            }
-        }
-        return result;
-    } else if (valueSought.length < datasProxy.searchLength && valueSought.length > 2) {
-        for (let i = 0; i < datasProxy.recipes.length; i++) {
-            let recipe = datasProxy.recipes[i];
-            let name = recipe.name.toLowerCase();
-            let description = recipe.description.toLowerCase();
-            if ( ingredientIsHere(recipe, valueSought)){
-                result.push(recipe); 
-            } else if (description.includes(valueSought)) {
-            result.push(recipe);
-            } else if (name.includes(valueSought)) {
-                result.push(recipe);   
-            }
-        }
-        return result;
-    } else {
-        const result = [...recipes];
-        return result;
-    }
-}
-
-function ingredientIsHere(recipe, value){
-    if(recipe.ingredients.filter(item =>
-        item.ingredient.toLowerCase().includes(value)).length > 0){
-        return true;}
-}
-
-
-// function recipeSearchByFor(research){
-//     if(research.length > datasProxy.searchLength && research.length > 2) {
-//         const result = [];
-//         for (let i; i < datasProxy.filtredRecipes.length; i++) {
-//             if((datasProxy.filtredRecipes[i].name.toLowerCase().includes(research.toLowerCase())) || datasProxy.filtredRecipes[i].ingredients.filter(item =>
-// 			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (datasProxy.filtredRecipes[i].description.toLowerCase().includes(research.toLowerCase())));
-//             result = [...datasProxy.filtredRecipes[i]]}
-//             return result
-//     }else if (research.length < datasProxy.searchLength && research.length > 2) {
-//         for (let i; i < datasProxy.filtredRecipes.length; i++) {
-//         const result = [];
-//         if((datasProxy.filtredRecipes[i].name.toLowerCase().includes(research.toLowerCase())) || datasProxy.filtredRecipes[i].ingredients.filter(item =>
-// 			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (datasProxy.filtredRecipes[i].description.toLowerCase().includes(research.toLowerCase())));
-//             result = [...datasProxy.filtredRecipes[i]]
-//             console.log(result);}
-//             return result 
-//     } else {
-//         const result = [...recipes];
-//         return result;
-//     }
-// }
-
-
-// function tagApplianceSearch(data, research){
-//         const result = data.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(research.toLowerCase()));
-//         return result
-// }
-
-// function tagUstensilsSearch(data, research){
-//         const result = data.filtredRecipes.filter(recipe => recipe.ustensils.toLowerCase().includes(research.toLowerCase()));
-//         return result
-// }
-
-// function tagIngredientsSearch(data, research) {
-//         const result = data.filtredRecipes.filter(recipe => recipe.ingredients.map((element) => element.ingredient.toLowerCase().includes(research.toLowerCase())));
-//         return result
-// }
 
 
