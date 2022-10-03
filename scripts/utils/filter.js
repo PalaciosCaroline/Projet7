@@ -92,6 +92,9 @@ function getChosenTag() {
         let tag = {};
         tag.value = e.target.textContent;
         tag.type = e.target.parentNode.id;
+        document.querySelector('#ingredients').value = '';
+        document.querySelector('#appliance').value = '';
+        document.querySelector('#ustensils').value = '';
         datasProxy.searchTag = datasProxy.searchTag?.length > 0 ? [...datasProxy.searchTag,tag] : [tag] ;
     }))   
 }
