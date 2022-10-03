@@ -56,15 +56,14 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
 })
 
 document.querySelectorAll('.btn_list').forEach(item => item.addEventListener('click', (e) => {
-    console.log(document.querySelectorAll('.btn_list'));
-       if(e.target.parentNode.id == 'btn_ingredients'){
-        if(!item.classList.contains('isOpen')){
-            item.classList.add('isOpen');
-            openListIngredients(item);
-        } else if(item.classList.contains('isOpen')){
-            item.classList.remove('isOpen');
+    if(!item.classList.contains('isOpen')){
+        item.classList.add('isOpen');
+        if(e.target.parentNode.id == 'btn_ingredients'){
+                openListIngredients(item);
+            }
+    } else if(item.classList.contains('isOpen')){
+        item.classList.remove('isOpen');
             closeListIngredients(item);
-        }
     }
 }));
 
@@ -83,7 +82,7 @@ function closeListIngredients(item){
 }
 
 document.querySelector('#ingredients').addEventListener('focusin', () => {  
-    document.querySelector('.btn_ingredients').classList.add('isOpen')
+    document.querySelector('.btn_ingredients').classList.add('isOpen');
     openListIngredients(document.querySelector('.btn_ingredients'));
 })
 
