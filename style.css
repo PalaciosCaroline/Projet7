@@ -86,8 +86,8 @@ fieldset:nth-child(1) .form-control::placeholder {
 }
 
 .boxresults{
-    min-width: 200px;
-    min-height: 70px;  
+    width: 200px;
+    height: 70px;  
     margin-right: 60px;
     padding: 0;
     margin-left:0;
@@ -104,6 +104,17 @@ fieldset:nth-child(1) .form-control::placeholder {
     height: 100%;
 }
 
+.boxresults button{
+    width: 80px;
+    padding: 0;
+}
+
+.boxresults button i{
+    line-height: 65px;
+    width: 100%;
+    height: 100%;
+}
+
 .boxresultIngredients.open{
     width: 600px;
 } 
@@ -114,13 +125,6 @@ fieldset:nth-child(1) .form-control::placeholder {
 .boxresultsUstensils{
    width: 200px;
 } 
-
-
-/* 
-fieldset:nth-child(2) input,
-fieldset:nth-child(2) i{ 
-   
-} */
 
 .search_ingredients input:focus-visible,
 .search_ingredients input,
@@ -133,14 +137,12 @@ fieldset:nth-child(2) i{
     background-color: #3282F7;
     position: absolute;  
     z-index:99; 
-    width: auto; 
-   
 }
+
 .boxresultAppliance ul{
     background-color: #68D9A4;
     padding:0;
     width: 200px;  
-    /* width: auto; */
     position: absolute;  
     z-index:99;
 
@@ -151,7 +153,6 @@ fieldset:nth-child(2) i{
     position: absolute;  
     z-index:99;   
     width: 200px;
-    /* width: auto; */
 }
 
 .search_appareils input:focus-visible,
@@ -192,9 +193,11 @@ fieldset:nth-child(2) i{
 .label_ingredients.open{
     width: 600px;
 } 
-.label_ingredients{
+
+/* .label_ingredients{
     width: 600px;
-} 
+}  */
+
 .boxresultIngredients ul{
     padding:0;
     flex-wrap: wrap;
@@ -203,8 +206,8 @@ fieldset:nth-child(2) i{
 }
 
 #ingredientsUl{
-    /* display: none; */
-    display: flex;
+    display: none; 
+    /* display: flex; */
 }
 /* 
 #ingredientsUl.visible{

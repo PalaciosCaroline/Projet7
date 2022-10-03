@@ -55,36 +55,37 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
-// document.querySelectorAll('.btn_list').forEach(item => item.addEventListener('click', (e) => {
-//        if(e.target.parentNode.id == 'btn_ingredients'){
-//         if(!item.classList.contains('isOpen')){
-//             item.classList.add('isOpen');
-//             openListIngredients(item);
-//         } else if(item.classList.contains('isOpen')){
-//             item.classList.remove('isOpen');
-//             closeListIngredients(item);
-//         }
-//     }
-// }));
+document.querySelectorAll('.btn_list').forEach(item => item.addEventListener('click', (e) => {
+    console.log(document.querySelectorAll('.btn_list'));
+       if(e.target.parentNode.id == 'btn_ingredients'){
+        if(!item.classList.contains('isOpen')){
+            item.classList.add('isOpen');
+            openListIngredients(item);
+        } else if(item.classList.contains('isOpen')){
+            item.classList.remove('isOpen');
+            closeListIngredients(item);
+        }
+    }
+}));
 
-// function openListIngredients(item){
-//     item.querySelector('i').classList.remove('fa-chevron-down');
-//     item.querySelector('i').classList.add('fa-chevron-up');
-//     document.querySelector('.label_ingredients').classList.add('open');
-//     document.querySelector('#ingredientsUl').style.display = 'flex';
-// }
+function openListIngredients(item){
+    item.querySelector('i').classList.remove('fa-chevron-down');
+    item.querySelector('i').classList.add('fa-chevron-up');
+    document.querySelector('.boxresultIngredients').classList.add('open');
+    document.querySelector('#ingredientsUl').style.display = 'flex';
+}
 
-// function closeListIngredients(item){
-//     item.querySelector('i').classList.remove('fa-chevron-up');
-//     item.querySelector('i').classList.add('fa-chevron-down');
-//     document.querySelector('.label_ingredients').classList.remove('open');
-//     document.querySelector('#ingredientsUl').style.display = 'none';
-// }
+function closeListIngredients(item){
+    item.querySelector('i').classList.remove('fa-chevron-up');
+    item.querySelector('i').classList.add('fa-chevron-down');
+    document.querySelector('.boxresultIngredients').classList.remove('open');
+    document.querySelector('#ingredientsUl').style.display = 'none';
+}
 
-
-// document.querySelector('#ingredients').addEventListener('focusin', () => {  
-// openListIngredients(document.querySelector('.btn_ingredients'));
-// })
+document.querySelector('#ingredients').addEventListener('focusin', () => {  
+    document.querySelector('.btn_ingredients').classList.add('isOpen')
+    openListIngredients(document.querySelector('.btn_ingredients'));
+})
 
 document.querySelector('#ingredients').addEventListener('input', (e) => {  
     let research = e.target.value;
