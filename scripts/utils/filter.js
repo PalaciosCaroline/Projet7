@@ -34,14 +34,18 @@ let datasProxy = new Proxy(datas, {
                 searchByTag();
             break;
             }
-            case 'searchTag' : 
+            case 'searchTag' : {
                 //creation tag
                 displayTag(datasProxy.searchTag);
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
-                searchBarRecup(searchBar);
+                const result = searchRecipeByFor(datas.searchString);
+                if(result !== false) { datasProxy.filtredRecipes = [...result];
+                }
+                // searchBarRecup(searchBar);
             break;
+            }
         }
         return true;
     }
@@ -153,9 +157,10 @@ function searchByTag() {
 }
 
 function searchRecipeByFor(research) {
-    let valueSought = research.toLowerCase();
+    if(!research) {return false}
+    let valueSought = research?.toLowerCase();
     let result = [];
-    if(valueSought.length > datasProxy.searchLength && valueSought.length > 2) {
+    if(valueSought.length >= datasProxy.searchLength && valueSought.length > 2) {
         for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
             let recipe = datasProxy.filtredRecipes[i];
             let name = recipe.name.toLowerCase();
