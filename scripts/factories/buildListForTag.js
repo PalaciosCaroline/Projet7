@@ -1,3 +1,7 @@
+export const ingredientsUl = document.getElementById('ingredientsUl');
+export const applianceUl = document.getElementById('applianceUl');
+export const ustensilsUl = document.getElementById('ustensilsUl');
+
 export function buildUlListfilter(ArrayList, containerList) {
     containerList.innerHTML = '';
     ArrayList.forEach((item => {

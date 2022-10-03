@@ -1,12 +1,13 @@
 import {recipes} from '../data/recipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
+import {ingredientsUl, applianceUl, ustensilsUl} from '../factories/buildListForTag.js';
 import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 // import {showModal} from './modal.js';
 
-const ingredientsUl = document.getElementById('ingredientsUl');
-const applianceUl = document.getElementById('applianceUl');
-const ustensilsUl = document.getElementById('ustensilsUl');
+// const ingredientsUl = document.getElementById('ingredientsUl');
+// const applianceUl = document.getElementById('applianceUl');
+// const ustensilsUl = document.getElementById('ustensilsUl');
 let searchBar;
 let datas = {}
 datas.recipes = [...recipes];
@@ -29,13 +30,14 @@ let datasProxy = new Proxy(datas, {
                     getChosenTag();
                 }
             break;
-            case 'searchString':
+            case 'searchString': {
                 //filtrer les recettes en fonction de la recherche
                 const result = searchRecipeByFor(value);
                 //actualiser la liste des recherches filtrées
                 datasProxy.filtredRecipes = [...result];
                 searchByTag();
             break;
+            }
             case 'searchTag' : 
                 //creation tag
                 displayTag(datasProxy.searchTag);
@@ -62,7 +64,7 @@ document.querySelector('#ingredients').addEventListener('input', (e) => {
     let ingredientsArray = [];
     recipes.forEach((recipe) => {
         recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
-    ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});;
+    ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
     buildUlListfilter(ingredientsArray, ingredientsUl);
 })
 
@@ -186,21 +188,5 @@ function searchBarRecup(research){
         }
     }
 }
-
-
-// function tagApplianceSearch(data, research){
-//         const result = data.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(research.toLowerCase()));
-//         return result
-// }
-
-// function tagUstensilsSearch(data, research){
-//         const result = data.filtredRecipes.filter(recipe => recipe.ustensils.toLowerCase().includes(research.toLowerCase()));
-//         return result
-// }
-
-// function tagIngredientsSearch(data, research) {
-//         const result = data.filtredRecipes.filter(recipe => recipe.ingredients.map((element) => element.ingredient.toLowerCase().includes(research.toLowerCase())));
-//         return result
-// }
 
 
