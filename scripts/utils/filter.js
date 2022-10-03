@@ -3,11 +3,7 @@ import {displayRecipes} from '../factories/buildCard.js';
 import {ingredientsUl, applianceUl, ustensilsUl} from '../factories/buildListForTag.js';
 import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
-// import {showModal} from './modal.js';
 
-// const ingredientsUl = document.getElementById('ingredientsUl');
-// const applianceUl = document.getElementById('applianceUl');
-// const ustensilsUl = document.getElementById('ustensilsUl');
 let searchBar;
 let datas = {}
 datas.recipes = [...recipes];
