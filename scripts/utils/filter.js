@@ -179,19 +179,5 @@ function ingredientIsHere(recipe, value){
 }
 
 
-// function tagApplianceSearch(data, research){
-//         const result = data.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(research.toLowerCase()));
-//         return result
-// }
-
-// function tagUstensilsSearch(data, research){
-//         const result = data.filtredRecipes.filter(recipe => recipe.ustensils.toLowerCase().includes(research.toLowerCase()));
-//         return result
-// }
-
-// function tagIngredientsSearch(data, research) {
-//         const result = data.filtredRecipes.filter(recipe => recipe.ingredients.map((element) => element.ingredient.toLowerCase().includes(research.toLowerCase())));
-//         return result
-// }
 
 
