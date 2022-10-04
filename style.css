@@ -46,6 +46,10 @@ cursor:pointer;
     border-left : 0;
     border-right : 0;
 }
+#fieldset_searchbar i.alertColor {
+ color: #fff;
+}
+
 #fieldset_searchbar{
     padding:10px 0 0 0;
 }
