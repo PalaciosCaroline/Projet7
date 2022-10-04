@@ -55,7 +55,6 @@ datasProxy.filtredRecipes = [...recipes];
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchString = e.target.value;
-    searchBar = e.target.value;
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
