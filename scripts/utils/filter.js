@@ -155,7 +155,6 @@ function searchByTag() {
 }
 
 function searchRecipeByFor(research) {
-    // if(!research) {return false}
     let valueSought = research?.toLowerCase();
     let result = [];
     if(valueSought.length >= datasProxy.searchLength && valueSought.length > 2) {
