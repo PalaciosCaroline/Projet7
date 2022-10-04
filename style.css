@@ -402,7 +402,7 @@ display: inline-block;
     color: #ea6f61;
     background-color: #fff;
     position:absolute;
-    right: 5.4%;
+    right: 2%;
     height: 100px;
     top: 20px; 
     width: 8vw;
@@ -422,8 +422,8 @@ display: inline-block;
     border-radius: 15px 15px 0 0;
 }
 #modal .card .cardText{
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 70px;
+    padding-right: 70px;
 }
 
 #modal .card img{
