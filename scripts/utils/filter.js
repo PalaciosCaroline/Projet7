@@ -1,7 +1,7 @@
 import {recipes} from '../data/recipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert} from '../factories/header.js';
-import {ingredientsUl, applianceUl, ustensilsUl} from '../factories/buildListForTag.js';
+import {boxresultsUl} from '../factories/buildListForTag.js';
 import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
@@ -57,44 +57,13 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
-document.querySelectorAll('.btn_list').forEach(item => item.addEventListener('click', (e) => {
-    if(!item.classList.contains('isOpen')){
-        item.classList.add('isOpen');
-        if(e.target.parentNode.id == 'btn_ingredients'){
-                openListIngredients(item);
-            }
-    } else if(item.classList.contains('isOpen')){
-        item.classList.remove('isOpen');
-            closeListIngredients(item);
-    }
-}));
-
-function openListIngredients(item){
-    item.querySelector('i').classList.remove('fa-chevron-down');
-    item.querySelector('i').classList.add('fa-chevron-up');
-    document.querySelector('.boxresultIngredients').classList.add('open');
-    document.querySelector('#ingredientsUl').style.display = 'flex';
-}
-
-function closeListIngredients(item){
-    item.querySelector('i').classList.remove('fa-chevron-up');
-    item.querySelector('i').classList.add('fa-chevron-down');
-    document.querySelector('.boxresultIngredients').classList.remove('open');
-    document.querySelector('#ingredientsUl').style.display = 'none';
-}
-
-document.querySelector('#ingredients').addEventListener('focusin', () => {  
-    document.querySelector('.btn_ingredients').classList.add('isOpen');
-    openListIngredients(document.querySelector('.btn_ingredients'));
-})
-
 document.querySelector('#ingredients').addEventListener('input', (e) => {  
     let research = e.target.value;
     let ingredientsArray = [];
     recipes.forEach((recipe) => {
         recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
     ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-    buildUlListfilter(ingredientsArray, ingredientsUl);
+    buildUlListfilter(ingredientsArray, boxresultsUl[0]);
     getChosenTag();
 })
 
@@ -105,7 +74,7 @@ inputAppliance.addEventListener('input', (e) => {
     recipes.forEach((recipe) => {
         applianceArray.push(recipe.appliance.toLowerCase());
     applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-    buildUlListfilter(applianceArray, applianceUl);
+    buildUlListfilter(applianceArray, boxresultsUl[1]);
     getChosenTag();
 })
 
@@ -115,7 +84,7 @@ document.querySelector('#ustensils').addEventListener('input', (e) => {
     recipes.forEach((recipe) => {
     recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
     ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-    buildUlListfilter(ustensilsArray, ustensilsUl);
+    buildUlListfilter(ustensilsArray, boxresultsUl[2]);
     getChosenTag();
 })
 

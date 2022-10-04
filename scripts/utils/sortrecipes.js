@@ -40,6 +40,4 @@ export function quickSort(recipesforsort, left, right) {
     }
     return recipesforsort;
 }
-// first call to quick sort
-export let recipesSortByName = quickSort(recipesforsort, 0, recipesforsort.length - 1);
-console.log(recipesSortByName); 
+
