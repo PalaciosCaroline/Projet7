@@ -11,10 +11,12 @@ export function noRecipeAlert(){
     '<div class="norecipe">Aucune recette ne correspond à votre critère… <br />Vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>';
     document.querySelector('.input_search_bar').classList.add('alert');
     document.querySelector('#fieldset_searchbar').classList.add('alert');
+    document.querySelector('#fieldset_searchbar i').classList.add('alertColor');
 }
 
 export function removeNoRecipeAlert(){
     document.getElementById('noresult_box').innerHTML = '';
     document.querySelector('.input_search_bar').classList.remove('alert');
     document.querySelector('#fieldset_searchbar').classList.remove('alert');
+    document.querySelector('#fieldset_searchbar i').classList.remove('alertColor');
 }
