@@ -41,7 +41,11 @@ let datasProxy = new Proxy(datas, {
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
-                searchBarRecup(searchBar);
+                if(datas.searchString){
+                    const result = searchRecipeByFilter(datas.searchString);
+                    if(result) { datasProxy.filtredRecipes = [...result];
+                    }
+                }
             break;
         }
         return true;
@@ -128,7 +132,7 @@ function searchByTag() {
 }
 
 function searchRecipeByFilter(research){
-    if(research.length > datasProxy.searchLength && research.length > 2) {
+    if(research.length >= datasProxy.searchLength && research.length > 2) {
         const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
 			item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
         return result
@@ -141,15 +145,6 @@ function searchRecipeByFilter(research){
     }
 }
 
-function searchBarRecup(research){
-    if(research){
-        if(research.length > 2) {
-            const result = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item =>
-                item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
-            return datasProxy.filtredRecipes = [...result];
-        }
-    }
-}
 
 
 
