@@ -122,6 +122,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     margin-right: 60px;
     padding: 0;
     margin-left:0;
+    transition: transform 0.3s ease;
 }
 
 .boxresults label{
@@ -148,21 +149,43 @@ fieldset:nth-child(1) .form-control::placeholder {
 .boxresultIngredients.open,
 .boxresultAppliance.open,
 .boxresultsUstensils.open{
-    width: 600px;
+    transition: transform 0.3s;
+    transform: width(600px);
 } 
+
+.boxresultIngredients.open .boxresultsUl,
+.boxresultAppliance.open .boxresultsUl,
+.boxresultUstensils.open .boxresultsUl{
+    transform: scaleY(1);
+    transform-origin: 0 0; 
+} 
+
+.boxresultIngredients .boxresultsUl,
+.boxresultAppliance .boxresultsUl,
+.boxresultUstensils .boxresultsUl{
+    transform: scaleY(0);
+    transform-origin: 0 0;
+    transition: transform 0.2s ease;
+}
+
+/* #ingredientsUl,
+#applianceUl,
+#ustensilsUl{
+    display: none; 
+} */
 
 .search_ingredients input:focus-visible,
 .search_ingredients input,
 .search_ingredients,
 .boxresultIngredients ul{
-    background-color: #3282F7;
-    
+    background-color: #3282F7;  
 }
 
 .boxresults ul{
     position: absolute;  
     z-index:110; 
     padding:0;
+    display: flex;
 }
 
 .boxresultAppliance ul{
@@ -184,7 +207,6 @@ fieldset:nth-child(1) .form-control::placeholder {
 .search_ustensils{
     background-color: #ED6454;
     border: #ED6454;
-    
 }
 
 .search_ingredients,
@@ -192,10 +214,6 @@ fieldset:nth-child(1) .form-control::placeholder {
 .search_appareils{
     height: 70px;
 } 
-/* .search_ustensils,
-.search_appareils{
-    width: 200px;
-} */
 
 .boxresultIngredients li,
 .boxresultUstensils li,
@@ -204,7 +222,7 @@ fieldset:nth-child(1) .form-control::placeholder {
 }
 
 .boxresults.open{
-    width: 600px;
+    width: 580px;
 } 
 
 /* .label_ingredients{
@@ -216,15 +234,47 @@ fieldset:nth-child(1) .form-control::placeholder {
 .boxresultUstensils ul{
     padding:0;
     flex-wrap: wrap;
-    width: 600px; 
     height: auto;  
 }
-
-#ingredientsUl,
-#applianceUl,
-#ustensilsUl{
-    display: none; 
+.boxresults ul{
+    width: 580px; 
 }
+
+@media screen and (max-width: 1000px) {
+    .boxresults ul{
+        width: 400px; 
+    }
+
+    .boxresultIngredients.open,
+    .boxresultAppliance.open,
+    .boxresultsUstensils.open{
+        transition: transform 0.3s;
+        transform : width(400px);
+    } 
+
+    .boxresults li{
+        width: 44%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .boxresults ul{
+        width: 200px; 
+    }
+    .boxresults{
+        margin-right: 20px;
+    }
+    .boxresultIngredients.open,
+    .boxresultAppliance.open,
+    .boxresultsUstensils.open{
+        transition: transform 0.3s;
+        width: 200px;
+    } 
+
+    .boxresults li{
+        width: 100%;
+    }
+}
+
 /* 
 #ingredientsUl.visible{
     height: auto;
