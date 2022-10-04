@@ -36,15 +36,17 @@
     <main>
         <header class="section-header">
             <form action="">
-                <fieldset>
-                    <div class="input_search_bar input-group mb-4 border p-1">
+                <fieldset id="fieldset_searchbar">
+                    <div class="input_search_bar input-group p-1">
                     <input type="search" placeholder="Rechercher une recette" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="search_bar">
                     <div class="input-group-append border-0">
                         <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
                     </div>
                     </div>
+                    <div id="noresult_box"></div>
                 </fieldset>
 
+                
                 <div id="tagChoice_box"></div>
                 
                 <fieldset class="fieldsetTag">

@@ -1,10 +1,10 @@
 import {recipes} from '../data/recipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
+import {noRecipeAlert, removeNoRecipeAlert} from '../factories/header.js';
 import {ingredientsUl, applianceUl, ustensilsUl} from '../factories/buildListForTag.js';
 import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
-let searchBar;
 let datas = {}
 datas.recipes = [...recipes];
 
@@ -14,10 +14,9 @@ let datasProxy = new Proxy(datas, {
         switch(key) {
             case 'filtredRecipes': 
                 if ( datasProxy.filtredRecipes.length == 0){
-                    document.getElementById('box_recipes').innerHTML =
-                    '<div class="norecipe">Aucune recette ne correspond à votre critère… <br />Vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>';
+                    noRecipeAlert();
                 } else {
-                    // afficher les recettes
+                    removeNoRecipeAlert();
                     displayRecipes(value);
                     //mettre a jour la liste des ingredients
                     getIngredientsList(value);
@@ -34,16 +33,16 @@ let datasProxy = new Proxy(datas, {
                 searchByTag();
             break;
             }
-            case 'searchTag' : {
+            case 'searchTag' : 
                 //creation tag
                 displayTag(datasProxy.searchTag);
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
-                const result = searchRecipeByFor(datas.searchString);
-                if(result !== false) { datasProxy.filtredRecipes = [...result];
+                if(datas.searchString){
+                        const result = searchRecipeByFor(datas.searchString);
+                        if(result) { datasProxy.filtredRecipes = [...result];
                 }
-                // searchBarRecup(searchBar);
             break;
             }
         }
@@ -55,7 +54,6 @@ datasProxy.filtredRecipes = [...recipes];
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchString = e.target.value;
-    searchBar = e.target.value;
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
@@ -157,7 +155,7 @@ function searchByTag() {
 }
 
 function searchRecipeByFor(research) {
-    if(!research) {return false}
+    // if(!research) {return false}
     let valueSought = research?.toLowerCase();
     let result = [];
     if(valueSought.length >= datasProxy.searchLength && valueSought.length > 2) {
@@ -200,27 +198,6 @@ function ingredientIsHere(recipe, value){
         return true;}
 }
 
-function searchBarRecup(research){
-    if(research){
-        let valueSought = research.toLowerCase();
-        let result = [];
-        if(valueSought.length > 2) {
-            for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
-                let recipe = datasProxy.filtredRecipes[i];
-                let name = recipe.name.toLowerCase();
-                let description = recipe.description.toLowerCase();
-                if ( ingredientIsHere(recipe, valueSought)){
-                    result.push(recipe); 
-                } else if (description.includes(valueSought)) {
-                result.push(recipe);
-                } else if (name.includes(valueSought)) {
-                    result.push(recipe);   
-                }
-            }
-            return  datasProxy.filtredRecipes = [...result];
-        }
-    }
-}
 
 function filterRecipeByIngredients(tag){
 const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>

@@ -32,6 +32,34 @@ cursor:pointer;
 
 .input_search_bar {
     background-color: #E7E7E7;
+    margin-bottom: 0;
+}
+.input_search_bar.alert {
+    background-color: #ea6f61;
+    
+}
+.input_search_bar{
+    border: none;
+}
+#fieldset_searchbar.alert {
+    background-color: #ea6f61;
+    border-left : 0;
+    border-right : 0;
+}
+#fieldset_searchbar{
+    padding:10px 0 0 0;
+}
+
+input:hover,  
+input:active, 
+input:focus,
+label:focus
+{
+    outline:3px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+    outline-color:#000;
+    
 }
 
 fieldset:nth-child(1) .form-control::placeholder {
@@ -64,6 +92,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     border-radius: 5px;
     color: #fff;
     margin-right: 15px;
+    margin-top: 15px;
     justify-content: space-around;
     align-items: center;
     display: inline-flex;
@@ -228,9 +257,9 @@ fieldset:nth-child(1) .form-control::placeholder {
 }
 /**/
 
-.tagChoice{
+/* .tagChoice{
     margin-bottom: 15px;
-}
+} */
 .tagChoice .textTag{
     padding: 15px 20px;
 }
@@ -250,12 +279,25 @@ fieldset:nth-child(1) .form-control::placeholder {
 }
 
 .norecipe{
+    /* margin-top: -2px; */
+    padding-bottom : 10px;
     background-color: #ea6f61;
+    /* border: 5px solid #f46d5e; */
+    /* background-color: #fff; */
     margin : auto;
-    padding: 30px;
-    font-size: 1.2rem;
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
     color: #fff;
+    /* color: #ce2c1a; */
+    display: flex;
+    justify-content: center;
 }
+
+.fieldsetTag{
+    margin-top: 30px;
+}
+
 
 .card-deck .card{
     /* height: 364px;  */
