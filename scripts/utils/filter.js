@@ -1,13 +1,15 @@
 import {recipes} from '../data/recipes.js';
+import {quickSort} from '../utils/sortrecipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
-import {noRecipeAlert, removeNoRecipeAlert} from '../factories/header.js';
+import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.js';
 import {boxresultsUl} from '../factories/buildListForTag.js';
 import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
 let datas = {}
-datas.recipes = [...recipes];
-
+// [...recipes] = quickSort([...recipes], 0, [...recipes].length - 1);
+// datas.recipes = [...recipes];
+datas.recipes = quickSort([...recipes], 0, [...recipes].length - 1)
 let datasProxy = new Proxy(datas, {
     set: function(target, key, value) {
         target[key] = value;
@@ -16,7 +18,9 @@ let datasProxy = new Proxy(datas, {
                 if ( datasProxy.filtredRecipes.length == 0){
                     noRecipeAlert();
                 } else {
+                    if(isAlert){
                     removeNoRecipeAlert();
+                    }
                     displayRecipes(value);
                     //mettre a jour la liste des ingredients
                     getIngredientsList(value);
@@ -26,7 +30,7 @@ let datasProxy = new Proxy(datas, {
                 }
             break;
             case 'searchString': {
-                //filtrer les recettes en fonction de la recherche
+                //filtrer les recettes avec search_bar
                 const result = searchRecipeByFor(value);
                 //actualiser la liste des recherches filtrées
                 datasProxy.filtredRecipes = [...result];
@@ -50,7 +54,7 @@ let datasProxy = new Proxy(datas, {
     }
 });
 
-datasProxy.filtredRecipes = [...recipes];
+datasProxy.filtredRecipes = [...recipes]; 
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchString = e.target.value;
@@ -126,7 +130,7 @@ function searchByTag() {
 function searchRecipeByFor(research) {
     let valueSought = research?.toLowerCase();
     let result = [];
-    if(valueSought.length >= datasProxy.searchLength && valueSought.length > 2) {
+    if(research.length >= datasProxy.searchLength && research.length > 2) {
         for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
             let recipe = datasProxy.filtredRecipes[i];
             let name = recipe.name.toLowerCase();
@@ -140,7 +144,7 @@ function searchRecipeByFor(research) {
             }
         }
         return result;
-    } else if (valueSought.length < datasProxy.searchLength && valueSought.length > 2) {
+    } else if (research.length < datasProxy.searchLength && research.length > 2) {
         for (let i = 0; i < datasProxy.recipes.length; i++) {
             let recipe = datasProxy.recipes[i];
             let name = recipe.name.toLowerCase();

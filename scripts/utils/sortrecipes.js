@@ -1,6 +1,7 @@
-import {recipes} from '../data/recipes.js';
+// import {recipes} from '../data/recipes.js';
 
-let recipesforsort = [...recipes]; 
+// let recipesforsort = [...recipes]; 
+
 function swap(recipesforsort, leftIndex, rightIndex){
     var temp = recipesforsort[leftIndex];
     recipesforsort[leftIndex] = recipesforsort[rightIndex];
@@ -40,4 +41,6 @@ export function quickSort(recipesforsort, left, right) {
     }
     return recipesforsort;
 }
+
+
 
