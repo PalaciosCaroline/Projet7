@@ -1,5 +1,6 @@
 import {recipes} from '../data/recipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
+import {noRecipeAlert, removeNoRecipeAlert} from '../factories/header.js';
 import {ingredientsUl, applianceUl, ustensilsUl} from '../factories/buildListForTag.js';
 import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
@@ -13,9 +14,9 @@ let datasProxy = new Proxy(datas, {
         switch(key) {
             case 'filtredRecipes': 
                 if ( datasProxy.filtredRecipes.length == 0){
-                    document.getElementById('box_recipes').innerHTML =
-                    '<div class="norecipe">Aucune recette ne correspond à votre critère… <br />Vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>';
+                    noRecipeAlert();
                 } else {
+                    removeNoRecipeAlert();
                     // afficher les recettes
                     displayRecipes(value);
                     //mettre a jour la liste des ingredients
