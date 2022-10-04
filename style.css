@@ -35,8 +35,7 @@ cursor:pointer;
     margin-bottom: 0;
 }
 .input_search_bar.alert {
-    background-color: #ea6f61;
-    
+    background-color: #ea6f61;  
 }
 .input_search_bar{
     border: none;
@@ -46,12 +45,12 @@ cursor:pointer;
     border-left : 0;
     border-right : 0;
 }
-#fieldset_searchbar{
-    padding:10px 0 0 0;
+#fieldset_searchbar.alert i{
+ color: #fff;
 }
 
-#fieldset_searchbar i.alertColor {
-    color: #fff;
+#fieldset_searchbar{
+    padding:10px 0 0 0;
 }
 
 input:hover,  
@@ -95,8 +94,7 @@ fieldset:nth-child(1) .form-control::placeholder {
 .tagChoice{
     border-radius: 5px;
     color: #fff;
-    margin-right: 15px;
-    margin-top: 15px;
+    margin: 5px 15px 10px 0;
     justify-content: space-around;
     align-items: center;
     display: inline-flex;
@@ -264,7 +262,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding: 0;
 }
 
-.norecipe{
+#noresult_box{
     padding-bottom : 10px;
     background-color: #ea6f61;
     margin : auto;
@@ -274,10 +272,22 @@ fieldset:nth-child(1) .form-control::placeholder {
     color: #fff;
     display: flex;
     justify-content: center;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    height: 0; 
+}
+
+#fieldset_searchbar.alert .norecipe{
+    height: auto;
+}
+
+#fieldset_searchbar.alert #noresult_box{
+    height: auto;
+    transform: scaleY(1);
 }
 
 .fieldsetTag{
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .card-deck .card{
