@@ -1,6 +1,3 @@
-// export const ingredientsUl = document.getElementById('ingredientsUl');
-// export const applianceUl = document.getElementById('applianceUl');
-// export const ustensilsUl = document.getElementById('ustensilsUl');
 export const boxresultsUl = document.querySelectorAll('.boxresultsUl');
 const btnList = document.querySelectorAll('.btn_list');
 const icons = document.querySelectorAll('.btn_list i');
