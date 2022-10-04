@@ -32,6 +32,38 @@ cursor:pointer;
 
 .input_search_bar {
     background-color: #E7E7E7;
+    margin-bottom: 0;
+}
+.input_search_bar.alert {
+    background-color: #ea6f61;
+    
+}
+.input_search_bar{
+    border: none;
+}
+#fieldset_searchbar.alert {
+    background-color: #ea6f61;
+    border-left : 0;
+    border-right : 0;
+}
+#fieldset_searchbar i.alertColor {
+ color: #fff;
+}
+
+#fieldset_searchbar{
+    padding:10px 0 0 0;
+}
+
+input:hover,  
+input:active, 
+input:focus,
+label:focus
+{
+    outline:3px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+    outline-color:#000;
+    
 }
 
 fieldset:nth-child(1) .form-control::placeholder {
@@ -64,6 +96,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     border-radius: 5px;
     color: #fff;
     margin-right: 15px;
+    margin-top: 15px;
     justify-content: space-around;
     align-items: center;
     display: inline-flex;
@@ -86,8 +119,8 @@ fieldset:nth-child(1) .form-control::placeholder {
 }
 
 .boxresults{
-    min-width: 200px;
-    min-height: 70px;  
+    width: 200px;
+    height: 70px;  
     margin-right: 60px;
     padding: 0;
     margin-left:0;
@@ -96,62 +129,49 @@ fieldset:nth-child(1) .form-control::placeholder {
 .boxresults label{
     display: flex;
     justify-content: space-between;
-    height: 100%;
-   
+    height: 100%; 
 }
 
 .boxresults input{
     height: 100%;
 }
 
-.boxresultIngredients.open{
+.boxresults button{
+    width: 80px;
+    padding: 0;
+}
+
+.boxresults button i{
+    line-height: 65px;
+    width: 100%;
+    height: 100%;
+}
+
+.boxresultIngredients.open,
+.boxresultAppliance.open,
+.boxresultsUstensils.open{
     width: 600px;
 } 
- 
-.boxresultAppliance{
-  width: 200px;
-}
-.boxresultsUstensils{
-   width: 200px;
-} 
-
-
-/* 
-fieldset:nth-child(2) input,
-fieldset:nth-child(2) i{ 
-   
-} */
 
 .search_ingredients input:focus-visible,
 .search_ingredients input,
-.search_ingredients{
+.search_ingredients,
+.boxresultIngredients ul{
     background-color: #3282F7;
     
 }
 
-.boxresultIngredients ul{
-    background-color: #3282F7;
+.boxresults ul{
     position: absolute;  
-    z-index:99; 
-    width: auto; 
-   
+    z-index:110; 
+    padding:0;
 }
+
 .boxresultAppliance ul{
     background-color: #68D9A4;
-    padding:0;
-    width: 200px;  
-    /* width: auto; */
-    position: absolute;  
-    z-index:99;
-
 }
 .boxresultUstensils ul{
     background-color:#ED6454;
-    padding:0;
-    position: absolute;  
-    z-index:99;   
-    width: 200px;
-    /* width: auto; */
 }
 
 .search_appareils input:focus-visible,
@@ -174,20 +194,43 @@ fieldset:nth-child(2) i{
 .search_appareils{
     height: 70px;
 } 
-.search_ustensils,
+/* .search_ustensils,
 .search_appareils{
     width: 200px;
+} */
+
+.boxresultIngredients li,
+.boxresultUstensils li,
+.boxresultAppliance li{
+    width: 33%;
 }
-.label_ingredients.open{
+
+.boxresults.open{
     width: 600px;
 } 
-.boxresultIngredients ul{
+
+/* .label_ingredients{
+    width: 600px;
+}  */
+
+.boxresultIngredients ul,
+.boxresultAppliance ul,
+.boxresultUstensils ul{
     padding:0;
-    height: auto;
-    display: flex;
     flex-wrap: wrap;
-    width: 600px;  
+    width: 600px; 
+    height: auto;  
 }
+
+#ingredientsUl,
+#applianceUl,
+#ustensilsUl{
+    display: none; 
+}
+/* 
+#ingredientsUl.visible{
+    height: auto;
+} */
 
 /* tag */
 .ingredientsUl{
@@ -203,9 +246,6 @@ fieldset:nth-child(2) i{
 }
 /**/
 
-.tagChoice{
-    margin-bottom: 15px;
-}
 .tagChoice .textTag{
     padding: 15px 20px;
 }
@@ -213,16 +253,6 @@ fieldset:nth-child(2) i{
     width: 40px;
     padding-right: 15px; 
 }
-.boxresultIngredients li{
-    width: 30%;
-}
-.boxresultsUstensils li{
-    width: 100%;
-}
-.boxresultsAppliance li{
-    width: 100%;
-}
-
 
 .div_box_recipes{
     padding: 0;
@@ -230,25 +260,30 @@ fieldset:nth-child(2) i{
 }
 
 #box_recipes{
- margin-top:130px;
+ margin-top:60px;
     padding: 0;
 }
 
 .norecipe{
+    padding-bottom : 10px;
     background-color: #ea6f61;
     margin : auto;
-    padding: 30px;
-    font-size: 1.2rem;
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
     color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.fieldsetTag{
+    margin-top: 30px;
 }
 
 .card-deck .card{
-    /* height: 364px;  */
     height: 380px; 
     min-width: 380px; 
     padding: 0;
-    /* margin:-15px; */
-    /* border: 1px solid #000; */
     border-radius: 10px 10px;
     margin-bottom: 30px;
     overflow: hidden;
