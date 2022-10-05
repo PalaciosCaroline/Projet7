@@ -36,46 +36,51 @@
     <main>
         <header class="section-header">
             <form action="">
-                <fieldset>
-                    <div class="input_search_bar input-group mb-4 border p-1">
+                <fieldset id="fieldset_searchbar">
+                    <div class="input_search_bar input-group p-1">
                     <input type="search" placeholder="Rechercher une recette" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="search_bar">
                     <div class="input-group-append border-0">
                         <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
                     </div>
                     </div>
+                    <div id="noresult_box">
+                        <div class="norecipe">Aucune recette ne correspond à votre critère… <br />Vous pouvez chercher « tarte aux pommes », « poisson », etc.
+                        </div>
+                    </div>
                 </fieldset>
 
+                
                 <div id="tagChoice_box"></div>
                 
                 <fieldset class="fieldsetTag">
-                    <div class="boxresultIngredients boxresults">
-                        <div class="search_ingredients input-group border-bottom row align-items-center">
-                            <input type="search"  placeholder="Ingrédients" aria-describedby="button-addon3" class="input_search_bar form-control  border-0 text-white" id="ingredients">
-                            <div class="input-group-append border-0">
-                                <button id="button-addon3" type="button" class="btn_ingredients btn btn-link text-success"><i class="fa fa-chevron-down text-white"></i></button>
-                            </div>
+                    <div class="boxresultIngredients boxresults ">
+                        <div class="search_ingredients  border-bottom align-items-center">
+                            <label class="label_ingredients" for="ingredients">
+                            <input type="search"    placeholder="Ingrédients" aria-describedby="button-addon3" class="input_search_bar inputList form-control  border-0 text-white" id="ingredients">
+                                <button id="btn_ingredients" type="button" class="btn_ingredients btn btn-link btn_list text-success"><i class="fa fa-chevron-down text-white"></i></button>
+                        </label>
                         </div>  
-                        <ul id="ingredientsUl" class=""></ul>
+                        <ul id="ingredientsUl" class="boxresultsUl"></ul>
                     </div>
 
                     <div class="boxresultAppliance boxresults">
-                        <div class="search_appareils input-group border-bottom row align-items-center">
-                            <input type="search"  placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0 text-white" id="appliance">
-                            <div class="input-group-append border-0">
-                                <button id="button-addon3" type="button" class="btn btn_appliance btn-link text-success"><i class="fa fa-chevron-down text-white"></i></button>
-                            </div>
+                        <div class="search_appareils border-bottom align-items-center">
+                            <label class="label_appliance" for="appliance">
+                            <input type="search"  placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar inputList form-control  border-0 text-white" id="appliance">
+                                <button id="button-addon3" type="button" class="btn btn_list btn_appliance btn-link text-success"><i class="fa fa-chevron-down text-white"></i></button>
+                            </label>
                         </div>
-                        <ul id="applianceUl"></ul>
+                        <ul id="applianceUl" class="boxresultsUl"></ul>
                     </div>  
 
                     <div class="boxresultUstensils boxresults">
-                        <div class="search_ustensils input-group border-bottom row align-items-center">
-                            <input type="search"  placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar form-control  border-0 text-white" id="ustensils">
-                            <div class="input-group-append border-0">
-                                <button id="button-addon3" type="button" class="btn btn_ustensils btn-link text-success"><i class="fa fa-chevron-down text-white"></i></button>
-                            </div>
+                        <div class="search_ustensils border-bottom align-items-center">
+                            <label class="label_ustensils" for="ustensils">
+                            <input type="search"  placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar inputList form-control  border-0 text-white" id="ustensils">
+                                <button id="button-addon3" type="button" class="btn btn_ustensils btn-link btn_list text-success"><i class="fa fa-chevron-down text-white"></i></button>
+                            </label>
                         </div>  
-                        <ul id="ustensilsUl" class=""></ul>
+                        <ul id="ustensilsUl" class="boxresultsUl"></ul>
                     </div>                
                 </fieldset>
             </form>
