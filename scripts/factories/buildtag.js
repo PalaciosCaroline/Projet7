@@ -16,18 +16,14 @@ export function buildTagChoice(element, typeclass){
 }
 
 export function displayTag(tags) {
-    if (!tags){
+    if (!tags || tags.length < 1){
         return true;
-    } else if (tags.length >= 0){
+    } else if (tags.length >= 1){
         const tagChoiceBox = document.querySelector("#tagChoice_box");
         tagChoiceBox.innerHTML = '';
-        tags.forEach((tag) => {
-            const tagElement = buildTagChoice(tag.value, tag.type);
+        for (var i = 1; i < tags.length; i++) {
+            const tagElement = buildTagChoice(tags[i].value, tags[i].type);
             tagChoiceBox.appendChild(tagElement);
-        });
-    } else if (tags.length <= 0){
-        return true;
+        }
     }
-
 }
-
