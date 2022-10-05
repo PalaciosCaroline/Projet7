@@ -68,7 +68,6 @@ function chevronDown(item){
 function openListTagChoice(itemOpen, indexOpen, itemclose1, indexclose1, itemclose2, indexclose2){
     chevronUp(itemOpen);
     boxresults[indexOpen].classList.add('open');
-    boxresultsUl[indexOpen].style.display = 'flex';
     if(btnList[indexclose1].classList.contains('isOpen')){
         closeListTagChoice(itemclose1, indexclose1);
     }else if(btnList[indexclose2].classList.contains('isOpen')) {
@@ -80,7 +79,6 @@ function closeListTagChoice(item, index){
     chevronDown(item);
     btnList[index].classList.remove('isOpen');
     boxresults[index].classList.remove('open');
-    boxresultsUl[index].style.display = 'none';
 }
 
 export function getOpenListTag() {
