@@ -121,7 +121,7 @@ function removeTag(){
 
 function searchByFilter() {
     datasProxy.filtredRecipes = [...recipes];
-    datasProxy.searchfilter?.forEach(filterChoice => {
+    for (let filterChoice of datasProxy.searchfilter) {
         if(filterChoice.type == 'search_bar'){
             filterBySearchBar(filterChoice);
         } else if(filterChoice.type == 'ingredientsUl'){
@@ -131,7 +131,7 @@ function searchByFilter() {
         } else if (filterChoice.type == 'ustensilsUl'){
             filterByUstensils(filterChoice);
         }
-    })
+    }
 }
 
 function filterBySearchBar(filterChoice) {
@@ -143,16 +143,22 @@ function filterBySearchBar(filterChoice) {
             let name = recipe.name.toLowerCase();
             let description = recipe.description.toLowerCase();
             if ( ingredientIsHere(recipe, valueSought)){
-                result.push(recipe); 
+                resultFilter.push(recipe); 
             } else if (description.includes(valueSought)) {
-            result.push(recipe);
+                resultFilter.push(recipe);
             } else if (name.includes(valueSought)) {
-                result.push(recipe);   
+                resultFilter.push(recipe);   
             }
         }
         datasProxy.filtredRecipes = [...resultFilter];
     } else 
         return;
+}
+
+function ingredientIsHere(recipe, value){
+    if(recipe.ingredients.filter(item =>
+        item.ingredient.toLowerCase().includes(value)).length > 0){
+        return true;}
 }
 
 function filterByIngredient(filterChoice){
