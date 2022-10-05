@@ -1,4 +1,3 @@
-
 export function buildTagChoice(element, typeclass){
     const tagelement = document.createElement('div');
     tagelement.className = `tagChoice ${typeclass}`;
