@@ -1,4 +1,7 @@
-import {quickSort} from '../utils/sortrecipes.js'
+import {quickSort} from '../utils/sortrecipes.js';
+
+const modalBoxRecipe = document.getElementById('modalBoxRecipe');
+const modal = document.getElementById('modal');
 
 export function getCardRecipe(recipe) {
         function getUnit(elt) { 
