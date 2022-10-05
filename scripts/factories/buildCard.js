@@ -76,6 +76,7 @@ export function getCardRecipe(recipe) {
 }
 
 export function displayRecipes(value){
+    quickSort(value, 0, value.length - 1);
     const boxRecipes = document.getElementById('box_recipes');
     boxRecipes.innerHTML = '';
     value.forEach(recipe => boxRecipes.appendChild(getCardRecipe(recipe)));
