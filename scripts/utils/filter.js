@@ -105,11 +105,10 @@ export function getChosenTag() {
         let tag = {};
         tag.value = e.target.textContent;
         tag.type = e.target.parentNode.id;
-
         if(e.target.parentNode.id == 'ingredientsUl'){
-        document.querySelector('#ingredients').value = '';
+            document.querySelector('#ingredients').value = '';
         } else if(e.target.parentNode.id == 'applianceUl'){
-        document.querySelector('#appliance').value = '';
+            document.querySelector('#appliance').value = '';
         } else if(e.target.parentNode.id == 'ustensilsUl'){
             document.querySelector('#ustensils').value = '';
         }
