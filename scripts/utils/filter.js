@@ -1,32 +1,32 @@
 import {recipes} from '../data/recipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
+import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.js';
+import {boxresultsUl} from '../factories/buildListForTag.js';
 import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
-// import {showModal} from './modal.js';
-
-const ingredientsUl = document.getElementById('ingredientsUl');
-const applianceUl = document.getElementById('applianceUl');
-const ustensilsUl = document.getElementById('ustensilsUl');
 
 let datas = {}
-datas.recipes = [...recipes];
+datas.recipes = [...recipes]
 
 let datasProxy = new Proxy(datas, {
     set: function(target, key, value) {
-        // console.log(target, key, value)
         target[key] = value;
         switch(key) {
             case 'filtredRecipes': 
                 if ( datasProxy.filtredRecipes.length == 0){
-                    document.getElementById('box_recipes').innerHTML =
-                    '<div class="norecipe">Aucune recette ne correspond à votre critère… <br />Vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>';
+                    noRecipeAlert();
                 } else {
-                    // afficher les recettes
+                    if(isAlert){
+                    removeNoRecipeAlert();
+                    }
                     displayRecipes(value);
                     //mettre a jour la liste des ingredients
                     getIngredientsList(value);
+                    getChosenIngredients(value);
                     getApplianceList(value);
+                    getChosenAppliance(value);
                     getUstensilsList(value);
+                    getChosenUstensils(value);
                     getChosenTag();
                 }
             break;
