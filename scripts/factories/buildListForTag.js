@@ -76,6 +76,7 @@ function openListTagChoice(itemOpen, indexOpen, itemclose1, indexclose1, itemclo
 }
 
 function closeListTagChoice(item, index){
+    boxresults[index].querySelector('input').value = '';
     chevronDown(item);
     btnList[index].classList.remove('isOpen');
     boxresults[index].classList.remove('open');
