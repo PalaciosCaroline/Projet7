@@ -16,9 +16,9 @@ export function buildTagChoice(element, typeclass){
 }
 
 export function displayTag(tags) {
-    if (!tags || tags.length <= 0){
+    if (!tags){
         return true;
-    } else (tags.length > 0)
+    } else (tags.length >= 0)
         const tagChoiceBox = document.querySelector("#tagChoice_box");
         tagChoiceBox.innerHTML = '';
         for (var i = 0; i < tags.length; i++) {

@@ -60,36 +60,42 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
     }
 })
 
-document.querySelector('#ingredients').addEventListener('input', (e) => {
-    let research = e.target.value;
-    let ingredientsArray = [];
-    recipes.forEach((recipe) => {
-        recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
-    ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});;
-    buildUlListfilter(ingredientsArray, ingredientsUl);
-    getChosenTag();
-})
+function getChosenIngredients(recipes){
+    document.querySelector('#ingredients').addEventListener('input', (e) => {
+        let research = e.target.value;
+        let ingredientsArray = [];
+        recipes.forEach((recipe) => {
+            recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
+        ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});;
+        buildUlListfilter(ingredientsArray, ingredientsUl);
+        getChosenTag();
+    })
+}
 
-const inputAppliance = document.querySelector('#appliance');
-inputAppliance.addEventListener('input', (e) => {
-    let research = e.target.value;
-    let applianceArray = [];
-    recipes.forEach((recipe) => {
-        applianceArray.push(recipe.appliance.toLowerCase());
-    applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-    buildUlListfilter(applianceArray, applianceUl);
-    getChosenTag();
-})
+function getChosenAppliance(recipes){
+    const inputAppliance = document.querySelector('#appliance');
+    inputAppliance.addEventListener('input', (e) => {
+        let research = e.target.value;
+        let applianceArray = [];
+        recipes.forEach((recipe) => {
+            applianceArray.push(recipe.appliance.toLowerCase());
+        applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
+        buildUlListfilter(applianceArray, applianceUl);
+        getChosenTag();
+    })
+}
 
-document.querySelector('#ustensils').addEventListener('input', (e) => {
-    let research = e.target.value;
-    let ustensilsArray = [];
-    recipes.forEach((recipe) => {
-    recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
-    ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-    buildUlListfilter(ustensilsArray, ustensilsUl);
-    getChosenTag();
-})
+function getChosenUstensils(recipes){
+    document.querySelector('#ustensils').addEventListener('input', (e) => {
+        let research = e.target.value;
+        let ustensilsArray = [];
+        recipes.forEach((recipe) => {
+        recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
+        ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
+        buildUlListfilter(ustensilsArray, ustensilsUl);
+        getChosenTag();
+    })
+}
 
 function getChosenTag() {
     const liSortingItem = document.querySelectorAll('.liSorting-item')
@@ -111,79 +117,39 @@ function removeTag(){
         for(let i = 0; i < btnClosesArray.length; i++){
             btnClosesArray[i].addEventListener('click', (e) => {
                 let TagRemove = e.target.parentNode.id;
-                datasProxy.searchfilter = datasProxy.searchfilter.filter(item => item.value != TagRemove);
+                datasProxy.searchfilter = datasProxy.searchfilter.filter(choiceFilter => choiceFilter.value != TagRemove);
             })
-        } 
-    }
+        } return datasProxy.searchfilter; 
+    } 
 }
 
 function searchRecipes() {
     datasProxy.filtredRecipes = [...recipes];
-    datasProxy.searchfilter?.forEach(choiceFilter => {
+    datasProxy.searchfilter.forEach(choiceFilter => {
         if(choiceFilter.type == 'search_bar'){
-            
-                filterBySearchBar(choiceFilter);
-            
+           filterBySearchBar(choiceFilter);
         } else if(choiceFilter.type == 'ingredientsUl'){
-            filterByIngredients(choiceFilter);
+           filterByIngredients(choiceFilter);
         } else if(choiceFilter.type == 'applianceUl'){
-            filterByAppliance(choiceFilter);
+           filterByAppliance(choiceFilter);
         } else if (choiceFilter.type == 'ustensilsUl'){
-            filterByUstensils(choiceFilter);
+           filterByUstensils(choiceFilter);
         }
     })
-}
-
-function searchRecipeByFor(research) {
-    let valueSought = research.toLowerCase();
-    let result = [];
-    if(valueSought.length > datasProxy.searchLength && valueSought.length > 2) {
-        for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
-            let recipe = datasProxy.filtredRecipes[i];
-            let name = recipe.name.toLowerCase();
-            let description = recipe.description.toLowerCase();
-            if ( ingredientIsHere(recipe, valueSought)){
-                result.push(recipe); 
-            } else if (description.includes(valueSought)) {
-            result.push(recipe);
-            } else if (name.includes(valueSought)) {
-                result.push(recipe);   
-            }
-        }
-        return result;
-    } else if (valueSought.length < datasProxy.searchLength && valueSought.length > 2) {
-        for (let i = 0; i < datasProxy.recipes.length; i++) {
-            let recipe = datasProxy.recipes[i];
-            let name = recipe.name.toLowerCase();
-            let description = recipe.description.toLowerCase();
-            if ( ingredientIsHere(recipe, valueSought)){
-                result.push(recipe); 
-            } else if (description.includes(valueSought)) {
-            result.push(recipe);
-            } else if (name.includes(valueSought)) {
-                result.push(recipe);   
-            }
-        }
-        return result;
-    } else {
-        const result = [...recipes];
-        return result;
-    }
 }
 
 function ingredientIsHere(recipe, value){
     if(recipe.ingredients.filter(item =>
         item.ingredient.toLowerCase().includes(value)).length > 0){
-        return true;}
+        return true;
+    }
 }
 
 function filterBySearchBar(choiceFilter){
     if (choiceFilter.value.length > 2){
-    const resultfilter = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(choiceFilter.value.toLowerCase())) || recipe.ingredients.filter(item =>
-        item.ingredient.toLowerCase().includes(choiceFilter.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(choiceFilter.value.toLowerCase())));
-    datasProxy.filtredRecipes = [...resultfilter];
-    } else {
-        return;
+        const resultfilter = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(choiceFilter.value.toLowerCase())) || recipe.ingredients.filter(item =>
+            item.ingredient.toLowerCase().includes(choiceFilter.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(choiceFilter.value.toLowerCase())));
+        datasProxy.filtredRecipes = [...resultfilter];
     }
 }
 

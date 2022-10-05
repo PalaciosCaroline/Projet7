@@ -1,6 +1,6 @@
+import {quickSort} from '../utils/sortrecipes.js';
 
 export function getCardRecipe(recipe) {
-
     function getUnit(elt) { 
         if (elt)
             if(elt == 'grammes') {
