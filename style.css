@@ -145,24 +145,105 @@ fieldset:nth-child(1) .form-control::placeholder {
     height: 100%;
 }
 
+.boxresultIngredients.open .boxresultsUl,
+.boxresultAppliance.open .boxresultsUl,
+.boxresultUstensils.open .boxresultsUl{
+    transform: scaleY(1);
+    opacity: 1;
+} 
+
+.boxresultIngredients .boxresultsUl,
+.boxresultAppliance .boxresultsUl,
+.boxresultUstensils .boxresultsUl{
+    transform: scaleY(0);
+    transform-origin: 0 0;
+    transition: transform 0.3s ease-in-out;
+    -webkit-transition: transform 0.3s ease-in-out;
+    -moz-transition: transform 0.3s ease-in-out;
+    -o-transition: transform 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.boxresultIngredients li,
+.boxresultUstensils li,
+.boxresultAppliance li{
+    width: 33%;
+}
+
 .boxresultIngredients.open,
 .boxresultAppliance.open,
-.boxresultsUstensils.open{
-    width: 600px;
+.boxresultUstensils.open{
+    width :580px;  
 } 
+
+.boxresults{
+    transition: transform 0.3s;
+    -webkit-transition: width 0.3s ease-in-out;
+    -moz-transition: width 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
+}
+
+.boxresults ul{
+    padding:0;
+    flex-wrap: wrap;
+    height: auto;  
+    width: 580px;
+}
+
+@media screen and (max-width: 1000px) {
+    .boxresults ul{
+        width: 280px; 
+    }
+
+    .boxresultIngredients.open,
+    .boxresultAppliance.open,
+    .boxresultUstensils.open{
+        width: 280px;
+    } 
+
+    .boxresults li{
+        width: 44%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .boxresults ul{
+        width: 200px; 
+    }
+    .boxresults{
+        margin-right: 20px;
+    }
+    .boxresultIngredients.open,
+    .boxresultAppliance.open,
+    .boxresultUstensils.open{
+        transition: transform 0.3s;
+        width: 200px;
+    } 
+
+    .boxresults li{
+        width: 100%;
+    }
+    .boxresults button{
+        width: 50px;
+    }
+    #modal .card .cardText{
+        padding-left: 10px;
+        padding-right: 10px;
+    }    
+}
 
 .search_ingredients input:focus-visible,
 .search_ingredients input,
 .search_ingredients,
 .boxresultIngredients ul{
-    background-color: #3282F7;
-    
+    background-color: #3282F7;  
 }
 
 .boxresults ul{
     position: absolute;  
     z-index:110; 
     padding:0;
+    display: flex;
 }
 
 .boxresultAppliance ul{
@@ -184,7 +265,6 @@ fieldset:nth-child(1) .form-control::placeholder {
 .search_ustensils{
     background-color: #ED6454;
     border: #ED6454;
-    
 }
 
 .search_ingredients,
@@ -192,43 +272,6 @@ fieldset:nth-child(1) .form-control::placeholder {
 .search_appareils{
     height: 70px;
 } 
-/* .search_ustensils,
-.search_appareils{
-    width: 200px;
-} */
-
-.boxresultIngredients li,
-.boxresultUstensils li,
-.boxresultAppliance li{
-    width: 33%;
-}
-
-.boxresults.open{
-    width: 600px;
-} 
-
-/* .label_ingredients{
-    width: 600px;
-}  */
-
-.boxresultIngredients ul,
-.boxresultAppliance ul,
-.boxresultUstensils ul{
-    padding:0;
-    flex-wrap: wrap;
-    width: 600px; 
-    height: auto;  
-}
-
-#ingredientsUl,
-#applianceUl,
-#ustensilsUl{
-    display: none; 
-}
-/* 
-#ingredientsUl.visible{
-    height: auto;
-} */
 
 /* tag */
 .ingredientsUl{
@@ -337,10 +380,6 @@ fieldset:nth-child(1) .form-control::placeholder {
     border-radius: 0 0 10px 10px;
     margin : 0; 
 }
-/* #box_recipes .cardText {
-    height: 10px;
-    text-overflow: ellipsis;
-} */
 
 .card ul{
     padding: 0;
@@ -356,8 +395,12 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding-left: 0;
 } 
 
-#card_description p {
-display: inline-block;
+#box_recipes #card_description p {
+    overflow: hidden;
+    display: inline-block;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
 }
 
 #modal{
@@ -402,7 +445,7 @@ display: inline-block;
     color: #ea6f61;
     background-color: #fff;
     position:absolute;
-    right: 2%;
+    right: 50px;
     height: 100px;
     top: 20px; 
     width: 8vw;
@@ -428,7 +471,20 @@ display: inline-block;
 
 #modal .card img{
     width: 100%;
-    height: 25%;
+    height: 35%;
     object-fit: cover;
     border-radius: 15px 15px 0 0;
+}
+
+@media screen and (max-width: 800px) {
+    #modal .card .cardText{
+        padding-left: 30px;
+        padding-right: 30px;
+    }    
+}
+@media screen and (max-width: 500px) {
+    #modal .card .cardText{
+        padding-left: 10px;
+        padding-right: 10px;
+    }    
 }
