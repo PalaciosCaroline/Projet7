@@ -1,7 +1,7 @@
 import {recipes} from '../data/recipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.js';
-import {ingredientsUl, applianceUl, ustensilsUl} from '../factories/buildListForTag.js';
+import {boxresultsUl} from '../factories/buildListForTag.js';
 import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
@@ -64,7 +64,7 @@ function getChosenIngredients(recipes){
         recipes.forEach((recipe) => {
             recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
         ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-        buildUlListfilter(ingredientsArray, ingredientsUl);
+        buildUlListfilter(ingredientsArray, boxresultsUl[0]);
         getChosenTag();
     })
 }
@@ -77,7 +77,7 @@ function getChosenAppliance(recipes){
         recipes.forEach((recipe) => {
             applianceArray.push(recipe.appliance.toLowerCase());
         applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-        buildUlListfilter(applianceArray, applianceUl);
+        buildUlListfilter(applianceArray, boxresultsUl[1]);
         getChosenTag();
     })
 }
@@ -89,7 +89,7 @@ function getChosenUstensils(recipes){
         recipes.forEach((recipe) => {
         recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
         ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-        buildUlListfilter(ustensilsArray, ustensilsUl);
+        buildUlListfilter(ustensilsArray, boxresultsUl[2]);
         getChosenTag();
     })
 }
