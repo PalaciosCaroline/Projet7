@@ -150,7 +150,7 @@ function filterBySearchBar(choiceFilter){
         const resultfilter = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(choiceFilter.value.toLowerCase())) || recipe.ingredients.filter(item =>
             item.ingredient.toLowerCase().includes(choiceFilter.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(choiceFilter.value.toLowerCase())));
         datasProxy.filtredRecipes = [...resultfilter];
-    }
+    } else return;
 }
 
 function filterByIngredients(choiceFilter){
