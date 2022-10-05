@@ -4,6 +4,7 @@ const icons = document.querySelectorAll('.btn_list i');
 const boxresults = document.querySelectorAll('.boxresults');
 const inputList = document.querySelectorAll('.inputList');
 
+
 export function buildUlListfilter(ArrayList, containerList) {
     containerList.innerHTML = '';
     ArrayList.forEach((item => {
@@ -24,18 +25,6 @@ export function getIngredientsList(recipes){
     buildUlListfilter(ingredientsArray, boxresultsUl[0]);
     })
 }
-
-// export function getIngredientsListByFor(recipes){
-//     let ingredientsArray = [];
-//     for(let i; i < recipes.lenght; i++){
-//         for(let j; j < recipes[i].ingredients.lenght; j++){
-//        if(recipes[i].ingredients[j] == ingredient){
-//        ingredientsArray += recipes[i].ingredients[j];
-//        }
-//     }}
-//     ingredientsArray = [...new Set(ingredientsArray)].sort();
-//     buildUlListfilter(ingredientsArray, ingredientsUl);
-// }
 
 export function getApplianceList(recipes){
     let applianceArray = [];
@@ -82,6 +71,7 @@ function closeListTagChoice(item, index){
 }
 
 export function getOpenListTag() {
+
     btnList.forEach(item => item.addEventListener('click', () => {
         if(!item.classList.contains('isOpen')){
             item.classList.add('isOpen');
