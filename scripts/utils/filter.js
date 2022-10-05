@@ -135,9 +135,9 @@ function searchByFilter() {
 }
 
 function filterBySearchBar(filterChoice) {
-    let valueSought = filterChoice.toLowerCase();
-    let resultFilter = [];
     if (filterChoice.value.length > 2) {
+        let valueSought = filterChoice.value.toLowerCase();
+        let resultFilter = [];
         for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
             let recipe = datasProxy.filtredRecipes[i];
             let name = recipe.name.toLowerCase();
