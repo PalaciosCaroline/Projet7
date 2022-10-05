@@ -1,12 +1,12 @@
 import {recipes} from '../data/recipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
-import {isAlert, noRecipeAlert, removeNoRecipeAlert} from '../factories/header.js';
+import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.js';
 import {boxresultsUl} from '../factories/buildListForTag.js';
 import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
 let datas = {}
-datas.recipes = [...recipes];
+datas.recipes = [...recipes]
 
 let datasProxy = new Proxy(datas, {
     set: function(target, key, value) {
@@ -14,12 +14,11 @@ let datasProxy = new Proxy(datas, {
         switch(key) {
             case 'filtredRecipes': 
                 if ( datasProxy.filtredRecipes.length == 0){
-                        noRecipeAlert();
-                    } else {
-                        if(isAlert){
-                        removeNoRecipeAlert();
-                        }
-                    // afficher les recettes
+                    noRecipeAlert();
+                } else {
+                    if(isAlert){
+                    removeNoRecipeAlert();
+                    }
                     displayRecipes(value);
                     //mettre a jour la liste des ingredients
                     getIngredientsList(value);
