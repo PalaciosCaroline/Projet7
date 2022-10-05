@@ -7,9 +7,8 @@ import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsLis
 import {displayTag} from '../factories/buildtag.js';
 
 let datas = {}
-// [...recipes] = quickSort([...recipes], 0, [...recipes].length - 1);
-// datas.recipes = [...recipes];
-datas.recipes = quickSort([...recipes], 0, [...recipes].length - 1)
+datas.recipes = [...recipes]
+
 let datasProxy = new Proxy(datas, {
     set: function(target, key, value) {
         target[key] = value;
