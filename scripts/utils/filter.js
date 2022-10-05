@@ -22,8 +22,11 @@ let datasProxy = new Proxy(datas, {
                     displayRecipes(value);
                     //mettre a jour la liste des ingredients
                     getIngredientsList(value);
+                    getChosenIngredients(value);
                     getApplianceList(value);
+                    getChosenAppliance(value);
                     getUstensilsList(value);
+                    getChosenUstensils(value);
                     getChosenTag();
                 }
             break;
@@ -59,36 +62,42 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
-document.querySelector('#ingredients').addEventListener('input', (e) => {  
-    let research = e.target.value;
-    let ingredientsArray = [];
-    recipes.forEach((recipe) => {
-        recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
-    ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-    buildUlListfilter(ingredientsArray, boxresultsUl[0]);
-    getChosenTag();
-})
+function getChosenIngredients(recipes) {
+    document.querySelector('#ingredients').addEventListener('input', (e) => {  
+        let research = e.target.value;
+        let ingredientsArray = [];
+        recipes.forEach((recipe) => {
+            recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
+        ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
+        buildUlListfilter(ingredientsArray, boxresultsUl[0]);
+        getChosenTag();
+    })
+}
 
-const inputAppliance = document.querySelector('#appliance');
-inputAppliance.addEventListener('input', (e) => {
-    let research = e.target.value;
-    let applianceArray = [];
-    recipes.forEach((recipe) => {
-        applianceArray.push(recipe.appliance.toLowerCase());
-    applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-    buildUlListfilter(applianceArray, boxresultsUl[1]);
-    getChosenTag();
-})
+function getChosenAppliance(recipes){
+    const inputAppliance = document.querySelector('#appliance');
+    inputAppliance.addEventListener('input', (e) => {
+        let research = e.target.value;
+        let applianceArray = [];
+        recipes.forEach((recipe) => {
+            applianceArray.push(recipe.appliance.toLowerCase());
+        applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
+        buildUlListfilter(applianceArray, boxresultsUl[1]);
+        getChosenTag();
+    })
+}
 
-document.querySelector('#ustensils').addEventListener('input', (e) => {
-    let research = e.target.value;
-    let ustensilsArray = [];
-    recipes.forEach((recipe) => {
-    recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
-    ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-    buildUlListfilter(ustensilsArray, boxresultsUl[2]);
-    getChosenTag();
-})
+function getChosenUstensils(recipes){
+    document.querySelector('#ustensils').addEventListener('input', (e) => {
+        let research = e.target.value;
+        let ustensilsArray = [];
+        recipes.forEach((recipe) => {
+        recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
+        ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
+        buildUlListfilter(ustensilsArray, boxresultsUl[2]);
+        getChosenTag();
+    })
+}
 
 function getChosenTag() {
     const liSortingItem = document.querySelectorAll('.liSorting-item')
