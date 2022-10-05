@@ -26,18 +26,6 @@ export function getIngredientsList(recipes){
     })
 }
 
-// export function getIngredientsListByFor(recipes){
-//     let ingredientsArray = [];
-//     for(let i; i < recipes.lenght; i++){
-//         for(let j; j < recipes[i].ingredients.lenght; j++){
-//        if(recipes[i].ingredients[j] == ingredient){
-//        ingredientsArray += recipes[i].ingredients[j];
-//        }
-//     }}
-//     ingredientsArray = [...new Set(ingredientsArray)].sort();
-//     buildUlListfilter(ingredientsArray, boxresultsUl[0]);
-// }
-
 export function getApplianceList(recipes){
     let applianceArray = [];
     recipes.forEach((recipe) => {
@@ -76,7 +64,7 @@ function openListTagChoice(itemOpen, indexOpen, itemclose1, indexclose1, itemclo
 }
 
 function closeListTagChoice(item, index){
-    boxresults[index].querySelector('input').value = '';
+     boxresults[index].querySelector('input').value = '';
     chevronDown(item);
     btnList[index].classList.remove('isOpen');
     boxresults[index].classList.remove('open');
