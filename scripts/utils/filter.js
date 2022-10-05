@@ -1,5 +1,4 @@
 import {recipes} from '../data/recipes.js';
-import {quickSort} from '../utils/sortrecipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.js';
 import {boxresultsUl} from '../factories/buildListForTag.js';
