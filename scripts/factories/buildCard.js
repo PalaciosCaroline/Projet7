@@ -76,9 +76,10 @@ return card;
 }
 
 export function displayRecipes(value){
-const boxRecipes = document.getElementById('box_recipes');
-boxRecipes.innerHTML = '';
-value.forEach(recipe => boxRecipes.appendChild(getCardRecipe(recipe)));
+    quickSort(value, 0, value.length - 1);
+    const boxRecipes = document.getElementById('box_recipes');
+    boxRecipes.innerHTML = '';
+    value.forEach(recipe => boxRecipes.appendChild(getCardRecipe(recipe)));
 }
 
 
