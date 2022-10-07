@@ -20,7 +20,7 @@ function chevronUp(item){
 }
 
 function chevronDown(item){
-    item.className = 'fa fa-chevron-up text-white';
+    item.className = 'fa fa-chevron-down text-white';
 }
 
 function openListTagChoice(itemOpen, indexOpen, itemclose1, indexclose1, itemclose2, indexclose2){
