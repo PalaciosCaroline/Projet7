@@ -2,7 +2,7 @@ import {recipes} from '../data/recipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.js';
 import {boxresultsUl} from '../factories/buildListForTag.js';
-import {buildUlListfilter, getIngredientsList, getApplianceList, getUstensilsList} from '../factories/buildListForTag.js';
+import {buildUlListfilter} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
 let datas = {}
@@ -22,11 +22,8 @@ let datasProxy = new Proxy(datas, {
                     displayRecipes(value);
                     //mettre a jour la liste des ingredients
                     getIngredientsList(value);
-                    getChosenIngredients(value);
                     getApplianceList(value);
-                    getChosenAppliance(value);
                     getUstensilsList(value);
-                    getChosenUstensils(value);
                     getChosenTag();
                 }
             break;
@@ -62,40 +59,52 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
-function getChosenIngredients(recipes) {
+function getIngredientsList(recipes){
+    let ingredientsArray = [];
+    recipes.forEach((recipe) => {
+        recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
+    ingredientsArray = [...new Set(ingredientsArray)].sort();
+    buildUlListfilter(ingredientsArray, boxresultsUl[0]);
+    })    
+
     document.querySelector('#ingredients').addEventListener('input', (e) => {
         let research = e.target.value;
-        let ingredientsArray = [];
-        recipes.forEach((recipe) => {
-            recipe.ingredients.map((element) => ingredientsArray.push(element.ingredient.toLowerCase()));
-        ingredientsArray = [...new Set(ingredientsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-        buildUlListfilter(ingredientsArray, boxresultsUl[0]);
+        let newIngredientsArray = ingredientsArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
+        buildUlListfilter(newIngredientsArray, boxresultsUl[0]);
         getChosenTag();
     })
 }
 
-function getChosenAppliance(recipes) {
+function getApplianceList(recipes){
+    let applianceArray = [];
+    recipes.forEach((recipe) => {
+        applianceArray.push(recipe.appliance.toLowerCase());
+    applianceArray = [...new Set(applianceArray)].sort();
+    buildUlListfilter(applianceArray, boxresultsUl[1]);
+    })
+
     const inputAppliance = document.querySelector('#appliance');
     inputAppliance.addEventListener('input', (e) => {
         let research = e.target.value;
-        let applianceArray = [];
-        recipes.forEach((recipe) => {
-            applianceArray.push(recipe.appliance.toLowerCase());
-        applianceArray = [...new Set(applianceArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
-        buildUlListfilter(applianceArray, boxresultsUl[1]);
+        let newApplianceArray = applianceArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
+        buildUlListfilter(newApplianceArray, boxresultsUl[1]);
         getChosenTag();
     })
 }
 
-function getChosenUstensils(recipes) {
-    document.querySelector('#ustensils').addEventListener('input', (e) => {
-    let research = e.target.value;
+function getUstensilsList(recipes){
     let ustensilsArray = [];
     recipes.forEach((recipe) => {
     recipe.ustensils.map((element) => ustensilsArray.push(element.toLowerCase()));
-    ustensilsArray = [...new Set(ustensilsArray)].sort().filter(item => item.toLowerCase().includes(research.toLowerCase()))});
+    ustensilsArray = [...new Set(ustensilsArray)].sort();
     buildUlListfilter(ustensilsArray, boxresultsUl[2]);
-    getChosenTag();
+    })
+
+    document.querySelector('#ustensils').addEventListener('input', (e) => {
+        let research = e.target.value;
+        let newUstensilsArray = ustensilsArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
+        buildUlListfilter(newUstensilsArray, boxresultsUl[2]);
+        getChosenTag();
     })
 }
 
