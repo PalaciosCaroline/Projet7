@@ -377,7 +377,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     font-size: 1.1rem;
     margin: 0;
     display: block;
-    width: calc(100% - 50);
+    width: calc(100% - 77);
 }
 
 .cardTime{
