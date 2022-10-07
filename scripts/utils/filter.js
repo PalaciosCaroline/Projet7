@@ -4,6 +4,7 @@ import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.j
 import {boxresultsUl, buildUlListfilter} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
+const inputList = document.querySelectorAll('.inputList');
 let datas = {}
 datas.recipes = [...recipes]
 
@@ -66,7 +67,7 @@ function getIngredientsList(recipes){
     buildUlListfilter(ingredientsArray, boxresultsUl[0]);
     })    
 
-    document.querySelector('#ingredients').addEventListener('input', (e) => {
+    inputList[0].addEventListener('input', (e) => {
         let research = e.target.value;
         let newIngredientsArray = ingredientsArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
         buildUlListfilter(newIngredientsArray, boxresultsUl[0]);
@@ -82,7 +83,7 @@ function getApplianceList(recipes){
     buildUlListfilter(applianceArray, boxresultsUl[1]);
     })
 
-    document.querySelector('#appliance').addEventListener('input', (e) => {
+    inputList[1].addEventListener('input', (e) => {
         let research = e.target.value;
         let newApplianceArray = applianceArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
         buildUlListfilter(newApplianceArray, boxresultsUl[1]);
@@ -98,7 +99,7 @@ function getUstensilsList(recipes){
     buildUlListfilter(ustensilsArray, boxresultsUl[2]);
     })
 
-    document.querySelector('#ustensils').addEventListener('input', (e) => {
+    inputList[2].addEventListener('input', (e) => {
         let research = e.target.value;
         let newUstensilsArray = ustensilsArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
         buildUlListfilter(newUstensilsArray, boxresultsUl[2]);
@@ -112,9 +113,13 @@ function getChosenTag() {
         let tag = {};
         tag.value = e.target.textContent;
         tag.type = e.target.parentNode.id;
-        document.querySelector('#ingredients').value = '';
-        document.querySelector('#appliance').value = '';
-        document.querySelector('#ustensils').value = '';
+        if(e.target.parentNode.id == 'ingredientsUl'){
+            inputList[0].value = '';
+        } else if(e.target.parentNode.id == 'applianceUl'){
+            inputList[1].value = '';
+        } else if(e.target.parentNode.id == 'ustensilsUl'){
+            inputList[2].value = '';
+        }
         datasProxy.searchTag = datasProxy.searchTag?.length > 0 ? [...datasProxy.searchTag,tag] : [tag] ;
     }))   
 }
