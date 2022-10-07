@@ -1,6 +1,3 @@
-import {recipes} from '../data/recipes.js';
-
-let recipesforsort = [...recipes]; 
 function swap(recipesforsort, leftIndex, rightIndex){
     var temp = recipesforsort[leftIndex];
     recipesforsort[leftIndex] = recipesforsort[rightIndex];
