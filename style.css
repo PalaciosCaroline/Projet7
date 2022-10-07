@@ -362,17 +362,22 @@ fieldset:nth-child(1) .form-control::placeholder {
     border-radius: 10px 10px 0 0;
     object-fit: cover;
 }
+.card .cardText{
+    padding : 0.8rem 1.45rem 1.2rem 1.45rem;
+}
 
 .card header{
     border : none;
     background: #fff;
+    padding-right: 0;
+    padding-left: 0;
 } 
 
 .card h2{
     font-size: 1.1rem;
     margin: 0;
     display: block;
-    width: calc(100% - 50);
+    width: calc(100% - 100);
 }
 
 .cardTime{
@@ -395,6 +400,8 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding: 0;
     padding: 0 10px 0 10px;
     width: 100%;
+    /* padding-right: 0; */
+    padding-left: 0;
 }
 .card li{
     list-style: none;
@@ -403,6 +410,7 @@ fieldset:nth-child(1) .form-control::placeholder {
 
 #card_description{
     padding-left: 0;
+    padding-right: 0;
 } 
 
 #box_recipes #card_description p {
