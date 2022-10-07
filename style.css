@@ -294,7 +294,6 @@ fieldset:nth-child(1) .form-control::placeholder {
     width: 50px;
     border: none;
     background-color: transparent;
-    color: #fff;
     height: 50px;
     padding: 0;
 }
