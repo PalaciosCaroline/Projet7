@@ -297,7 +297,6 @@ fieldset:nth-child(1) .form-control::placeholder {
     height: 50px;
     padding: 0;
 }
-
 .tagChoice button:hover,
 .tagChoice button:active{
     outline: none;
@@ -363,10 +362,15 @@ fieldset:nth-child(1) .form-control::placeholder {
     border-radius: 10px 10px 0 0;
     object-fit: cover;
 }
+.card .cardText{
+    padding : 0.8rem 1.45rem 1.2rem 1.45rem;
+}
 
 .card header{
     border : none;
     background: #fff;
+    padding-right: 0;
+    padding-left: 0;
 } 
 
 .card h2{
@@ -377,7 +381,7 @@ fieldset:nth-child(1) .form-control::placeholder {
 }
 
 .cardTime{
-    min-width: 55px;
+    min-width: 77px;
 }
 
 .cardTime img{
@@ -387,7 +391,6 @@ fieldset:nth-child(1) .form-control::placeholder {
 .card_textContent {
     width: 100%;
     font-size: 0.75rem;
-    /* padding: 0 20px 10px 20px; */
     background: #fff;
     border-radius: 0 0 10px 10px;
     margin : 0; 
@@ -397,6 +400,8 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding: 0;
     padding: 0 10px 0 10px;
     width: 100%;
+    /* padding-right: 0; */
+    padding-left: 0;
 }
 .card li{
     list-style: none;
@@ -405,6 +410,7 @@ fieldset:nth-child(1) .form-control::placeholder {
 
 #card_description{
     padding-left: 0;
+    padding-right: 0;
 } 
 
 #box_recipes #card_description p {

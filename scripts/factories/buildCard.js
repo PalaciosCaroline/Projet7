@@ -32,7 +32,7 @@ export function getCardRecipe(recipe) {
             <h2 class="card-title">${recipe.name}</h2>
             <div class="cardTime">
             <i class="fa-regular fa-clock" aria-hidden='true'></i>
-            <span class="font-weight-bold">${recipe.time}</span>
+            <span class="font-weight-bold">${recipe.time} min</span>
             </div>
         </header>
         <div class="row card_textContent d-flex justify-content-between">
