@@ -4,6 +4,7 @@ import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.j
 import {boxresultsUl, buildUlListfilter} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
+const inputList = document.querySelectorAll('.inputList');
 let datas = {}
 datas.recipes = [...recipes]
 
@@ -64,7 +65,7 @@ function getIngredientsList(recipes){
     buildUlListfilter(ingredientsArray, boxresultsUl[0]);
     })    
 
-    document.querySelector('#ingredients').addEventListener('input', (e) => {
+    inputList[0].addEventListener('input', (e) => {
         let research = e.target.value;
         let newIngredientsArray = ingredientsArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
         buildUlListfilter(newIngredientsArray, boxresultsUl[0]);
@@ -80,7 +81,7 @@ function getApplianceList(recipes){
     buildUlListfilter(applianceArray, boxresultsUl[1]);
     })
 
-    document.querySelector('#appliance').addEventListener('input', (e) => {
+    inputList[1].addEventListener('input', (e) => {
         let research = e.target.value;
         let newApplianceArray = applianceArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
         buildUlListfilter(newApplianceArray, boxresultsUl[1]);
@@ -96,7 +97,7 @@ function getUstensilsList(recipes){
     buildUlListfilter(ustensilsArray, boxresultsUl[2]);
     })
 
-    document.querySelector('#ustensils').addEventListener('input', (e) => {
+    inputList[2].addEventListener('input', (e) => {
         let research = e.target.value;
         let newUstensilsArray = ustensilsArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
         buildUlListfilter(newUstensilsArray, boxresultsUl[2]);
@@ -110,9 +111,7 @@ function getChosenTag() {
         let choiceFilter = {};
         choiceFilter.value = e.target.textContent;
         choiceFilter.type = e.target.parentNode.id;
-        document.querySelector('#ingredients').value = '';
-        document.querySelector('#appliance').value = '';
-        document.querySelector('#ustensils').value = '';
+        inputList.forEach(input => input.value = '');
         datasProxy.searchfilter = datasProxy.searchfilter? [...datasProxy.searchfilter,choiceFilter] : [choiceFilter] ;
     }))   
 }
