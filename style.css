@@ -324,7 +324,6 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding: 10px;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #fff;
     display: flex;
     justify-content: center;
     transform: scaleY(0);
@@ -387,7 +386,6 @@ fieldset:nth-child(1) .form-control::placeholder {
 .card_textContent {
     width: 100%;
     font-size: 0.75rem;
-    /* padding: 0 20px 10px 20px; */
     background: #fff;
     border-radius: 0 0 10px 10px;
     margin : 0; 
