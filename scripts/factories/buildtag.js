@@ -9,7 +9,7 @@ export function buildTagChoice(element, typeclass){
     btnClose.className = 'btnClose';
     btnClose.id = element;
     const btnIcon = document.createElement('icon');
-    btnIcon.className = 'fa-regular fa-circle-xmark';
+    btnIcon.className = 'fa-regular fa-circle-xmark text-white';
     tagelement.appendChild(textTag);
     tagelement.appendChild(btnClose);
     btnClose.appendChild(btnIcon);
