@@ -377,11 +377,11 @@ fieldset:nth-child(1) .form-control::placeholder {
     font-size: 1.1rem;
     margin: 0;
     display: block;
-    width: calc(100% - 100);
+    width: calc(100% - 77);
 }
 
 .cardTime{
-    min-width: 55px;
+    min-width: 77px;
 }
 
 .cardTime img{
@@ -400,7 +400,6 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding: 0;
     padding: 0 10px 0 10px;
     width: 100%;
-    /* padding-right: 0; */
     padding-left: 0;
 }
 .card li{
