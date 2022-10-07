@@ -9,21 +9,17 @@ export function buildUlListfilter(ArrayList, containerList) {
     ArrayList.forEach((item => {
         const liSortingItem = document.createElement('li');
         liSortingItem.innerHTML = item;
-        liSortingItem.classList.add('liSorting-item');
-        liSortingItem.classList.add('p-2');
-        liSortingItem.classList.add('text-white');
+        liSortingItem.className = 'p-2 liSorting-item text-white';
         containerList.appendChild(liSortingItem);
     })) 
 }
 
 function chevronUp(item){
-    item.classList.remove('fa-chevron-down');
-    item.classList.add('fa-chevron-up');
+    item.className = 'fa fa-chevron-up text-white';
 }
 
 function chevronDown(item){
-    item.classList.remove('fa-chevron-up');
-    item.classList.add('fa-chevron-down');
+    item.className = 'fa fa-chevron-up text-white';
 }
 
 function openListTagChoice(itemOpen, indexOpen, itemclose1, indexclose1, itemclose2, indexclose2){

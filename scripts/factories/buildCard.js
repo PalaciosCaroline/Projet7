@@ -73,7 +73,6 @@ export function getCardRecipe(recipe) {
         modalBoxRecipe.innerHTML = '';
         }
     })       
-
 return card;
 }
 
