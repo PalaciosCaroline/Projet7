@@ -4,7 +4,6 @@ const icons = document.querySelectorAll('.btn_list i');
 const boxresults = document.querySelectorAll('.boxresults');
 const inputList = document.querySelectorAll('.inputList');
 
-
 export function buildUlListfilter(ArrayList, containerList) {
     containerList.innerHTML = '';
     ArrayList.forEach((item => {
