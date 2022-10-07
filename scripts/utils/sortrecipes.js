@@ -37,6 +37,3 @@ export function quickSort(recipesforsort, left, right) {
     }
     return recipesforsort;
 }
-
-
-
