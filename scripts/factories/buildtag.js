@@ -5,12 +5,13 @@ export function buildTagChoice(element, typeclass){
     const textTag = document.createElement('span');
     textTag.className = 'textTag';
     textTag.innerHTML = element;
-    const btnClose = document.createElement('img');
+    const btnClose = document.createElement('button');
     btnClose.className = 'btnClose';
-    btnClose.src = './assets/close.svg'
-    btnClose.setAttribute('data-element', element);
+    const btnIcon = document.createElement('icon');
+    btnIcon.className = 'fa-regular fa-circle-xmark';
     tagelement.appendChild(textTag);
     tagelement.appendChild(btnClose);
+    btnClose.appendChild(btnIcon);
     return tagelement;
 }
 
