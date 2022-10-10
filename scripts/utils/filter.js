@@ -142,6 +142,12 @@ function searchByFilter() {
     }
 }
 
+function ingredientIsHere(recipe, value){
+    if(recipe.ingredients.filter(item =>
+        item.ingredient.toLowerCase().includes(value)).length > 0){
+        return true;}
+}
+
 function filterBySearchBar(filterChoice) {
     if (filterChoice.value.length > 2) {
         let valueSought = filterChoice.value.toLowerCase();
@@ -161,12 +167,6 @@ function filterBySearchBar(filterChoice) {
         datasProxy.filtredRecipes = [...resultFilter];
     } else 
         return;
-}
-
-function ingredientIsHere(recipe, value){
-    if(recipe.ingredients.filter(item =>
-        item.ingredient.toLowerCase().includes(value)).length > 0){
-        return true;}
 }
 
 function filterByIngredient(filterChoice){
