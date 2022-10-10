@@ -1,12 +1,14 @@
 import {recipes} from '../data/recipes.js';
+import {quickSort} from '../utils/sortrecipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.js';
 import {boxresultsUl, buildUlListfilter} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
 const inputList = document.querySelectorAll('.inputList');
+let recipesSort = quickSort(recipes, 0, recipes.length - 1);
 let datas = {}
-datas.recipes = [...recipes]
+datas.recipes = [...recipesSort]
 
 let datasProxy = new Proxy(datas, {
     set: function(target, key, value) {
@@ -39,7 +41,7 @@ let datasProxy = new Proxy(datas, {
     }
 });
 
-datasProxy.filtredRecipes = [...recipes];
+datasProxy.filtredRecipes = [...recipesSort];
 
 document.querySelector('#search_bar').addEventListener('input', (e) => {
     let choiceFilter = {};
@@ -130,7 +132,7 @@ function removeTag(){
 }
 
 function searchRecipes() {
-    datasProxy.filtredRecipes = [...recipes];
+    datasProxy.filtredRecipes = [...recipesSort];
     datasProxy.searchfilter.forEach(choiceFilter => {
         if(choiceFilter.type == 'search_bar'){
            filterBySearchBar(choiceFilter);
@@ -142,13 +144,6 @@ function searchRecipes() {
            filterByUstensils(choiceFilter);
         }
     })
-}
-
-function ingredientIsHere(recipe, value){
-    if(recipe.ingredients.filter(item =>
-        item.ingredient.toLowerCase().includes(value)).length > 0){
-        return true;
-    }
 }
 
 function filterBySearchBar(choiceFilter){
