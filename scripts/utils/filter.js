@@ -161,7 +161,7 @@ function searchRecipeByFilter(research){
         const result = datasProxy.recipes.filter(recipe => (recipe.name.toLowerCase().includes(research.toLowerCase())) || recipe.ingredients.filter(item => item.ingredient.toLowerCase().includes(research.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(research.toLowerCase())));
         return result
     } else {
-        const result = [...recipes];
+        const result = [...recipesSort];
         return result;
     }
 }
