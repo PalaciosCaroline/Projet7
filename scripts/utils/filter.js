@@ -144,7 +144,7 @@ function searchByTag() {
             item.ingredient.toLowerCase().includes(tag.value)).length > 0)
             datasProxy.filtredRecipes = [...resultTag];
         } else if(tag.type == 'applianceUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
+            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value));
             datasProxy.filtredRecipes = [...resultTag];
         } else if (tag.type == 'ustensilsUl'){
             const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
