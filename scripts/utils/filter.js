@@ -1,5 +1,5 @@
 import {recipes} from '../data/recipes.js';
-import {quickSort} from '../utils/sortrecipes.js';
+import {quickSort, getStringForCompare} from '../utils/sortrecipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.js';
 import {boxresultsUl, buildUlListfilter} from '../factories/buildListForTag.js';
@@ -66,7 +66,7 @@ function getIngredientsList(recipes){
 
     inputList[0].addEventListener('input', (e) => {
         let research = e.target.value;
-        let newIngredientsArray = ingredientsArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
+        let newIngredientsArray = ingredientsArray.filter(item => getStringForCompare(item).includes(getStringForCompare(research)));
         buildUlListfilter(newIngredientsArray, boxresultsUl[0]);
         getChosenTag();
     })
@@ -82,7 +82,7 @@ function getApplianceList(recipes){
 
     inputList[1].addEventListener('input', (e) => {
         let research = e.target.value;
-        let newApplianceArray = applianceArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
+        let newApplianceArray = applianceArray.filter(item => getStringForCompare(item).includes(getStringForCompare(research)));
         buildUlListfilter(newApplianceArray, boxresultsUl[1]);
         getChosenTag();
     })
@@ -98,7 +98,7 @@ function getUstensilsList(recipes){
 
     inputList[2].addEventListener('input', (e) => {
         let research = e.target.value;
-        let newUstensilsArray = ustensilsArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
+        let newUstensilsArray = ustensilsArray.filter(item => getStringForCompare(item).includes(getStringForCompare(research)));
         buildUlListfilter(newUstensilsArray, boxresultsUl[2]);
         getChosenTag();
     })
@@ -144,18 +144,18 @@ function searchByFilter() {
 
 function ingredientIsHere(recipe, value){
     if(recipe.ingredients.filter(item =>
-        item.ingredient.toLowerCase().includes(value)).length > 0){
+        getStringForCompare(item.ingredient).includes(value)).length > 0){
         return true;}
 }
 
 function filterBySearchBar(filterChoice) {
     if (filterChoice.value.length > 2) {
-        let valueSought = filterChoice.value.toLowerCase();
+        let valueSought = getStringForCompare(filterChoice.value);
         let resultFilter = [];
         for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
             let recipe = datasProxy.filtredRecipes[i];
-            let name = recipe.name.toLowerCase();
-            let description = recipe.description.toLowerCase();
+            let name = getStringForCompare(recipe.name);
+            let description = getStringForCompare(recipe.description);
             if ( ingredientIsHere(recipe, valueSought)){
                 resultFilter.push(recipe); 
             } else if (description.includes(valueSought)) {
