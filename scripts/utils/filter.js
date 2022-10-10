@@ -1,5 +1,5 @@
 import {recipes} from '../data/recipes.js';
-import {quickSort} from '../utils/sortrecipes.js';
+import {quickSort, getStringForCompare} from '../utils/sortrecipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/header.js';
 import {boxresultsUl, buildUlListfilter} from '../factories/buildListForTag.js';
@@ -69,7 +69,7 @@ function getIngredientsList(recipes){
 
     inputList[0].addEventListener('input', (e) => {
         let research = e.target.value;
-        let newIngredientsArray = ingredientsArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
+        let newIngredientsArray = ingredientsArray.filter(item => getStringForCompare(item).includes(getStringForCompare(research)));
         buildUlListfilter(newIngredientsArray, boxresultsUl[0]);
         getChosenTag();
     })
@@ -85,7 +85,7 @@ function getApplianceList(recipes){
 
     inputList[1].addEventListener('input', (e) => {
         let research = e.target.value;
-        let newApplianceArray = applianceArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
+        let newApplianceArray = applianceArray.filter(item => getStringForCompare(item).includes(getStringForCompare(research)));
         buildUlListfilter(newApplianceArray, boxresultsUl[1]);
         getChosenTag();
     })
@@ -101,7 +101,7 @@ function getUstensilsList(recipes){
 
     inputList[2].addEventListener('input', (e) => {
         let research = e.target.value;
-        let newUstensilsArray = ustensilsArray.filter(item => item.toLowerCase().includes(research.toLowerCase()));
+        let newUstensilsArray = ustensilsArray.filter(item => getStringForCompare(item).includes(getStringForCompare(research)));
         buildUlListfilter(newUstensilsArray, boxresultsUl[2]);
         getChosenTag();
     })
@@ -148,8 +148,9 @@ function searchRecipes() {
 
 function filterBySearchBar(choiceFilter){
     if (choiceFilter.value.length > 2){
-        const resultfilter = datasProxy.filtredRecipes.filter(recipe => (recipe.name.toLowerCase().includes(choiceFilter.value.toLowerCase())) || recipe.ingredients.filter(item =>
-            item.ingredient.toLowerCase().includes(choiceFilter.value.toLowerCase())).length > 0 || (recipe.description.toLowerCase().includes(choiceFilter.value.toLowerCase())));
+        let choiceFilterForSort = getStringForCompare(choiceFilter.value);
+        const resultfilter = datasProxy.filtredRecipes.filter(recipe => (getStringForCompare(recipe.name).includes(choiceFilterForSort)) || recipe.ingredients.filter(item =>
+            getStringForCompare(item.ingredient).includes(choiceFilterForSort)).length > 0 || (getStringForCompare(recipe.description).includes(choiceFilterForSort)));
         datasProxy.filtredRecipes = [...resultfilter];
     } else return;
 }
