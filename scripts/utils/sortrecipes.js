@@ -1,3 +1,16 @@
+export function getStringForCompare(string) {
+    return string
+      .toLowerCase()
+       .replace(/[àäâ]/g, "a")
+      .replace(/[éèêë]/g, "e")
+      .replace(/[']/g, "")
+      .replace(/[\d]/g, "")
+      .replace(/[ç]/g, "c")
+      .replace(/[îï]/g, "i")
+      .replace(/[ôö]/g, "o")
+      .replace(/[ùûû]/g, "u");
+}
+
 function swap(recipesforsort, leftIndex, rightIndex){
     var temp = recipesforsort[leftIndex];
     recipesforsort[leftIndex] = recipesforsort[rightIndex];
@@ -9,10 +22,10 @@ function partition(recipesforsort, left, right) {
         i       = left, //left pointer
         j       = right; //right pointer
     while (i <= j) {
-        while (recipesforsort[i].name < pivot.name) {
+        while (getStringForCompare(recipesforsort[i].name) < getStringForCompare(pivot.name)) {
             i++;
         }
-        while (recipesforsort[j].name > pivot.name) {
+        while (getStringForCompare(recipesforsort[j].name) > getStringForCompare(pivot.name)) {
             j--;
         }
         if (i <= j) {
@@ -37,5 +50,3 @@ export function quickSort(recipesforsort, left, right) {
     }
     return recipesforsort;
 }
-
-
