@@ -186,9 +186,12 @@ function searchRecipeByFor(research) {
 }
 
 function ingredientIsHere(recipe, value){
-    if(recipe.ingredients.filter(item =>
-        getStringForCompare(item.ingredient).includes(value)).length > 0){
-        return true;}
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+        if(getStringForCompare(recipe.ingredients[i].ingredient) === value){
+            return true;
+        }
+    }
+    return false
 }
 
 
