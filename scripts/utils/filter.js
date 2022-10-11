@@ -156,12 +156,12 @@ function searchRecipeByFor(research) {
             let recipe = datasProxy.filtredRecipes[i];
             let name = getStringForCompare(recipe.name);
             let description = getStringForCompare(recipe.description);
-            if ( ingredientIsHere(recipe, valueSought)){
+            if (name.includes(valueSought)) {
+                result.push(recipe);  
+            } else if ( ingredientIsHere(recipe, valueSought)){
                 result.push(recipe); 
             } else if (description.includes(valueSought)) {
-            result.push(recipe);
-            } else if (name.includes(valueSought)) {
-                result.push(recipe);   
+                result.push(recipe);
             }
         }
         return result;
