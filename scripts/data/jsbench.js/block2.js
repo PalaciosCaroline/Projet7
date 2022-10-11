@@ -3,29 +3,23 @@ function searchRecipeByFilter(research) {
     let result = [];
     if(research.length >= datasProxy.searchLength && research.length > 2) {
         for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
-            let recipe = datasProxy.filtredRecipes[i];
-            let name = getStringForCompare(recipe.name);
-            let description = getStringForCompare(recipe.description);
-            if ( ingredientIsHere(recipe, valueSought)){
-                result.push(recipe); 
-            } else if (description.includes(valueSought)) {
-            result.push(recipe);
-            } else if (name.includes(valueSought)) {
-                result.push(recipe);   
+            if ( ingredientIsHere(datasProxy.filtredRecipes[i], valueSought)){
+                result.push(datasProxy.filtredRecipes[i]); 
+            } else if (getStringForCompare(datasProxy.filtredRecipes[i].description).includes(valueSought)) {
+            result.push(datasProxy.filtredRecipes[i]);
+            } else if (getStringForCompare(datasProxy.filtredRecipes[i].name).includes(valueSought)) {
+                result.push(datasProxy.filtredRecipes[i]);   
             }
         }
         return result;
     } else if (research.length < datasProxy.searchLength && research.length > 2) {
-        for (let i = 0; i < datasProxy.recipes.length; i++) {
-            let recipe = datasProxy.recipes[i];
-            let name = getStringForCompare(recipe.name);
-            let description = getStringForCompare(recipe.description);
-            if ( ingredientIsHere(recipe, valueSought)){
-                result.push(recipe); 
-            } else if (description.includes(valueSought)) {
-            result.push(recipe);
-            } else if (name.includes(valueSought)) {
-                result.push(recipe);   
+        for (let i = 0; i < datasProxy.recipes.length; i++) {       
+            if ( ingredientIsHere(datasProxy.recipes[i], valueSought)){
+                result.push(datasProxy.recipes[i]); 
+            } else if (getStringForCompare(datasProxy.recipes[i].description).includes(valueSought)) {
+            result.push(datasProxy.recipes[i]);
+            } else if (getStringForCompare(datasProxy.recipes[i].name).includes(valueSought)) {
+                result.push(datasProxy.recipes[i]);   
             }
         }
         return result;
