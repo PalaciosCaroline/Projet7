@@ -205,11 +205,18 @@ fieldset:nth-child(1) .form-control::placeholder {
     }
 }
 @media screen and (max-width: 500px) {
+    .fieldsetTag{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .boxresults ul{
         width: 200px; 
     }
-    .boxresults{
+    .fieldsetTag .boxresults{
         margin-right: 20px;
+        margin-right: 0;
+        padding-bottom: 15px;
     }
     .boxresultIngredients.open,
     .boxresultAppliance.open,
@@ -224,6 +231,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     .boxresults button{
         width: 50px;
     }
+
     #modal .card .cardText{
         padding-left: 10px;
         padding-right: 10px;
@@ -463,16 +471,66 @@ fieldset:nth-child(1) .form-control::placeholder {
     object-fit: cover;
     border-radius: 15px 15px 0 0;
 }
+@media screen and (max-width: 1000px) {
+    .card-deck .card{
+        min-width: 320px;
+    } 
+    #modal #cardHeader{
+        height: auto;
+    }
+}
 
 @media screen and (max-width: 800px) {
     #modal .card .cardText{
         padding-left: 30px;
         padding-right: 30px;
-    }    
+    }  
+    #modal #cardHeader{
+        display: flex;
+        flex-direction: column;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }  
 }
+
 @media screen and (max-width: 500px) {
+    #modal .header_page{
+        margin-top: 35px;
+    }
+
+    #modal #cardHeader{
+        display: flex;
+        flex-direction: column;
+        margin-top: 0;
+        margin-bottom: 10px;
+        height: auto;
+    }
+    #modal #cardHeader h2{
+        font-size: 2rem;
+    }
+    #modal .card .cardTime{
+        align-self: flex-end;
+        min-width: 150px;
+    }
     #modal .card .cardText{
-        padding-left: 10px;
-        padding-right: 10px;
-    }    
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #modal .card .card_textContent{ 
+        display: flex;
+        flex-direction: column;
+    }
+    #modal .card ul{
+        min-width: 100%;
+    }
+    #modal .card #card_description{
+        min-width: 100%;
+    }
+    #modal button{
+        top: 2px;
+    }
+    
+    .card-deck .card{
+        min-width: 310px;
+    } 
 }
