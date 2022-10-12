@@ -14,7 +14,6 @@ function searchRecipeByFilter(research) {
         for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
             if (getStringForCompare(datasProxy.filtredRecipes[i].name).includes(valueSought)) {
                 result.push(datasProxy.filtredRecipes[i]);  
-            
             } else if ( ingredientIsHere(datasProxy.filtredRecipes[i], valueSought)){
                 result.push(datasProxy.filtredRecipes[i]); 
             } else if (getStringForCompare(datasProxy.filtredRecipes[i].description).includes(valueSought)) {
