@@ -117,19 +117,24 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding: 0;
     margin-left:0;
 }
+.boxresults .boxinput{
+    display: flex;
+}
 
 .boxresults label{
     display: flex;
     justify-content: space-between;
-    height: 100%; 
+    width: calc(100% - 70px);
 }
 
 .boxresults input{
     height: 100%;
+    padding-top: 9px;
+    padding-bottom:3px;
 }
 
 .boxresults button{
-    width: 80px;
+    width: 70px;
     padding: 0;
 }
 
@@ -594,3 +599,4 @@ fieldset:nth-child(1) .form-control::placeholder {
         min-width:100%;
     } 
 }
+
