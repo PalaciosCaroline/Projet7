@@ -188,56 +188,105 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding:0;
     display: flex;
 }
-
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
     .boxresults ul{
-        width: 280px; 
+        max-width: 500px; 
     }
 
     .boxresultIngredients.open,
     .boxresultAppliance.open,
     .boxresultUstensils.open{
-        width: 280px;
+        min-width: 500px;
+        max-width: 500px;
     } 
 
     .boxresults li{
-        width: 44%;
+        width: 33%;
     }
 }
-@media screen and (max-width: 500px) {
+
+
+@media screen and (max-width: 1000px) {
+    .boxresults ul{
+        min-width: 350px; 
+    }
+
+    .boxresultIngredients.open,
+    .boxresultAppliance.open,
+    .boxresultUstensils.open{
+        max-width: 350px;
+    } 
+
+    .boxresults li{
+        width: 33%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .boxresults ul{
+        max-width: 250px; 
+        min-width: 250px; 
+    }
+    .inputList{
+        padding-right: 0;
+    }
+    .boxresults{
+        margin-right: 10px;
+    }
+    .boxresultIngredients.open,
+    .boxresultAppliance.open,
+    .boxresultUstensils.open{
+        min-width: 250px;
+        max-width: 250px;
+    } 
+    .boxresults li{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 600px) {
     .fieldsetTag{
         display:flex;
         flex-direction: column;
         align-items: center;
     }
     .boxresults ul{
-        width: 200px; 
+        max-width: 300px; 
     }
     .fieldsetTag .boxresults{
         margin-right: 20px;
         margin-right: 0;
-        padding-bottom: 15px;
+        margin-bottom: 15px;
     }
+    
     .boxresultIngredients.open,
     .boxresultAppliance.open,
     .boxresultUstensils.open{
         transition: transform 0.3s;
-        width: 200px;
+        min-width: 300px;
     } 
 
     .boxresults li{
-        width: 100%;
+        width: 50%;
     }
     .boxresults button{
         width: 50px;
     }
-
-    #modal .card .cardText{
-        padding-left: 10px;
-        padding-right: 10px;
-    }    
 }
+@media screen and (max-width: 350px) {
+    .boxresults ul{
+        max-width: 100%;
+        min-width: 300px; 
+    }
+    
+    .boxresultIngredients.open,
+    .boxresultAppliance.open,
+    .boxresultUstensils.open{
+        max-width: 300px; 
+    } 
 
+    .boxresults li{
+        width: 50%;
+    }
+}
 .search_ingredients input:focus-visible,
 .search_ingredients input,
 .search_ingredients,
@@ -334,7 +383,6 @@ fieldset:nth-child(1) .form-control::placeholder {
 }
 
 .card .card-img-top{
-    /* background-color: #C7BEBE; */
     height: 178px;
     width: 100%;
     display: block;
@@ -490,36 +538,43 @@ fieldset:nth-child(1) .form-control::placeholder {
         flex-direction: column;
         margin-top: 0;
         margin-bottom: 10px;
-    }  
-}
-
-@media screen and (max-width: 500px) {
-    #modal .header_page{
-        margin-top: 35px;
-    }
-
-    #modal #cardHeader{
-        display: flex;
-        flex-direction: column;
-        margin-top: 0;
-        margin-bottom: 10px;
         height: auto;
-    }
-    #modal #cardHeader h2{
-        font-size: 2rem;
-    }
+    } 
+
     #modal .card .cardTime{
         align-self: flex-end;
         min-width: 150px;
     }
+
+    #modal .card img,
+    #modal .card{
+        border-radius: 0%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #box_recipes{
+        margin-top: 20px;
+    } 
+
+    #modal .header_page{
+        margin-top: 35px;
+    }
+
+    #modal #cardHeader h2{
+        font-size: 2rem;
+    }
+    
     #modal .card .cardText{
         padding-left: 20px;
         padding-right: 20px;
     }
+
     #modal .card .card_textContent{ 
         display: flex;
         flex-direction: column;
     }
+
     #modal .card ul{
         min-width: 100%;
     }
@@ -529,8 +584,13 @@ fieldset:nth-child(1) .form-control::placeholder {
     #modal button{
         top: 2px;
     }
-    
+
+    #modal .card .cardText{
+        padding-left: 20px;
+        padding-right: 20px;
+    }    
+
     .card-deck .card{
-        min-width: 310px;
+        min-width:100%;
     } 
 }
