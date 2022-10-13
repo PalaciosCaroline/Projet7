@@ -127,21 +127,6 @@ function removeTag(){
     }
 }
 
-function searchByFilter() {
-    datasProxy.filtredRecipes = [...recipesSort];
-    datasProxy.searchfilter?.forEach(filterChoice => {
-        if(filterChoice.type == 'search_bar'){
-            filterBySearchBar(filterChoice);
-        } else if(filterChoice.type == 'ingredientsUl'){
-            filterByIngredient(filterChoice);
-        } else if(filterChoice.type == 'applianceUl'){
-            filterByAppliance(filterChoice);
-        } else if (filterChoice.type == 'ustensilsUl'){
-            filterByUstensils(filterChoice);
-        }
-    })
-}
-
 function filterBySearchBar(filterChoice) {
     if (filterChoice.value.length > 2){
         let filterChoiceForSort = getStringForCompare(filterChoice.value);
@@ -155,7 +140,7 @@ function filterBySearchBar(filterChoice) {
 
 function filterByIngredient(filterChoice){
 const resultFilter = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
-    item.ingredient.toLowerCase().includes(filterChoice.value)).length > 0)
+    item.ingredient.toLowerCase().includes(filterChoice.value.toLowerCase())).length > 0)
     datasProxy.filtredRecipes = [...resultFilter];
 }
 
@@ -166,6 +151,21 @@ function filterByAppliance(filterChoice){
 
 function filterByUstensils(filterChoice){
     const resultFilter = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
-        item.toLowerCase().includes(filterChoice.value)).length > 0)
+        item.toLowerCase().includes(filterChoice.value.toLowerCase())).length > 0)
         datasProxy.filtredRecipes = [...resultFilter];
+}
+
+function searchByFilter() {
+    datasProxy.filtredRecipes = [...recipesSort];
+    datasProxy.searchfilter?.forEach(filterChoice => {
+        if(filterChoice.type == 'search_bar'){
+            filterBySearchBar(filterChoice);
+        } else if(filterChoice.type == 'ingredientsUl'){
+            filterByIngredient(filterChoice);
+        } else if(filterChoice.type == 'applianceUl'){
+            filterByAppliance(filterChoice);
+        } else if (filterChoice.type == 'ustensilsUl'){
+            filterByUstensils(filterChoice);
+        }
+    })
 }
