@@ -22,20 +22,20 @@
 <div class="container_page">
     <header class="header_page container header_modal">
         <img src="./assets/logo_toque.png" alt="logo toque de cuisinier" class="d-block mx-auto logo_toque">
-        <h1 class=""><img class= "d-block mx-auto" src="./assets/Les petits plats.png" alt="Les petits plats"></h1>
+        <h1 class=""><img class= "d-block mx-auto" src="./assets/Les_petits_plats.png" alt="Les petits plats"></h1>
     </header>
 
     <div id="modal">
         <header class="header_page container">
         <img src="./assets/logo_toque.png" alt="logo toque de cuisinier" class="d-block mx-auto logo_toque">
-        <h1 class=""><img class= "d-block mx-auto" src="./assets/Les petits plats.png" alt="Les petits plats"></h1>
+        <h1 class=""><img class= "d-block mx-auto" src="./assets/Les_petits_plats.png" alt="Les petits plats"></h1>
         </header>
         <button id="btn_closeModal"><i class="fa-solid fa-circle-xmark"></i></button><div id="modalBoxRecipe"></div>
     </div>
 
     <main>
         <header class="section-header">
-            <form action="">
+            <form action="html">
                 <fieldset id="fieldset_searchbar">
                     <div class="input_search_bar input-group p-1">
                     <input type="search" placeholder="Rechercher une recette" aria-describedby="button-addon3" class="input_search_bar form-control  border-0" id="search_bar">
@@ -44,42 +44,43 @@
                     </div>
                     </div>
                     <div id="noresult_box" class="text-white">
-                        <div class="norecipe">
-                            <span>Aucune recette ne correspond à votre critère… Vous pouvez chercher « tarte aux pommes », « poisson », etc.</span>
+                        <div class="norecipe">Aucune recette ne correspond à votre critère… Vous pouvez chercher « tarte aux pommes », « poisson », etc.
                         </div>
                     </div>
                 </fieldset>
-
                 
                 <div id="tagChoice_box"></div>
                 
                 <fieldset class="fieldsetTag">
                     <div class="boxresultIngredients boxresults ">
-                        <div class="search_ingredients  border-bottom align-items-center">
+                        <div class="search_ingredients boxinput border-bottom align-items-center">
                             <label class="label_ingredients" for="ingredients">
                             <input type="search"    placeholder="Ingrédients" aria-describedby="button-addon3" class="input_search_bar inputList form-control  border-0 text-white" id="ingredients">
-                                <button id="btn_ingredients" type="button" class="btn_ingredients btn btn-link btn_list text-success"><i class="fa fa-chevron-down text-white"></i></button>
-                        </label>
+                            </label>
+                                <button type="button" class="btn_ingredients btn btn-link btn_list text-success"><i class="fa fa-chevron-down text-white"></i></button>
+                        
                         </div>  
                         <ul id="ingredientsUl" class="boxresultsUl"></ul>
                     </div>
 
                     <div class="boxresultAppliance boxresults">
-                        <div class="search_appareils border-bottom align-items-center">
+                        <div class="search_appareils boxinput border-bottom align-items-center">
                             <label class="label_appliance" for="appliance">
-                            <input type="search"  placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar inputList form-control  border-0 text-white" id="appliance">
-                                <button id="button-addon3" type="button" class="btn btn_list btn_appliance btn-link text-success"><i class="fa fa-chevron-down text-white"></i></button>
+                                <input type="search"  placeholder="Appareils" aria-describedby="button-addon3" class="input_search_bar inputList form-control  border-0 text-white" id="appliance">
                             </label>
+                            <button type="button" class="btn btn_list btn_appliance btn-link text-success"><i class="fa fa-chevron-down text-white"></i></button>
+                            
                         </div>
                         <ul id="applianceUl" class="boxresultsUl"></ul>
                     </div>  
 
                     <div class="boxresultUstensils boxresults">
-                        <div class="search_ustensils border-bottom align-items-center">
+                        <div class="search_ustensils boxinput border-bottom align-items-center">
                             <label class="label_ustensils" for="ustensils">
-                            <input type="search"  placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar inputList form-control  border-0 text-white" id="ustensils">
-                                <button id="button-addon3" type="button" class="btn btn_ustensils btn-link btn_list text-success"><i class="fa fa-chevron-down text-white"></i></button>
+                                <input type="search"  placeholder="Ustensils" aria-describedby="button-addon3" class="input_search_bar inputList form-control  border-0 text-white" id="ustensils">
                             </label>
+                            <button type="button" class="btn btn_ustensils btn-link btn_list text-success"><i class="fa fa-chevron-down text-white"></i></button>
+                            
                         </div>  
                         <ul id="ustensilsUl" class="boxresultsUl"></ul>
                     </div>                
