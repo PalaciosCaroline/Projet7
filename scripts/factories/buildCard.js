@@ -26,7 +26,7 @@ export function getCardRecipe(recipe) {
        }
 
     const card = document.createElement('article');
-    card.className = 'card border-secondary'
+    card.className = 'card border-secondary';
     const cardContent = `
     <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
     <div class="cardText card-body">
@@ -52,7 +52,7 @@ export function getCardRecipe(recipe) {
     modal.style.display = 'flex';
     modalBoxRecipe.innerHTML = '';
     const cardModal = document.createElement('article');
-    cardModal.className = 'card border-secondary'
+    cardModal.className = 'card'
     cardModal.innerHTML = cardContent;
     modalBoxRecipe.append(cardModal);
     })

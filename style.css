@@ -281,7 +281,6 @@ fieldset:nth-child(1) .form-control::placeholder {
     .boxresultAppliance.open,
     .boxresultUstensils.open{
         max-width: 300px; 
-  
     } 
 
     .boxresults li{
@@ -384,7 +383,6 @@ fieldset:nth-child(1) .form-control::placeholder {
 }
 
 .card .card-img-top{
-    /* background-color: #C7BEBE; */
     height: 178px;
     width: 100%;
     display: block;
