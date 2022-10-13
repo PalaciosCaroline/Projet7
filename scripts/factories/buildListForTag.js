@@ -44,6 +44,7 @@ export function getOpenListTag() {
         if(!item.classList.contains('isOpen')){
             item.classList.add('isOpen');
             if(item.classList.contains('btn_ingredients')){
+            // if(e.target.id = 'btn_ingredients'){
                     openListTagChoice(icons[0], 0, icons[1], 1, icons[2], 2);
             }else if(item.classList.contains('btn_appliance')){
                     openListTagChoice(icons[1], 1, icons[0], 0, icons[2], 2);
