@@ -275,6 +275,9 @@ fieldset:nth-child(1) .form-control::placeholder {
     .boxresults button{
         width: 50px;
     }
+    .norecipe{
+        font-size: 1rem;
+    }
 }
 @media screen and (max-width: 350px) {
     .boxresults ul{

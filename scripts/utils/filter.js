@@ -139,14 +139,14 @@ function searchByTag() {
     datasProxy.searchTag?.forEach(tag => {
         if(tag.type == 'ingredientsUl'){
             const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
-            item.ingredient.toLowerCase().includes(tag.value)).length > 0)
+            item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
             datasProxy.filtredRecipes = [...resultTag];
         } else if(tag.type == 'applianceUl'){
             const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
             datasProxy.filtredRecipes = [...resultTag];
         } else if (tag.type == 'ustensilsUl'){
             const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
-            item.toLowerCase().includes(tag.value)).length > 0)
+            item.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
             datasProxy.filtredRecipes = [...resultTag];
         }
     })
