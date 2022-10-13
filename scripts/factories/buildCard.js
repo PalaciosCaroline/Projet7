@@ -52,7 +52,7 @@ export function getCardRecipe(recipe) {
     modal.style.display = 'flex';
     modalBoxRecipe.innerHTML = '';
     const cardModal = document.createElement('article');
-    cardModal.className = 'card border-secondary'
+    cardModal.className = 'card'
     cardModal.innerHTML = cardContent;
     modalBoxRecipe.append(cardModal);
     })
