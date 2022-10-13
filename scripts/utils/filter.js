@@ -171,7 +171,7 @@ function filterBySearchBar(filterChoice) {
 
 function filterByIngredient(filterChoice){
 const resultFilter = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
-    item.ingredient.toLowerCase().includes(filterChoice.value)).length > 0)
+    item.ingredient.toLowerCase().includes(filterChoice.value.toLowerCase())).length > 0)
     datasProxy.filtredRecipes = [...resultFilter];
 }
 
@@ -182,6 +182,6 @@ function filterByAppliance(filterChoice){
 
 function filterByUstensils(filterChoice){
     const resultFilter = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
-        item.toLowerCase().includes(filterChoice.value)).length > 0)
+        item.toLowerCase().includes(filterChoice.value.toLowerCase())).length > 0)
         datasProxy.filtredRecipes = [...resultFilter];
 }
