@@ -12,8 +12,8 @@ export function buildUlListfilter(ArrayList, containerList) {
     containerList.innerHTML = '';
     ArrayList.forEach((item => {
         const liSortingItem = document.createElement('li');
-        item = CapitlizeString(item);
-        liSortingItem.innerHTML = item;
+        let newItem = CapitlizeString(item);
+        liSortingItem.innerHTML = newItem;
         liSortingItem.className = 'p-2 liSorting-item text-white';
         containerList.appendChild(liSortingItem);
     })) 
