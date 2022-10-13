@@ -137,19 +137,31 @@ function removeTag(){
     } 
 }
 
+function filterRecipeByIngredients(tag){
+    const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
+        item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
+        datasProxy.filtredRecipes = [...resultTag];
+}
+    
+function filterRecipeByAppliance(tag){
+    const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
+    datasProxy.filtredRecipes = [...resultTag];
+}
+    
+function filterRecipeByUstensils(tag){
+    const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
+    item.toLowerCase().includes(tag.value.toLowerCase())).length > 0);
+    datasProxy.filtredRecipes = [...resultTag];
+}
+
 function searchByTag() {
-    datasProxy.searchTag?.forEach(tag => {
+    datasProxy.searchTag.forEach(tag => {
         if(tag.type == 'ingredientsUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
-            item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
-            datasProxy.filtredRecipes = [...resultTag];
+            filterRecipeByIngredients(tag);
         } else if(tag.type == 'applianceUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
-            datasProxy.filtredRecipes = [...resultTag];
+            filterRecipeByAppliance(tag);
         } else if (tag.type == 'ustensilsUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
-            item.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
-            datasProxy.filtredRecipes = [...resultTag];
+            filterRecipeByUstensils(tag);
         }
     })
 }
