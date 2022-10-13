@@ -139,7 +139,7 @@ function searchByTag() {
     datasProxy.searchTag?.forEach(tag => {
         if(tag.type == 'ingredientsUl'){
             const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
-            item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
+            item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0);
             datasProxy.filtredRecipes = [...resultTag];
         } else if(tag.type == 'applianceUl'){
             const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
