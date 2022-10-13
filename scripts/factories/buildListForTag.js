@@ -4,11 +4,15 @@ const icons = document.querySelectorAll('.btn_list i');
 const boxresults = document.querySelectorAll('.boxresults');
 const inputList = document.querySelectorAll('.inputList');
 
-
+function CapitlizeString(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+   
 export function buildUlListfilter(ArrayList, containerList) {
     containerList.innerHTML = '';
     ArrayList.forEach((item => {
         const liSortingItem = document.createElement('li');
+        item = CapitlizeString(item);
         liSortingItem.innerHTML = item;
         liSortingItem.className = 'p-2 liSorting-item text-white';
         containerList.appendChild(liSortingItem);

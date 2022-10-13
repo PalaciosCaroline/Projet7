@@ -197,7 +197,7 @@ function ingredientIsHere(recipe, value){
 
 function filterRecipeByIngredients(tag){
 const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
-    item.ingredient.toLowerCase().includes(tag.value)).length > 0)
+    item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
     datasProxy.filtredRecipes = [...resultTag];
 }
 
@@ -208,6 +208,6 @@ datasProxy.filtredRecipes = [...resultTag];
 
 function filterRecipeByUstensils(tag){
 const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
-item.toLowerCase().includes(tag.value)).length > 0)
+item.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
 datasProxy.filtredRecipes = [...resultTag];
 }
