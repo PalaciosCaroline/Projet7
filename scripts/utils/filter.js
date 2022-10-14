@@ -148,43 +148,6 @@ function searchByTag() {
     })
 }
 
-// function searchRecipeBySearchBar(research) {
-//     let valueSought = getStringForCompare(research);
-//     let result = [];
-//     if(research.length >= datasProxy.searchLength && research.length > 2) {
-//         for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
-//             let recipe = datasProxy.filtredRecipes[i];
-//             let name = getStringForCompare(recipe.name);
-//             let description = getStringForCompare(recipe.description);
-//             if (name.includes(valueSought)) {
-//                 result.push(recipe);  
-//             } else if ( ingredientIsHere(recipe, valueSought)){
-//                 result.push(recipe); 
-//             } else if (description.includes(valueSought)) {
-//                 result.push(recipe);
-//             }
-//         }
-//         return result;
-//     } else if (research.length < datasProxy.searchLength && research.length > 2) {
-//         for (let i = 0; i < datasProxy.recipes.length; i++) {
-//             let recipe = datasProxy.recipes[i];
-//             let name = getStringForCompare(recipe.name);
-//             let description = getStringForCompare(recipe.description);
-//             if (name.includes(valueSought)) {
-//                 result.push(recipe); 
-//             } else if ( ingredientIsHere(recipe, valueSought)){
-//                 result.push(recipe);
-//             } else if (description.includes(valueSought)) {
-//                 result.push(recipe);
-//             }
-//         }
-//         return result;
-//     } else {
-//         const result = [...recipesSort];
-//         return result;
-//     }
-// }
-
 function searchRecipeBySearchBar(research) {
     let result = [];
     if(research.length >= datasProxy.searchLength && research.length > 2) {
@@ -198,16 +161,16 @@ function searchRecipeBySearchBar(research) {
 }
 
 function searchStringInAllRecipe(research,arrayOfRecipe,arrayOfResult){
-    let valueSought = getStringForCompare(research);
+    research = getStringForCompare(research);
     for (let i = 0; i < arrayOfRecipe.length; i++) {
         let recipe = arrayOfRecipe[i];
         let name = getStringForCompare(recipe.name);
         let description = getStringForCompare(recipe.description);
-        if (name.includes(valueSought)) {
+        if (name.includes(research)) {
             arrayOfResult.push(recipe); 
-        } else if ( ingredientIsHere(recipe, valueSought)){
+        } else if ( ingredientIsHere(recipe, research)){
             arrayOfResult.push(recipe);
-        } else if (description.includes(valueSought)) {
+        } else if (description.includes(research)) {
             arrayOfResult.push(recipe);
         }
     }
