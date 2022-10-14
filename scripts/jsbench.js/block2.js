@@ -7,7 +7,7 @@ function ingredientIsHere(recipe, value){
     return false;
 }
 
-function searchRecipeByFilter(research) {
+function searchRecipeBySearchBar(research) {
     let valueSought = getStringForCompare(research);
     let result = [];
     if(research.length >= datasProxy.searchLength && research.length > 2) {

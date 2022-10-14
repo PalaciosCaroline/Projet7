@@ -30,7 +30,7 @@ export let datasProxy = new Proxy(datas, {
             break;
             case 'searchString': {
                 //filtrer les recettes en fonction de la recherche
-                const result = searchRecipeByFilter(value);
+                const result = searchRecipeBySearchBar(value);
                 //actualiser la liste des recherches filtrées
                 datasProxy.filtredRecipes = [...result];
                 searchByTag();
@@ -43,7 +43,7 @@ export let datasProxy = new Proxy(datas, {
                 searchByTag();
                 removeTag();
                 if(datas.searchString){
-                    const result = searchRecipeByFilter(datas.searchString);
+                    const result = searchRecipeBySearchBar(datas.searchString);
                     if(result) { datasProxy.filtredRecipes = [...result];
                     }
                 }
@@ -138,7 +138,8 @@ function removeTag(){
 function searchByTag() {
     datasProxy.searchTag?.forEach(tag => {
         if(tag.type == 'ingredientsUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
+            const resultTag = datasProxy.filtredRecipes.filter(recipe  => 
+            recipe.ingredients.filter(item =>
             item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0);
             datasProxy.filtredRecipes = [...resultTag];
         } else if(tag.type == 'applianceUl'){
@@ -153,21 +154,32 @@ function searchByTag() {
 }
 
 function ingredientIsHere(recipe, research){
-    return recipe.ingredients.filter(item =>
-        getStringForCompare(item.ingredient).includes(research)).length > 0 
+    recipe.ingredients.filter(item =>
+        (getStringForCompare(item.ingredient).includes(research)).length > 0); 
 }
 
-function searchRecipeByFilter(research){
+function searchStringInAllRecipe(recipe,research){
+    if (getStringForCompare(recipe.name).includes(research)) {
+        return recipe;
+    } else if (ingredientIsHere(recipe, research)){
+        return recipe;
+    } else if (getStringForCompare(recipe.description).includes(research)){
+        return recipe;
+    }
+}
+
+function searchRecipeBySearchBar(research){
     if(research.length >= datasProxy.searchLength && research.length > 2) {
         research = getStringForCompare(research);
-        const result = datasProxy.filtredRecipes.filter(recipe => (getStringForCompare(recipe.name).includes(research)) || ingredientIsHere(recipe, research) || (getStringForCompare(recipe.description).includes(research)));
-        return result
+        const result = datasProxy.filtredRecipes.filter(recipe => searchStringInAllRecipe(recipe,research));
+        return result;
     }else if (research.length < datasProxy.searchLength && research.length > 2) {
         research = getStringForCompare(research);
-        const result = datasProxy.recipes.filter(recipe => (getStringForCompare(recipe.name).includes(research)) || ingredientIsHere(recipe, research) || (getStringForCompare(recipe.description).includes(research)));
-        return result
+        const result = datasProxy.recipes.filter(recipe => searchStringInAllRecipe(recipe,research));
+        return result;
     } else {
         const result = [...recipesSort];
         return result;
     }
 }
+
