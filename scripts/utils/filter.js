@@ -137,17 +137,20 @@ function removeTag(){
     } 
 }
 
+//function intermédiaire de recherche par tag
 function filterRecipeByIngredients(tag){
     const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
         item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
         datasProxy.filtredRecipes = [...resultTag];
 }
-    
+
+//function intermédiaire de recherche par tag
 function filterRecipeByAppliance(tag){
     const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
     datasProxy.filtredRecipes = [...resultTag];
 }
-    
+
+//function intermédiaire de recherche par tag
 function filterRecipeByUstensils(tag){
     const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
     item.toLowerCase().includes(tag.value.toLowerCase())).length > 0);
@@ -166,6 +169,7 @@ function searchByTag() {
     })
 }
 
+//function intermédiaire de recherche searchbar
 function ingredientIsHere(recipe, research){
     return recipe.ingredients.filter(item =>
         getStringForCompare(item.ingredient).includes(research)).length > 0 
