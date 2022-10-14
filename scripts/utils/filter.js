@@ -2,15 +2,16 @@ import {recipes} from '../data/recipes.js';
 import {quickSort, getStringForCompare} from '../utils/sortrecipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/alertnorecipe.js';
-import {boxresultsUl, buildUlListfilter} from '../factories/buildListForTag.js';
+import {boxresultsUl} from '../factories/buildListForTag.js';
+import {buildUlListfilter} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
-const inputList = document.querySelectorAll('.inputList');
 let recipesSort = quickSort(recipes, 0, recipes.length - 1);
+const inputList = document.querySelectorAll('.inputList');
 let datas = {}
-datas.recipes = [...recipesSort]
+datas.recipes = [...recipesSort];
 
-export let datasProxy = new Proxy(datas, {
+let datasProxy = new Proxy(datas, {
     set: function(target, key, value) {
         target[key] = value;
         switch(key) {
@@ -22,6 +23,7 @@ export let datasProxy = new Proxy(datas, {
                     removeNoRecipeAlert();
                     }
                     displayRecipes(value);
+                    //mettre a jour la liste des ingredients
                     getIngredientsList(value);
                     getApplianceList(value);
                     getUstensilsList(value);
@@ -109,7 +111,7 @@ function getUstensilsList(recipes){
 }
 
 export function getChosenTag() {
-    const liSortingItem = document.querySelectorAll('.liSorting-item');
+    const liSortingItem = document.querySelectorAll('.liSorting-item')
     liSortingItem.forEach(item => item.addEventListener('click', (e) => {
         let tag = {};
         tag.value = e.target.textContent;
@@ -135,36 +137,52 @@ function removeTag(){
     } 
 }
 
+//function intermédiaire de recherche par tag
+function filterRecipeByIngredients(tag){
+    const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
+        item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
+        datasProxy.filtredRecipes = [...resultTag];
+}
+
+//function intermédiaire de recherche par tag
+function filterRecipeByAppliance(tag){
+    const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
+    datasProxy.filtredRecipes = [...resultTag];
+}
+
+//function intermédiaire de recherche par tag
+function filterRecipeByUstensils(tag){
+    const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
+    item.toLowerCase().includes(tag.value.toLowerCase())).length > 0);
+    datasProxy.filtredRecipes = [...resultTag];
+}
+
 function searchByTag() {
     datasProxy.searchTag?.forEach(tag => {
         if(tag.type == 'ingredientsUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe  => 
-            recipe.ingredients.filter(item =>
-            item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0);
-            datasProxy.filtredRecipes = [...resultTag];
+            filterRecipeByIngredients(tag);
         } else if(tag.type == 'applianceUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
-            datasProxy.filtredRecipes = [...resultTag];
+            filterRecipeByAppliance(tag);
         } else if (tag.type == 'ustensilsUl'){
-            const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
-            item.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
-            datasProxy.filtredRecipes = [...resultTag];
+            filterRecipeByUstensils(tag);
         }
     })
 }
 
+//function intermédiaire de recherche searchbar
 function ingredientIsHere(recipe, research){
     recipe.ingredients.filter(item =>
         (getStringForCompare(item.ingredient).includes(research)).length > 0); 
 }
 
+//function intermédiaire de recherche searchbar
 function searchStringInAllRecipe(recipe,research){
     if (getStringForCompare(recipe.name).includes(research)) {
-        return recipe;
+        return true;
     } else if (ingredientIsHere(recipe, research)){
-        return recipe;
+        return true;
     } else if (getStringForCompare(recipe.description).includes(research)){
-        return recipe;
+        return true;
     }
 }
 
@@ -182,4 +200,3 @@ function searchRecipeBySearchBar(research){
         return result;
     }
 }
-
