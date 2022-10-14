@@ -1,29 +1,45 @@
-function ingredientIsHere(recipe, research){
-    recipe.ingredients.filter(item =>
-        (getStringForCompare(item.ingredient).includes(research)).length > 0); 
-}
-
-function searchStringInAllRecipe(recipe,research){
-    if (getStringForCompare(recipe.name).includes(research)) {
-        return recipe;
-    } else if (ingredientIsHere(recipe, research)){
-        return recipe;
-    } else if (getStringForCompare(recipe.description).includes(research)){
-        return recipe;
-    }
-}
-
-function searchRecipeBySearchBar(research){
+function searchRecipeBySearchBar(research) {
+    let valueSought = getStringForCompare(research);
+    let result = [];
     if(research.length >= datasProxy.searchLength && research.length > 2) {
-        research = getStringForCompare(research);
-        const result = datasProxy.filtredRecipes.filter(recipe => searchStringInAllRecipe(recipe,research));
+        for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
+            let recipe = datasProxy.filtredRecipes[i];
+            let name = getStringForCompare(recipe.name);
+            let description = getStringForCompare(recipe.description);
+            if (name.includes(valueSought)) {
+                result.push(recipe);  
+            } else if ( ingredientIsHereOne(recipe, valueSought)){
+                result.push(recipe); 
+            } else if (description.includes(valueSought)) {
+                result.push(recipe);
+            }
+        }
         return result;
-    }else if (research.length < datasProxy.searchLength && research.length > 2) {
-        research = getStringForCompare(research);
-        const result = datasProxy.recipes.filter(recipe => searchStringInAllRecipe(recipe,research));
+    } else if (research.length < datasProxy.searchLength && research.length > 2) {
+        for (let i = 0; i < datasProxy.recipes.length; i++) {
+            let recipe = datasProxy.recipes[i];
+            let name = getStringForCompare(recipe.name);
+            let description = getStringForCompare(recipe.description);
+            if (name.includes(valueSought)) {
+                result.push(recipe); 
+            } else if ( ingredientIsHereOne(recipe, valueSought)){
+                result.push(recipe);
+            } else if (description.includes(valueSought)) {
+                result.push(recipe);
+            }
+        }
         return result;
     } else {
         const result = [...recipesSort];
         return result;
     }
+}
+
+function ingredientIsHereOne(recipe, value){
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+        if(getStringForCompare(recipe.ingredients[i].ingredient) === value){
+            return true;
+        }
+    }
+    return false;
 }
