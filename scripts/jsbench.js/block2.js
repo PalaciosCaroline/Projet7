@@ -1,4 +1,4 @@
-function ingredientIsHere(recipe, value){
+function ingredientIsHereOne(recipe, value){
     for (let i = 0; i < recipe.ingredients.length; i++) {
         if(getStringForCompare(recipe.ingredients[i].ingredient) === value){
             return true;
@@ -14,7 +14,7 @@ function searchRecipeBySearchBar(research) {
         for (let i = 0; i < datasProxy.filtredRecipes.length; i++) {
             if (getStringForCompare(datasProxy.filtredRecipes[i].name).includes(valueSought)) {
                 result.push(datasProxy.filtredRecipes[i]);  
-            } else if ( ingredientIsHere(datasProxy.filtredRecipes[i], valueSought)){
+            } else if ( ingredientIsHereOne(datasProxy.filtredRecipes[i], valueSought)){
                 result.push(datasProxy.filtredRecipes[i]); 
             } else if (getStringForCompare(datasProxy.filtredRecipes[i].description).includes(valueSought)) {
                 result.push(datasProxy.filtredRecipes[i]);
@@ -25,7 +25,7 @@ function searchRecipeBySearchBar(research) {
         for (let i = 0; i < datasProxy.recipes.length; i++) {
             if (getStringForCompare(datasProxy.recipes[i].name).includes(valueSought)) {
                 result.push(datasProxy.recipes[i]);          
-            } else if (ingredientIsHere(datasProxy.recipes[i], valueSought)){
+            } else if (ingredientIsHereOne(datasProxy.recipes[i], valueSought)){
                 result.push(datasProxy.recipes[i]); 
             } else if (getStringForCompare(datasProxy.recipes[i].description).includes(valueSought)) {
                 result.push(datasProxy.recipes[i]);
