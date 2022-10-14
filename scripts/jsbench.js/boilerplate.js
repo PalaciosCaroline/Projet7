@@ -20,7 +20,7 @@ let datasProxy = new Proxy(datas, {
         switch(key) {
           
             case 'searchString': {
-               const result = searchRecipeByFilter(value); 
+               const result = searchRecipeBySearchBar(value); 
                 datasProxy.filtredRecipes = [...result];
               break;
             }
