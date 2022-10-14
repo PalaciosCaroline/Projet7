@@ -5,11 +5,11 @@ function ingredientIsHere(recipe, research){
 
 function searchStringInAllRecipe(recipe,research){
     if (getStringForCompare(recipe.name).includes(research)) {
-        return recipe;
+        return true;
     } else if (ingredientIsHere(recipe, research)){
-        return recipe;
+        return true;
     } else if (getStringForCompare(recipe.description).includes(research)){
-        return recipe;
+        return true;
     }
 }
 
