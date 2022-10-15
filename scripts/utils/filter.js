@@ -33,7 +33,7 @@ let datasProxy = new Proxy(datas, {
             case 'searchString': {
                 //filtrer les recettes en fonction de la recherche
                 const result = searchRecipeBySearchBar(value);
-                //actualiser la liste des recherches filtrées
+                //actualiser la liste des recettes filtrées
                 datasProxy.filtredRecipes = [...result];
                 searchByTag();
             break;

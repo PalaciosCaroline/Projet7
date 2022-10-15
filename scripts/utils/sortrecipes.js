@@ -18,7 +18,7 @@ function swap(recipesforsort, leftIndex, rightIndex){
 }
 
 function partition(recipesforsort, left, right) {
-    let pivot   = recipesforsort[Math.floor((right + left) / 2)], //middle element
+    let pivot   = recipesforsort[Math.floor((right + left) / 2)],
         i       = left, //left pointer
         j       = right; //right pointer
     while (i <= j) {
