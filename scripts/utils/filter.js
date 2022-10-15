@@ -171,6 +171,16 @@ function searchByTag() {
 }
 
 //function intermédiaire de recherche searchbar
+function ingredientIsHere(recipe, value){
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+        if(getStringForCompare(recipe.ingredients[i].ingredient) === value){
+            return true;
+        }
+    }
+    return false;
+}
+
+//function intermédiaire de recherche searchbar
 function searchStringInAllRecipe(research,arrayOfRecipe,arrayOfResult){
     research = getStringForCompare(research);
     for (let i = 0; i < arrayOfRecipe.length; i++) {
@@ -186,16 +196,6 @@ function searchStringInAllRecipe(research,arrayOfRecipe,arrayOfResult){
         }
     }
     return arrayOfResult;
-}
-
-//function intermédiaire de recherche searchbar
-function ingredientIsHere(recipe, value){
-    for (let i = 0; i < recipe.ingredients.length; i++) {
-        if(getStringForCompare(recipe.ingredients[i].ingredient) === value){
-            return true;
-        }
-    }
-    return false;
 }
 
 function searchRecipeBySearchBar(research) {
