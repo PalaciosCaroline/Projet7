@@ -23,7 +23,7 @@ let datasProxy = new Proxy(datas, {
                     removeNoRecipeAlert();
                     }
                     displayRecipes(value);
-                    //mettre a jour la liste des ingredients
+                    //mise a jour des listes des choix de tags
                     getIngredientsList(value);
                     getApplianceList(value);
                     getUstensilsList(value);
@@ -33,8 +33,9 @@ let datasProxy = new Proxy(datas, {
             case 'searchString': {
                 //filtrer les recettes en fonction de la recherche
                 const result = searchRecipeBySearchBar(value);
-                //actualiser la liste des recherches filtrées
+                //actualisation des recettes filtrées
                 datasProxy.filtredRecipes = [...result];
+                //filtrage si tag
                 searchByTag();
             break;
             }
@@ -44,6 +45,7 @@ let datasProxy = new Proxy(datas, {
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
+                //filtrage si searchbar
                 if(datas.searchString){
                     const result = searchRecipeBySearchBar(datas.searchString);
                     if(result) { datasProxy.filtredRecipes = [...result];
