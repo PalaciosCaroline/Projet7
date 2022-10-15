@@ -30,10 +30,11 @@ let datasProxy = new Proxy(datas, {
                 }
             break;
             case 'searchString': {
-                //filtrer les recettes avec search_bar
+                //filtrage des recettes avec search_bar
                 const result = searchRecipeBySearchBar(value);
-                //actualiser la liste des recherches filtrées
+                //actualisation des recettes filtrées
                 datasProxy.filtredRecipes = [...result];
+                //filtrage par tag
                 searchByTag();
             break;
             }
@@ -43,6 +44,7 @@ let datasProxy = new Proxy(datas, {
                 //filtrage en fonction des tag
                 searchByTag();
                 removeTag();
+                //filtrage par searchbar
                 if(datas.searchString){
                         const result = searchRecipeBySearchBar(datas.searchString);
                         if(result) { datasProxy.filtredRecipes = [...result];
