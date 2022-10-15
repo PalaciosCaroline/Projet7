@@ -22,7 +22,7 @@ let datasProxy = new Proxy(datas, {
                     removeNoRecipeAlert();
                     }
                     displayRecipes(value);
-                    //mettre a jour la liste des ingredients
+                    //mise a jour des listes de choix de tags
                     getIngredientsList(value);
                     getApplianceList(value);
                     getUstensilsList(value);
