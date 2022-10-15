@@ -100,9 +100,8 @@ fieldset:nth-child(1) .form-control::placeholder {
     align-items: center;
     display: inline-flex;
     cursor: pointer;
+    height: 40px;
 }
-
-
 
 .tagChoice img {
     padding: 10px 10px 10px 10px;
