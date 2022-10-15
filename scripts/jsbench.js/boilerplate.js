@@ -17,8 +17,7 @@ datas.recipes = [...recipesSort];
 let datasProxy = new Proxy(datas, {
     set: function(target, key, value) {
         target[key] = value;
-        switch(key) {
-          
+        switch(key) {  
             case 'searchString': {
                const result = searchRecipeBySearchBar(value); 
                 datasProxy.filtredRecipes = [...result];
@@ -30,8 +29,6 @@ let datasProxy = new Proxy(datas, {
 });
 
 datasProxy.filtredRecipes = [...recipesSort];
-
-datasProxy.searchString = '';
-datasProxy.searchLength = 0;
+datasProxy.searchLength = 5;
 datasProxy.searchString = 'ananas';
-datasProxy.searchLength = 7;
+
