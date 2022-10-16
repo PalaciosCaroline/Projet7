@@ -2,12 +2,9 @@ import {recipes} from '../data/recipes.js';
 import {quickSort, getStringForCompare} from '../utils/sortrecipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/alertnorecipe.js';
-import {boxresultsUl, inputList} from '../factories/buildListForTag.js';
+import {boxresultsUl, inputList, btnList, boxresults} from '../factories/buildListForTag.js';
 import {buildUlListfilter} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
-
-const btnList = document.querySelectorAll('.btn_list');
-const boxresults = document.querySelectorAll('.boxresults');
 
 let recipesSort = quickSort(recipes, 0, recipes.length - 1);
 let datas = {}
@@ -48,7 +45,7 @@ let datasProxy = new Proxy(datas, {
                 searchByTag();
                 removeTag();
                 //filtrage si searchbar
-                if(datas.searchString){
+                if(datas.searchString.length > 2){
                     const result = searchRecipeBySearchBar(datas.searchString);
                     datasProxy.filtredRecipes = [...result];
                 }
