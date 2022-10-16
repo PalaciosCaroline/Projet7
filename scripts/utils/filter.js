@@ -8,7 +8,6 @@ import {displayTag} from '../factories/buildtag.js';
 
 const btnList = document.querySelectorAll('.btn_list');
 const boxresults = document.querySelectorAll('.boxresults');
-// const inputList = document.querySelectorAll('.inputList');
 
 let recipesSort = quickSort(recipes, 0, recipes.length - 1);
 let datas = {}
