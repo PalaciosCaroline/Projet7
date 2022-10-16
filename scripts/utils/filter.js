@@ -172,7 +172,7 @@ function searchByTag() {
 //function intermédiaire de recherche searchbar
 function ingredientIsHere(recipe, value){
     for (let i = 0; i < recipe.ingredients.length; i++) {
-        if(getStringForCompare(recipe.ingredients[i].ingredient) === value){
+        if(getStringForCompare(recipe.ingredients[i].ingredient).includes(value)){
             return true;
         }
     }
