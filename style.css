@@ -58,11 +58,9 @@ input:hover,
 input:active, 
 input:focus,
 label:focus {
-    outline:0 !important;
+    outline:none !important;
     -webkit-appearance:none;
     box-shadow: none !important;
-    outline-color:#000;
-    
 }
 
 fieldset:nth-child(1) .form-control::placeholder {
@@ -101,8 +99,6 @@ fieldset:nth-child(1) .form-control::placeholder {
     display: inline-flex;
     cursor: pointer;
 }
-
-
 
 .tagChoice img {
     padding: 10px 10px 10px 10px;
