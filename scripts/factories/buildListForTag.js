@@ -8,7 +8,6 @@ function CapitlizeString(string){
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
    
-
 export function buildUlListfilter(ArrayList, containerList) {
     containerList.innerHTML = '';
     ArrayList.forEach((item => {
