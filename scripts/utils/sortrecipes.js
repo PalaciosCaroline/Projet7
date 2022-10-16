@@ -1,14 +1,15 @@
 export function getStringForCompare(string) {
     return string
-      .toLowerCase()
-       .replace(/[àäâ]/g, "a")
-      .replace(/[éèêë]/g, "e")
-      .replace(/[']/g, "")
-      .replace(/[\d]/g, "")
-      .replace(/[ç]/g, "c")
-      .replace(/[îï]/g, "i")
-      .replace(/[ôö]/g, "o")
-      .replace(/[ùûû]/g, "u");
+        .toLowerCase()
+        .replace(/[àäâ]/g, "a")
+        .replace(/[éèêë]/g, "e")
+        .replace(/[']/g, "")
+        .replace(/[.]/g, "")
+        .replace(/[\d]/g, "")
+        .replace(/[ç]/g, "c")
+        .replace(/[îï]/g, "i")
+        .replace(/[ôö]/g, "o")
+        .replace(/[ùûû]/g, "u");
 }
 
 function swap(recipesforsort, leftIndex, rightIndex){
