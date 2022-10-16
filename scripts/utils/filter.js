@@ -176,9 +176,7 @@ function ingredientIsHere(recipe, research){
     if(recipe.ingredients.filter(item =>
         getStringForCompare(item.ingredient).includes(research)).length > 0){
         return true;
-    } else {
-    return false; 
-    }
+    } else return false; 
 }
 
 //function intermédiaire de recherche searchbar
