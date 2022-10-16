@@ -4,7 +4,7 @@ export function getStringForCompare(string) {
         .replace(/[àäâ]/g, "a")
         .replace(/[éèêë]/g, "e")
         .replace(/[']/g, "")
-        .replace(/[.]/g, "")
+        .replace(/[.,"]/g, "")
         .replace(/[\d]/g, "")
         .replace(/[ç]/g, "c")
         .replace(/[îï]/g, "i")
