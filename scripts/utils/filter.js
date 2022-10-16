@@ -173,8 +173,12 @@ function searchByTag() {
 
 //function intermédiaire de recherche searchbar
 function ingredientIsHere(recipe, research){
-    recipe.ingredients.filter(item =>
-        (getStringForCompare(item.ingredient).includes(research)).length > 0); 
+    if(recipe.ingredients.filter(item =>
+        getStringForCompare(item.ingredient).includes(research)).length > 0){
+        return true;
+    } else {
+    return false; 
+    }
 }
 
 //function intermédiaire de recherche searchbar
