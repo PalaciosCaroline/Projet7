@@ -46,8 +46,7 @@ let datasProxy = new Proxy(datas, {
                 removeTag();
                 if(datas.searchString){
                     const result = searchRecipeBySearchBar(datas.searchString);
-                    if(result) { datasProxy.filtredRecipes = [...result];
-                    }
+                    datasProxy.filtredRecipes = [...result];
                 }
             break;
         }
