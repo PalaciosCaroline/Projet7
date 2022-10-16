@@ -1,8 +1,8 @@
 export const boxresultsUl = document.querySelectorAll('.boxresultsUl');
-const btnList = document.querySelectorAll('.btn_list');
+export const btnList = document.querySelectorAll('.btn_list');
 const icons = document.querySelectorAll('.btn_list i');
-const boxresults = document.querySelectorAll('.boxresults');
-const inputList = document.querySelectorAll('.inputList');
+export const boxresults = document.querySelectorAll('.boxresults');
+export const inputList = document.querySelectorAll('.inputList');
 
 function CapitlizeString(string){
     return string.charAt(0).toUpperCase() + string.slice(1);

@@ -2,12 +2,11 @@ import {recipes} from '../data/recipes.js';
 import {quickSort, getStringForCompare} from '../utils/sortrecipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/alertnorecipe.js';
-import {boxresultsUl} from '../factories/buildListForTag.js';
+import {boxresultsUl,inputList, btnList,boxresults} from '../factories/buildListForTag.js';
 import {buildUlListfilter} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
 let recipesSort = quickSort(recipes, 0, recipes.length - 1);
-const inputList = document.querySelectorAll('.inputList');
 let datas = {}
 datas.recipes = [...recipesSort];
 
@@ -61,6 +60,13 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
+function removeInputList(ArrayList,index){
+    if (inputList[index].value == ''){
+        buildUlListfilter(ArrayList, boxresultsUl[index]);
+        getChosenTag();
+    }
+}
+
 function getIngredientsList(recipes){
     let ingredientsArray = [];
     recipes.forEach((recipe) => {
@@ -75,6 +81,9 @@ function getIngredientsList(recipes){
         buildUlListfilter(newIngredientsArray, boxresultsUl[0]);
         getChosenTag();
     })
+
+    boxresults[0].addEventListener('focusin', () => {removeInputList(ingredientsArray,0)})
+    btnList[0].addEventListener('click', () => {removeInputList(ingredientsArray,0)})
 }
 
 function getApplianceList(recipes){
@@ -91,6 +100,9 @@ function getApplianceList(recipes){
         buildUlListfilter(newApplianceArray, boxresultsUl[1]);
         getChosenTag();
     })
+
+    boxresults[1].addEventListener('focusin', () => {removeInputList(applianceArray,1)})
+    btnList[1].addEventListener('click', () => {removeInputList(applianceArray,1)})
 }
 
 function getUstensilsList(recipes){
@@ -107,6 +119,9 @@ function getUstensilsList(recipes){
         buildUlListfilter(newUstensilsArray, boxresultsUl[2]);
         getChosenTag();
     })
+
+    boxresults[2].addEventListener('focusin', () => {removeInputList(ustensilsArray,2)})
+    btnList[2].addEventListener('click', () => {removeInputList(ustensilsArray,2)})
 }
 
 export function getChosenTag() {
