@@ -21,7 +21,6 @@ let datasProxy = new Proxy(datas, {
                     if(isAlert){
                     removeNoRecipeAlert();
                     }
-                    console.log(datasProxy.filtredRecipes);
                     displayRecipes(value);
                     //mise a jour des listes de choix de tags
                     getIngredientsList(value);
@@ -48,10 +47,9 @@ let datasProxy = new Proxy(datas, {
                 //filtrage par searchbar
                 if(datas.searchString){
                         const result = searchRecipeBySearchBar(datas.searchString);
-                        if(result) { datasProxy.filtredRecipes = [...result];
+                        datasProxy.filtredRecipes = [...result];
                 }
             break;
-            }
         }
         return true;
     }
