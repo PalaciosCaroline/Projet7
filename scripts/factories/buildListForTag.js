@@ -2,7 +2,7 @@ export const boxresultsUl = document.querySelectorAll('.boxresultsUl');
 const btnList = document.querySelectorAll('.btn_list');
 const icons = document.querySelectorAll('.btn_list i');
 const boxresults = document.querySelectorAll('.boxresults');
-const inputList = document.querySelectorAll('.inputList');
+export const inputList = document.querySelectorAll('.inputList');
 
 function CapitlizeString(string){
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -38,7 +38,7 @@ function openListTagChoice(itemOpen, indexOpen, itemclose1, indexclose1, itemclo
 }
 
 function closeListTagChoice(item, index){
-    boxresults[index].querySelector('input').value = '';
+    inputList[index].value = '';
     chevronDown(item);
     btnList[index].classList.remove('isOpen');
     boxresults[index].classList.remove('open');
