@@ -3,7 +3,6 @@ export function getStringForCompare(string) {
         .toLowerCase()
         .replace(/[àäâ]/g, "a")
         .replace(/[éèêë]/g, "e")
-        .replace(/[']/g, "")
         .replace(/[.]/g, "")
         .replace(/[\d]/g, "")
         .replace(/[ç]/g, "c")

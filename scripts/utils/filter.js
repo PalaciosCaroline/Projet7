@@ -21,6 +21,7 @@ let datasProxy = new Proxy(datas, {
                     if(isAlert){
                     removeNoRecipeAlert();
                     }
+                    console.log(datasProxy.filtredRecipes);
                     displayRecipes(value);
                     //mise a jour des listes de choix de tags
                     getIngredientsList(value);
