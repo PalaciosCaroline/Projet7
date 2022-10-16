@@ -26,7 +26,7 @@ export function displayTag(tags) {
             const tagElement = buildTagChoice(tag.value, tag.type);
             tagChoiceBox.appendChild(tagElement);
         });
-    } else if (tags.length <= 0){
+    } else if (tags.length < 0){
         return true;
     }
 
