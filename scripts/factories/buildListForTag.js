@@ -1,7 +1,7 @@
 export const boxresultsUl = document.querySelectorAll('.boxresultsUl');
-const btnList = document.querySelectorAll('.btn_list');
+export const btnList = document.querySelectorAll('.btn_list');
 const icons = document.querySelectorAll('.btn_list i');
-const boxresults = document.querySelectorAll('.boxresults');
+export const boxresults = document.querySelectorAll('.boxresults');
 export const inputList = document.querySelectorAll('.inputList');
 
 function CapitlizeString(string){

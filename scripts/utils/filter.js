@@ -2,12 +2,9 @@ import {recipes} from '../data/recipes.js';
 import {quickSort, getStringForCompare} from '../utils/sortrecipes.js';
 import {displayRecipes} from '../factories/buildCard.js';
 import {noRecipeAlert, removeNoRecipeAlert, isAlert} from '../factories/alertnorecipe.js';
-import {boxresultsUl, buildUlListfilter, inputList} from '../factories/buildListForTag.js';
+import {boxresultsUl, buildUlListfilter, inputList, btnList, boxresults} from '../factories/buildListForTag.js';
 import {displayTag} from '../factories/buildtag.js';
 
-const btnList = document.querySelectorAll('.btn_list');
-const boxresults = document.querySelectorAll('.boxresults');
-// const inputList = document.querySelectorAll('.inputList');
 let recipesSort = quickSort(recipes, 0, recipes.length - 1);
 let datas = {}
 datas.recipes = [...recipesSort]
