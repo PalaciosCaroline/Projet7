@@ -48,8 +48,7 @@ let datasProxy = new Proxy(datas, {
                 //filtrage si searchbar
                 if(datas.searchString){
                     const result = searchRecipeBySearchBar(datas.searchString);
-                    if(result) { datasProxy.filtredRecipes = [...result];
-                    }
+                    datasProxy.filtredRecipes = [...result];
                 }
             break;
         }
@@ -111,6 +110,7 @@ function getUstensilsList(recipes){
         getChosenTag();
     })
 }
+
 
 export function getChosenTag() {
     const liSortingItem = document.querySelectorAll('.liSorting-item')
