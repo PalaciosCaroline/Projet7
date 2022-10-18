@@ -1,15 +1,3 @@
-function searchRecipeBySearchBar(research) {
-    let result = [];
-    if(research.length >= datasProxy.searchLength && research.length > 2) {
-        return searchStringInAllRecipeOne(research,datasProxy.filtredRecipes,result);
-    } else if (research.length < datasProxy.searchLength && research.length > 2) {
-        return searchStringInAllRecipeOne(research,datasProxy.recipes,result);
-    } else {
-        const result = [...recipesSort];
-        return result;
-    }
-}
-
 function ingredientIsHereOne(recipe, value){
     for (let i = 0; i < recipe.ingredients.length; i++) {
         if(getStringForCompare(recipe.ingredients[i].ingredient) === value){
