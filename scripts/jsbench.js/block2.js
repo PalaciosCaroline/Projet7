@@ -22,8 +22,10 @@ function searchRecipeBySearchBar(research){
         research = getStringForCompare(research);
         const result = datasProxy.recipes.filter(recipe => searchStringInAllRecipe(recipe,research));
         return result;
-    } else {
+    } else if (research.length <= datasProxy.searchLength && research.length == 2){
         const result = [...recipesSort];
         return result;
+    } else if (research.length < 2 || (research.length > datasProxy.searchLength && research.length == 2)) {
+        return;
     }
 }
