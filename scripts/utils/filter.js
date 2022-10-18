@@ -29,24 +29,26 @@ let datasProxy = new Proxy(datas, {
                 }
             break;
             case 'searchString': {
-                //filtrage des recettes avec search_bar
+                //filtrer les recettes en fonction de la recherche
                 const result = searchRecipeBySearchBar(value);
-                //actualisation des recettes filtrées
+                //actualiser la liste des recettes filtrées
+                if (result) {
                 datasProxy.filtredRecipes = [...result];
-                //filtrage par tag
+                }
+                //récupération des tags
                 searchByTag();
             break;
             }
             case 'searchTag' : 
-                //creation tag
+                //creation des tags choisis
                 displayTag(datasProxy.searchTag);
-                //filtrage en fonction des tag
+                //filtrage en fonction des tags
                 searchByTag();
                 removeTag();
-                //filtrage par searchbar
-                if(datas.searchString?.length > 2){
-                        const result = searchRecipeBySearchBar(datas.searchString);
-                        datasProxy.filtredRecipes = [...result];
+                //récupération de la searchbar
+                if (datas.searchString?.length > 2) {
+                    const result = searchRecipeBySearchBar(datas.searchString);
+                    datasProxy.filtredRecipes = [...result];
                 }
             break;
         }
@@ -212,13 +214,27 @@ function searchStringInAllRecipe(research,arrayOfRecipe,arrayOfResult){
     return arrayOfResult;
 }
 
-function searchRecipeBySearchBar(research) {
+// function searchRecipeBySearchBar(research) {
+//     let result = [];
+//     if(research.length >= datasProxy.searchLength && research.length > 2) {
+//         return searchStringInAllRecipe(research,datasProxy.filtredRecipes,result);
+//     } else if (research.length < datasProxy.searchLength && research.length > 2) {
+//         return searchStringInAllRecipe(research,datasProxy.recipes,result);
+//     } else {
+//         const result = [...recipesSort];
+//         return result;
+//     }
+// }
+
+function searchRecipeBySearchBar(research){
     let result = [];
-    if(research.length >= datasProxy.searchLength && research.length > 2) {
+    if(research.length < 2 || (research.length > datasProxy.searchLength && research.length == 2)) {
+        return;
+    }else if(research.length >= datasProxy.searchLength && research.length > 2) {
         return searchStringInAllRecipe(research,datasProxy.filtredRecipes,result);
-    } else if (research.length < datasProxy.searchLength && research.length > 2) {
+    }else if (research.length < datasProxy.searchLength && research.length > 2) {
         return searchStringInAllRecipe(research,datasProxy.recipes,result);
-    } else {
+    } else if (research.length <= datasProxy.searchLength && research.length == 2){
         const result = [...recipesSort];
         return result;
     }

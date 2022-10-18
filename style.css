@@ -4,8 +4,8 @@ body {
 }
 
 li{
-list-style: none;
-cursor:pointer;
+    list-style: none;
+    cursor:pointer;
 }
 
 .container_page{
@@ -58,11 +58,9 @@ input:hover,
 input:active, 
 input:focus,
 label:focus {
-    outline:0 !important;
+    outline:none !important;
     -webkit-appearance:none;
-    box-shadow: none !important;
-    outline-color:#000;
-    
+    box-shadow: none !important;    
 }
 
 fieldset:nth-child(1) .form-control::placeholder {
@@ -364,7 +362,7 @@ fieldset:nth-child(1) .form-control::placeholder {
 #noresult_box{
     background-color: #ea6f61;
     margin : auto;
-   padding: 7px;
+    padding: 7px;
     font-size: 1.5rem;
     font-weight: 700;
     display: flex;
@@ -535,6 +533,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     object-fit: cover;
     border-radius: 15px 15px 0 0;
 }
+
 @media screen and (max-width: 1000px) {
     .card-deck .card{
         min-width: 320px;
