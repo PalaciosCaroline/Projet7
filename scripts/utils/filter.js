@@ -216,14 +216,14 @@ function searchStringInAllRecipe(research,arrayOfRecipe,arrayOfResult){
 
 function searchRecipeBySearchBar(research){
     let result = [];
-    if(research.length < 2 || (research.length > datasProxy.searchLength && research.length == 2)) {
-        return;
-    }else if(research.length >= datasProxy.searchLength && research.length > 2) {
+    if(research.length >= datasProxy.searchLength && research.length > 2) {
         return searchStringInAllRecipe(research,datasProxy.filtredRecipes,result);
     }else if (research.length < datasProxy.searchLength && research.length > 2) {
         return searchStringInAllRecipe(research,datasProxy.recipes,result);
     } else if (research.length <= datasProxy.searchLength && research.length == 2){
         const result = [...recipesSort];
         return result;
+    } else if(research.length < 2 || (research.length > datasProxy.searchLength && research.length == 2)) {
+        return;
     }
 }
