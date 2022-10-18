@@ -127,11 +127,29 @@ function removeTag(){
     }
 }
 
+//function intermédiaire de recherche searchbar
+function ingredientIsHere(recipe, research){
+    if(recipe.ingredients.filter(item =>
+        getStringForCompare(item.ingredient).includes(research)).length > 0){
+        return true;
+    } else return false; 
+}
+
+//function intermédiaire de recherche searchbar
+function searchStringInAllRecipe(recipe,research){
+    if (getStringForCompare(recipe.name).includes(research)) {
+        return true;
+    } else if (ingredientIsHere(recipe, research)){
+        return true;
+    } else if (getStringForCompare(recipe.description).includes(research)){
+        return true;
+    }
+}
+
 function filterBySearchBar(filterChoice) {
     if (filterChoice.value.length > 2){
         let filterChoiceForSort = getStringForCompare(filterChoice.value);
-        const resultFilter = datasProxy.filtredRecipes.filter(recipe => (getStringForCompare(recipe.name).includes(filterChoiceForSort)) || recipe.ingredients.filter(item =>
-            getStringForCompare(item.ingredient).includes(filterChoiceForSort)).length > 0 || (getStringForCompare(recipe.description).includes(filterChoiceForSort)));
+        const resultFilter = datasProxy.filtredRecipes.filter(recipe => (searchStringInAllRecipe(recipe,filterChoiceForSort)));
         datasProxy.filtredRecipes = [...resultFilter];
         } else {
             return;
