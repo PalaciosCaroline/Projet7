@@ -214,18 +214,6 @@ function searchStringInAllRecipe(research,arrayOfRecipe,arrayOfResult){
     return arrayOfResult;
 }
 
-// function searchRecipeBySearchBar(research) {
-//     let result = [];
-//     if(research.length >= datasProxy.searchLength && research.length > 2) {
-//         return searchStringInAllRecipe(research,datasProxy.filtredRecipes,result);
-//     } else if (research.length < datasProxy.searchLength && research.length > 2) {
-//         return searchStringInAllRecipe(research,datasProxy.recipes,result);
-//     } else {
-//         const result = [...recipesSort];
-//         return result;
-//     }
-// }
-
 function searchRecipeBySearchBar(research){
     let result = [];
     if(research.length < 2 || (research.length > datasProxy.searchLength && research.length == 2)) {
@@ -239,6 +227,3 @@ function searchRecipeBySearchBar(research){
         return result;
     }
 }
-
-
-
