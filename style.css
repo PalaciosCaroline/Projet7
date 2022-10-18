@@ -200,6 +200,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding:0;
     display: flex;
 }
+
 @media screen and (max-width: 1200px) {
     .boxresults ul{
         max-width: 500px; 
@@ -364,7 +365,7 @@ fieldset:nth-child(1) .form-control::placeholder {
 #noresult_box{
     background-color: #ea6f61;
     margin : auto;
-   padding: 7px;
+    padding: 7px;
     font-size: 1.5rem;
     font-weight: 700;
     display: flex;
@@ -381,7 +382,7 @@ fieldset:nth-child(1) .form-control::placeholder {
 #fieldset_searchbar.alert #noresult_box{
     height: auto;
     transform: scaleY(1);
-   padding:10px;
+    padding:10px;
 }
 
 .fieldsetTag{

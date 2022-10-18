@@ -32,20 +32,22 @@ let datasProxy = new Proxy(datas, {
             case 'searchString': {
                 //filtrer les recettes en fonction de la recherche
                 const result = searchRecipeBySearchBar(value);
-                //actualisation des recettes filtrées
+                //actualiser la liste des recettes filtrées
+                if (result) {
                 datasProxy.filtredRecipes = [...result];
-                //filtrage si tag
+                }
+                //récupération des tags
                 searchByTag();
             break;
             }
             case 'searchTag' : 
-                //creation tag
+                //creation des tags choisis
                 displayTag(datasProxy.searchTag);
-                //filtrage en fonction des tag
+                //filtrage en fonction des tags
                 searchByTag();
                 removeTag();
-                //filtrage si searchbar
-                if(datas.searchString?.length > 2){
+                //récupération de la searchbar
+                if (datas.searchString?.length > 2) {
                     const result = searchRecipeBySearchBar(datas.searchString);
                     datasProxy.filtredRecipes = [...result];
                 }
@@ -206,7 +208,9 @@ function searchStringInAllRecipe(recipe,research){
 }
 
 function searchRecipeBySearchBar(research){
-    if(research.length >= datasProxy.searchLength && research.length > 2) {
+    if(research.length < 2 || (research.length > datasProxy.searchLength && research.length == 2)) {
+        return;
+    }else if(research.length >= datasProxy.searchLength && research.length > 2) {
         research = getStringForCompare(research);
         const result = datasProxy.filtredRecipes.filter(recipe => searchStringInAllRecipe(recipe,research));
         return result;
@@ -214,7 +218,7 @@ function searchRecipeBySearchBar(research){
         research = getStringForCompare(research);
         const result = datasProxy.recipes.filter(recipe => searchStringInAllRecipe(recipe,research));
         return result;
-    } else {
+    } else if (research.length <= datasProxy.searchLength && research.length == 2){
         const result = [...recipesSort];
         return result;
     }
