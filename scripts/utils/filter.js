@@ -21,7 +21,7 @@ let datasProxy = new Proxy(datas, {
                     removeNoRecipeAlert();
                     }
                     displayRecipes(value);
-                    //mise a jour des listes de choix de tags
+                    //updating the list of lists of possible tags
                     getIngredientsList(value);
                     getApplianceList(value);
                     getUstensilsList(value);
@@ -29,23 +29,23 @@ let datasProxy = new Proxy(datas, {
                 }
             break;
             case 'searchString': {
-                //filtrer les recettes en fonction de la recherche
+                //filtering based on searchbar
                 const result = searchRecipeBySearchBar(value);
-                //actualiser la liste des recettes filtrées
+                //updating the list of filtered recipes
                 if (result) {
                 datasProxy.filtredRecipes = [...result];
                 }
-                //récupération des tags
+                //tag recovery
                 searchByTag();
             break;
             }
             case 'searchTag' : 
-                //creation des tags choisis
+                //creation of the chosen tag
                 displayTag(datasProxy.searchTag);
-                //filtrage en fonction des tags
+                //filtering based on tags
                 searchByTag();
                 removeTag();
-                //récupération de la searchbar
+                //searchbar recovery
                 if (datas.searchString?.length > 2) {
                     const result = searchRecipeBySearchBar(datas.searchString);
                     datasProxy.filtredRecipes = [...result];
@@ -63,6 +63,7 @@ document.querySelector('#search_bar').addEventListener('input', (e) => {
     datasProxy.searchLength = e.target.value.length ?? 0;
 })
 
+//intermediate function of management of lists of tags
 function removeInputList(ArrayList,index){
     if (inputList[index].value == ''){
         buildUlListfilter(ArrayList, boxresultsUl[index]);
@@ -70,6 +71,7 @@ function removeInputList(ArrayList,index){
     }
 }
 
+//management of lists of possible ingredients tags 
 function getIngredientsList(recipes){
     let ingredientsArray = [];
     recipes.forEach((recipe) => {
@@ -89,6 +91,7 @@ function getIngredientsList(recipes){
     btnList[0].addEventListener('click', () => {removeInputList(ingredientsArray,0)})
 }
 
+//management of lists of possible appliance tags
 function getApplianceList(recipes){
     let applianceArray = [];
     recipes.forEach((recipe) => {
@@ -107,7 +110,7 @@ function getApplianceList(recipes){
     boxresults[1].addEventListener('focusin', () => {removeInputList(applianceArray,1)})
     btnList[1].addEventListener('click', () => {removeInputList(applianceArray,1)})
 }
-
+//management of lists of possible ustensils tags
 function getUstensilsList(recipes){
     let ustensilsArray = [];
     recipes.forEach((recipe) => {
@@ -127,6 +130,7 @@ function getUstensilsList(recipes){
     btnList[2].addEventListener('click', () => {removeInputList(ustensilsArray,2)})
 }
 
+//registration of the choice of the tag
 function getChosenTag() {
     const liSortingItem = document.querySelectorAll('.liSorting-item')
     liSortingItem.forEach(item => item.addEventListener('click', (e) => {
@@ -154,26 +158,27 @@ function removeTag(){
     } 
 }
 
-//function intermédiaire de recherche par tag 
+//intermediate search function by tag 
 function filterRecipeByIngredients(tag){
     const resultTag = datasProxy.filtredRecipes.filter(recipe  => recipe.ingredients.filter(item =>
         item.ingredient.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
         datasProxy.filtredRecipes = [...resultTag];
 }
 
-//function intermédiaire de recherche par tag   
+//intermediate search function by tag   
 function filterRecipeByAppliance(tag){
     const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.appliance.toLowerCase().includes(tag.value.toLowerCase()));
     datasProxy.filtredRecipes = [...resultTag];
 }
     
-//function intermédiaire de recherche par tag 
+//intermediate search function by tag 
 function filterRecipeByUstensils(tag){
     const resultTag = datasProxy.filtredRecipes.filter(recipe => recipe.ustensils.filter(item => 
     item.toLowerCase().includes(tag.value.toLowerCase())).length > 0)
     datasProxy.filtredRecipes = [...resultTag];
 }
 
+//search function by tag
 function searchByTag() {
     datasProxy.searchTag?.forEach(tag => {
         if(tag.type == 'ingredientsUl'){
@@ -186,7 +191,7 @@ function searchByTag() {
     })
 }
 
-//function intermédiaire de recherche searchbar
+//intermediate search function of searchbar
 function ingredientIsHere(recipe, value){
     for (let i = 0; i < recipe.ingredients.length; i++) {
         if(getStringForCompare(recipe.ingredients[i].ingredient).includes(value)){
@@ -196,7 +201,7 @@ function ingredientIsHere(recipe, value){
     return false;
 }
 
-//function intermédiaire de recherche searchbar
+//intermediate search function of searchbar
 function searchStringInAllRecipe(research,arrayOfRecipe,arrayOfResult){
     research = getStringForCompare(research);
     for (let i = 0; i < arrayOfRecipe.length; i++) {
@@ -213,7 +218,7 @@ function searchStringInAllRecipe(research,arrayOfRecipe,arrayOfResult){
     }
     return arrayOfResult;
 }
-
+//search function by searchbar
 function searchRecipeBySearchBar(research){
     let result = [];
     if(research.length >= datasProxy.searchLength && research.length > 2) {
