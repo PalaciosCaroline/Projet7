@@ -28,6 +28,5 @@ export function displayTag(tags) {
     } else if (tags.length < 0){
         return true;
     }
-
 }
 
