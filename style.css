@@ -20,16 +20,19 @@ cursor:pointer;
 .header_page h1 {
     padding-top: 15px;
 }
+
 #fieldset_searchbar button,
 #fieldset_searchbar input{
     height: 62px;
 }
+
 .input_search_bar {
     background-color: #E7E7E7;
     margin-bottom: 0;
     border: none;
     border-radius: 5px;
 }
+
 .input_search_bar.alert {
     background-color: #ea6f61;  
 }
@@ -39,6 +42,7 @@ cursor:pointer;
     border-left : 0;
     border-right : 0;
 }
+
 #fieldset_searchbar i{
  font-size: 1.8rem;
  color:rgba(48, 47, 47);
@@ -61,8 +65,7 @@ label:focus {
     outline:0 !important;
     -webkit-appearance:none;
     box-shadow: none !important;
-    outline-color:#000;
-    
+    outline-color:#000; 
 }
 
 fieldset:nth-child(1) .form-control::placeholder {
@@ -102,8 +105,6 @@ fieldset:nth-child(1) .form-control::placeholder {
     cursor: pointer;
     height: 40px;
 }
-
-
 
 .tagChoice img {
     padding: 10px 10px 10px 10px;
@@ -202,6 +203,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding:0;
     display: flex;
 }
+
 @media screen and (max-width: 1200px) {
     .boxresults ul{
         max-width: 500px; 
@@ -219,7 +221,6 @@ fieldset:nth-child(1) .form-control::placeholder {
     }
 }
 
-
 @media screen and (max-width: 1000px) {
     .boxresults ul{
         min-width: 350px; 
@@ -235,6 +236,7 @@ fieldset:nth-child(1) .form-control::placeholder {
         width: 33%;
     }
 }
+
 @media screen and (max-width: 800px) {
     .boxresults ul{
         max-width: 250px; 
@@ -256,6 +258,7 @@ fieldset:nth-child(1) .form-control::placeholder {
         width: 50%;
     }
 }
+
 @media screen and (max-width: 600px) {
     .fieldsetTag{
         display:flex;
@@ -288,6 +291,7 @@ fieldset:nth-child(1) .form-control::placeholder {
         font-size: 1rem;
     }
 }
+
 @media screen and (max-width: 350px) {
     .boxresults ul{
         max-width: 100%;
@@ -304,6 +308,7 @@ fieldset:nth-child(1) .form-control::placeholder {
         width: 50%;
     }
 }
+
 .search_ingredients input:focus-visible,
 .search_ingredients input,
 .search_ingredients,
@@ -478,6 +483,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     box-sizing: border-box;
     flex-direction: column;
 } 
+
 #modal header {
     margin-top: 20px;
 }
@@ -490,9 +496,11 @@ fieldset:nth-child(1) .form-control::placeholder {
     margin-bottom: 15px;
     height: 70px;
 }
+
 #modal .card .card_textContent{
     font-size: 1.2rem;
 }
+
 #modal .card .cardTime{
     min-width: 200px;
     font-size: 1.5rem;
@@ -526,6 +534,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     height:  95%;
     border-radius: 15px 15px 0 0;
 }
+
 #modal .card .cardText{
     padding-left: 70px;
     padding-right: 70px;
@@ -537,6 +546,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     object-fit: cover;
     border-radius: 15px 15px 0 0;
 }
+
 @media screen and (max-width: 1000px) {
     .card-deck .card{
         min-width: 320px;
