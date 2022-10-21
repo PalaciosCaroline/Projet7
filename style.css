@@ -20,6 +20,7 @@ li{
 .header_page h1 {
     padding-top: 15px;
 }
+
 #fieldset_searchbar button,
 #fieldset_searchbar input{
     height: 62px;
@@ -474,6 +475,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     box-sizing: border-box;
     flex-direction: column;
 } 
+
 #modal header {
     margin-top: 20px;
 }
@@ -486,9 +488,11 @@ fieldset:nth-child(1) .form-control::placeholder {
     margin-bottom: 15px;
     height: 70px;
 }
+
 #modal .card .card_textContent{
     font-size: 1.2rem;
 }
+
 #modal .card .cardTime{
     min-width: 200px;
     font-size: 1.5rem;

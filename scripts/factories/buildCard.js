@@ -1,7 +1,7 @@
 const modalBoxRecipe = document.getElementById('modalBoxRecipe');
 const modal = document.getElementById('modal');
 
-export function getCardRecipe(recipe) {
+function getCardRecipe(recipe) {
 
     function getUnit(elt) { 
         if (elt)
@@ -61,14 +61,12 @@ export function getCardRecipe(recipe) {
     btnCloseModal.addEventListener('click', (event) => {
         event.preventDefault();
         modal.style.display = 'none';
-        modalBoxRecipe.innerHTML = '';
     })
 
     document.addEventListener('keyup',  (e) => {
         if (e.key === 'Escape') {
         e.preventDefault();
         modal.style.display = 'none';
-        modalBoxRecipe.innerHTML = '';
         }
     })       
 
