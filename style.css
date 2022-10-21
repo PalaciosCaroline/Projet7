@@ -20,16 +20,19 @@ cursor:pointer;
 .header_page h1 {
     padding-top: 15px;
 }
+
 #fieldset_searchbar button,
 #fieldset_searchbar input{
     height: 62px;
 }
+
 .input_search_bar {
     background-color: #E7E7E7;
     margin-bottom: 0;
     border: none;
     border-radius: 5px;
 }
+
 .input_search_bar.alert {
     background-color: #ea6f61;  
 }
@@ -124,6 +127,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding: 0;
     margin-left:0;
 }
+
 .boxresults .boxinput{
     display: flex;
     border-radius: 5px;
@@ -269,15 +273,13 @@ fieldset:nth-child(1) .form-control::placeholder {
         margin-right: 20px;
         margin-right: 0;
         margin-bottom: 15px;
-    }
-    
+    }    
     .boxresultIngredients.open,
     .boxresultAppliance.open,
     .boxresultUstensils.open{
         transition: transform 0.3s;
         min-width: 300px;
     } 
-
     .boxresults li{
         width: 50%;
     }
@@ -288,22 +290,22 @@ fieldset:nth-child(1) .form-control::placeholder {
         font-size: 1rem;
     }
 }
+
 @media screen and (max-width: 350px) {
     .boxresults ul{
         max-width: 100%;
         min-width: 300px; 
-    }
-    
+    }    
     .boxresultIngredients.open,
     .boxresultAppliance.open,
     .boxresultUstensils.open{
         max-width: 300px; 
     } 
-
     .boxresults li{
         width: 50%;
     }
 }
+
 .search_ingredients input:focus-visible,
 .search_ingredients input,
 .search_ingredients,
@@ -537,6 +539,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     object-fit: cover;
     border-radius: 15px 15px 0 0;
 }
+
 @media screen and (max-width: 1000px) {
     .card-deck .card{
         min-width: 320px;
@@ -558,12 +561,10 @@ fieldset:nth-child(1) .form-control::placeholder {
         margin-bottom: 10px;
         height: auto;
     } 
-
     #modal .card .cardTime{
         align-self: flex-end;
         min-width: 150px;
     }
-
     #modal .card img,
     #modal .card{
         border-radius: 0%;
@@ -574,40 +575,32 @@ fieldset:nth-child(1) .form-control::placeholder {
     #box_recipes{
         margin-top: 20px;
     } 
-
     #modal .header_page{
         margin-top: 35px;
     }
-
     #modal #cardHeader h2{
         font-size: 2rem;
-    }
-    
+    }    
     #modal .card .cardText{
         padding-left: 20px;
         padding-right: 20px;
     }
-
     #modal .card .card_textContent{ 
         display: flex;
         flex-direction: column;
     }
-
     #modal .card ul{
         min-width: 100%;
-    }
-    #modal .card #card_description{
+    }    #modal .card #card_description{
         min-width: 100%;
     }
     #modal button{
         top: 2px;
     }
-
     #modal .card .cardText{
         padding-left: 20px;
         padding-right: 20px;
-    }    
-
+    }
     .card-deck .card{
         min-width:100%;
     } 
