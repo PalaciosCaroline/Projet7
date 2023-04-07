@@ -26,7 +26,7 @@ function getCardRecipe(recipe) {
        }
 
     const card = document.createElement('article');
-    card.className = 'card border-secondary';
+    card.className = 'card';
     const cardContent = `
     <img class="card-img-top" src="./assets/carrotcake.jpg" alt="" />
     <div class="cardText card-body">

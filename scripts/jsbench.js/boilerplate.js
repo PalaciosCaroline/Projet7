@@ -31,8 +31,7 @@ let datasProxy = new Proxy(datas, {
 });
 
 datasProxy.filtredRecipes = [...recipesSort];
-datasProxy.searchLength = 5;
-datasProxy.searchString = 'ananas';
+
 datasProxy.searchLength = 2;
 datasProxy.searchString = 'coc';
 datasProxy.searchLength = 3;

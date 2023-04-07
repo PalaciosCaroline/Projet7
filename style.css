@@ -126,6 +126,12 @@ fieldset:nth-child(1) .form-control::placeholder {
     padding: 0;
     margin-left:0;
 }
+
+@media screen and (max-width: 800px) {
+    .boxresults{
+        width: 230px;
+    }
+}
 .boxresults .boxinput{
     display: flex;
     border-radius: 5px;
@@ -395,6 +401,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     margin-top: 5px;
 }
 
+
 .card-deck .card{
     height: 380px; 
     min-width: 380px; 
@@ -403,6 +410,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     margin-bottom: 30px;
     overflow: hidden;
     box-sizing: border-box;
+    /* box-shadow: 1px 1px 1px rgba(0,0,0,0.3); */
 }
 
 .card .card-img-top{
@@ -411,6 +419,7 @@ fieldset:nth-child(1) .form-control::placeholder {
     display: block;
     border-radius: 10px 10px 0 0;
     object-fit: cover;
+    
 }
 .card .cardText{
     padding : 0.8rem 1.45rem 1.2rem 1.45rem;
